@@ -1,0 +1,149 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=en-us">
+<meta http-equiv="Content-Language" content="en-us">
+<link href="../style.css" rel="stylesheet" type="text/css">
+<title>x86 Assembly Lesson 1 Chapter 5</title>
+</head>
+
+<body background="../tile01.jpg">
+<CENTER>
+<h1>Bitwise Operation</h1>
+<h2><b>Part 2 -- Shifting and Rolling</b></h2>
+</CENTER><BR><BR><BR>
+<H3>Welcome</H3>
+<p>Hi! Welcome to the fifth chapter of this series. Now, we will discuss about bit shifting and rolling
+in assembly. We also revisit the bit masking stuff too.
+<p>&nbsp;
+
+<h3>Bit Shifting</h3>
+<p>To illustrate bit-shifting, let's suppose we have AL = 11010011. Shifting operation can be done in
+two direction, to the left or to the right. If we shift AL to the left one position, we will have
+AL = 10100110. Notice the difference?
+<pre>
+   AL = 1<b>1010011</b> ; shifting left 1 position:
+   AL = <b>1010011</b>0
+</pre>
+<p>Oh, so shifting left one position means take one bit at the left, then shift the remaining bits,
+then add one 0 at the end. So, shifting left by 2 positions will yield 01001100, shifting left by 3
+will result in 10011000, and so on.
+<p>Shifting right is analoguous. 11010011 shifted right one position is 01101001; by 2 position is
+00110100, by 3 position is 00011010, and so on. Easy right?
+<p>Now, what is the instruction to do so? The syntax is:
+<pre>
+   shl  x, y  ; --> means : x is shifted left  by y positions
+   shr  x, y  ; --> means : x is shifted right by y positions
+</pre>
+<p>The <tt>x</tt> and <tt>y</tt> usage is just like <tt>add</tt> or <tt>sub</tt>, you can have
+registers, variables or constants. Of course the <tt>x</tt> part cannot be a constant. However,
+in 8086 processor, if you subtitute y as a constant, it must be a 1, no other numbers are allowed.
+In 8086, if y is a register, then it must be CL. These restrictions are lifted in 80286 or newer
+processors.
+<p>What happened to the missing bits that get shifted out? Good question. They are not missing immediately.
+The carry flag will hold the <b>last shifted-out bit</b>. To illustrate it:
+<pre>
+    mov  al, 11010011b
+    shl  al, 1           ; --> AL = 10100110b, carry flag (CF) = 1
+    shl  al, 1           ; --> AL = 01001100b, CF = 1
+    shl  al, 1           ; --> AL = 10011000b, CF = 0
+</pre>
+<p>Similarly:
+<pre>
+    mov  al, 11010011b
+    shl  al, 3           ; --> AL = 10011000b, CF = 0
+</pre>
+<p>This may be handy to check whether the latest bit is 0 or 1 by testing carry flag using <tt>jc</tt>
+instruction. This testing instruction will be discussed in the next chapter.
+<p>&nbsp;
+
+<h3>Bit Rolling</h3>
+<p>Bit rolling is similar to bit-shifting. Instead of shifted out, the bits gets rolled back.
+For example: Let's say AL = 11010011b.
+<pre>
+   AL = <span style="background-color: #FFFFC0">1</span>1010011b   ; rolling left 1 position:
+   AL = <span style="background-color: #C0FFC0">1</span>010011<span style="background-color: #FFFFC0">1</span>b   ; rolling left 1 more position:
+   AL = 0100111<span style="background-color: #C0FFC0">1</span>b
+</pre>
+<p>Ah, when rolling left, the value of first will be inserted back at the end of the bits.
+Rolling to the right is similar. Instead of going to the left side, it goes to the right side. The
+carry flag is consequentially inserted at the beginning of the bits.
+<p>The syntax for bit rolling is:
+<pre>
+   rol  x, y  ; --> means : x is rolled left  by y positions
+   ror  x, y  ; --> means : x is rolled right by y positions
+</pre>
+<p>The usage is similar to bit shifting. The limitations on 8086 is also similar, and is also
+lifted up in 80286 or newer processors.
+
+<p>There is another variant on rolling bits, using carry flag. These instructions are rarely used, so
+you can skip these if you like. Rolling bits using carry flag is done by <tt>rcl</tt> and <tt>rcr</tt>
+instruction for left and right rolling respectively. It behaves pretty much like <tt>rol</tt> and <tt>ror</tt>.
+To explain it better, let's examine the following example: Let's say AL = 11010011b and the
+carry flag (CF) is 0.
+<pre>
+   CF = <span style="background-color: #FFFFC0">0</span>  AL = 11010011b   ; rolling left 1 position:
+   CF = <span style="background-color: #C0FFC0">1</span>  AL = 1010011<span style="background-color: #FFFFC0">0</span>b   ; rolling left 1 more position:
+   CF = 1  AL = 0100110<span style="background-color: #C0FFC0">1</span>b
+</pre>
+<p>The usage of <tt>rcl</tt> and <tt>rcr</tt> is similar.
+<p>&nbsp;
+
+<h3>Bit Masking Revisited</h3>
+<p>Now you understand bit shifting. The question in <a href="asml1004.html">the last chapter</a>
+is that how can we extract or set the middle 4 bits (or any bits in the middle of a bit sequence).
+The answer is using bit-shifting. Let's suppose AL = 00101101b. Let's say that we're interested
+in extracting the middle 4 bits. So, we make the mask in AH, which is equal to 00111100. Remember
+that we should set the mask on all interesting bits into 1 and the
+other must be 0. To extract the bits out, we use the <tt>and</tt> operation, as follows:
+<pre>
+  mov  al, 00101101b
+  mov  ah, 00111100b
+  and  al, ah        ; --> now al = 00101100b
+</pre>
+<p>Since the data is hanging in the middle by 2 bits, we will then shift AL 2 positions to the right.
+So, the program becomes:
+<pre>
+  mov  al, 00101101b
+  mov  ah, 00111100b
+  and  al, ah        ; --> now al = 00101100b
+  shr  al, 2         ; --> now al = 00001011b
+</pre>
+<p>Of course that the snippet above assumes 80286 or better (or alternatively you can do
+<tt>shr al, 1</tt> twice for 8086). Analoguously, if you are interested in only the middle 2 bits,
+the mask in AH should be 00011000b and you have to shift right by 3 positions.
+<p>Putting the data back is just similar. Suppose you want to put the data in lower 4 bits of CL,
+which is equal to 01100010b. Then, you'll do as follows:
+<pre>
+  mov  al, 00101101b
+  mov  cl, 01100010b
+
+  mov  ah, 11000011b
+  and  al, ah        ; --> now al = 00000001b
+
+  mov  ah, 00001111b
+  and  cl, ah        ; --> now cl = 00000010b
+  shl  cl, 2         ; --> now cl = 00001000b
+
+  or   al, cl        ; --> now al = 00001011b
+</pre>
+<p>Note that I shift left CL by 2 in order to make the desired data (i.e. 0010) is placed right
+in the middle 4 bits.
+<p>&nbsp;
+
+<h3>Closing</h3>
+<p>OK, I think that's all for now. Bit shifting is more useful than bit rolling and more often used
+in programming. Bit rolling is usually used in testing bits and encryption. But it is usually not
+practical. Note that I omit the <tt>sar</tt> instruction which is used for shifting arithmatic
+right. This one is not quite useful, except if you'd like to do tricks in quick division in
+negative numbers. I'll try to cover more eccentric instructions later in lesson 2 or 3.
+<p>I admit that bit masking is a bit confusing at first. However, this is very important in assembly
+programming. I'll try to fix this chapter as soon as I got an input from you. See you next time.
+<p>&nbsp;
+<HR><H3>Where to go</H3>
+<p><b><a href="asml1006.html">Chapter 6</a><br>
+<a href="../news.html">News Page</a><br>
+<a href="asmles01.html">x86 Assembly Lesson 1 index</a><br>
+<a href="../faq.html">Contacting Me</a></B></P>
+<hr><p class="cpy">Roby Joehanes &copy; 2001</p>
+</body></html>

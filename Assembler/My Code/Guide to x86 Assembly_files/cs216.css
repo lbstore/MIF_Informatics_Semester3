@@ -1,0 +1,232 @@
+h1 { font-family: 'Open Sans', helvetica, sans-serif; color: darkblue }
+h2 { font-family: 'Open Sans', helvetica, sans-serif; color: darkblue }
+h3 { font-family: 'Open Sans', helvetica, sans-serif; color: darkblue }
+h4 { font-family: 'Open Sans', helvetica, sans-serif; color: darkblue; top-padding: .2em }
+h5 { font-family: 'Open Sans', helvetica, sans-serif; color: darkblue; top-padding: .2em }
+
+body { background: white }
+title { font-family: 'Open Sans', helvetica, sans-serif; color: blue }
+A:link { color: blue text-decoration: underline }
+A:visited { color: darkblue }
+A:active { color: red }
+body { margin-left: 7%; margin-right: 7%; margin-top: 2%; margin-bottom:
+2% }
+h4 { margin-left: 0%; margin-right: 0% }
+h3 { margin-left: 0%; margin-right: 0% }
+h2 { margin-left: 0%; margin-right: 0% }
+h1 { text-align: center; margin-left: 0%; margin-right: 0% }
+
+body { font-family: 'Open Sans', helvetica, sans-serif }
+p.page { page-break-after: always }
+
+span.key-term {font-weight:bold}
+span.keyword {font-family:"Courier New"}
+span.comment {font-style:italic;}
+span.SchemeCharacter {font-family:"Courier New";font-size:10pt;}
+span.math { font-family:"Times New Roman", serif;font-size:14pt; font-style:italic;}
+
+p.SchemeInteractions {
+	font-family:"Courier New";
+	font-size:10pt;
+	margin-top:0pt;
+	margin-bottom:0pt; }
+p.SchemeOutput {
+	font-family:"Courier New";
+	font-size:10pt;
+	margin-top:0pt;
+	margin-bottom:0pt; 
+	padding: 3pt;
+	border: solid 1pt black;
+	color: purple;}
+p.Explain {
+	margin-top:0pt;
+	font-face:"Italics";
+	margin-left: 60pt;
+	margin-bottom:0pt; 
+	padding: 3pt;
+	color: grey;}
+pre.SchemeOutput {
+	font-family:"Courier New";
+	font-size:10pt;
+	font-face:bold;
+	margin-top:0pt;
+	margin-bottom:0pt; 
+	padding: 3pt;
+	border: solid 1pt black;
+	color: purple;}
+p.SchemeResults {
+	font-family:"Courier New";
+	font-size:10pt;
+	margin-top:0pt;
+	margin-bottom:.2em; 
+	color: #333399;}		
+p.SchemeError {
+	font-family:"Courier New";
+	font-size:10pt;
+	margin-top:0pt;
+	margin-bottom:.2em; 
+	color: #FF0000;}		
+
+p.SchemeInteractionsSmall {
+	font-family:"Courier New";
+	font-size:8pt;
+	margin-top:0pt;
+	margin-bottom:0pt; }
+p.SchemeOutputSmall {
+	font-family:"Courier New";
+	font-size:8pt;
+	margin-top:0pt;
+	margin-bottom:0pt; 
+	padding: 3pt;
+	border: solid 1pt black;
+	color: purple;}
+p.SchemeResultsSmall {
+	font-family:"Courier New";
+	font-size:8pt;
+	margin-top:0pt;
+	margin-bottom:.2em; 
+	color: #333399;}		
+p.SchemeError {
+	font-family:"Courier New";
+	font-size:10pt;
+	margin-top:0pt;
+	margin-bottom:.2em; 
+	color: #FF0000;}		
+
+div.hanging {
+   padding-left: 25px;
+   text-indent: -25px;
+}
+
+div.explanation {
+   padding-left: 25px;
+}
+
+div.aside {
+   padding-left: 25px;
+   margin-left: 25px;
+   color: gray;
+   font-size: 9pt;
+}
+
+div.boxout {
+   margin-left: 25px;
+   margin-right: 25px;
+   border: 5px solid;
+   border-color: #CC3300;
+   padding-left: 15px;
+   padding-right: 15px;
+   margin-top: 10pt;
+   margin-bottom: 10pt;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   text-align: center;
+}
+
+div.callout {
+   margin-left: 25px;
+   margin-right: 25px;
+   border: 3px solid;
+   border-color: #553399;
+   padding-left: 15px;
+   padding-right: 15px;
+   margin-top: 10pt;
+   margin-bottom: 10pt;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   text-align: left;
+}
+
+div.question {
+   margin-left: 20px;
+   margin-right: 20px;
+   border: 5px outset;
+   border-color: #CC3300;
+   padding-left: 12px;
+   padding-right: 12px;
+   margin-top: 10pt;
+   margin-bottom: 10pt;
+   padding-top: 5px;
+   padding-bottom: 5px;
+}
+
+div.warning {
+   margin-left: 25px;
+   margin-right: 25px;
+   border: 4px solid;
+   border-color: #FF0000;
+   padding-left: 15px;
+   padding-right: 15px;
+   margin-top: 10pt;
+   margin-bottom: 10pt;
+   padding-top: 5px;
+   padding-bottom: 5px;
+}
+
+div.optionalquestion {
+   margin-left: 25px;
+   margin-right: 25px;
+   border: 5px outset;
+   border-color: #33CC00;
+   padding-left: 15px;
+   padding-right: 15px;
+   margin-top: 10pt;
+   margin-bottom: 10pt;
+   padding-top: 5px;
+   padding-bottom: 5px;
+}
+
+div.reading {
+   margin-left: 50px;
+   margin-right: 50px;
+   border: 5px outset;
+   border-color: #CCddaa;
+   padding-left: 50px;
+   padding-right: 50px;
+   margin-top: 10pt;
+   margin-bottom: 10pt;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   text-align: left;
+}
+
+div.code {
+   font-family:"Courier New", sans-serif;
+   padding-left: 50px;
+   padding-right: 50px;
+   margin-top: 6pt;
+   margin-bottom: 6pt;
+}
+
+div.pdf {
+   text-align:right;
+   font-size:10pt;
+}
+
+
+div.date {
+   text-align:right;
+   font-face:bold;
+   font-size:11pt;
+   color: gray;
+}
+
+div.mathquote {
+   font-family:"Times New Roman",serif;
+   padding-left: 25px;
+   padding-right: 25px;
+   margin-top:6pt;
+   margin-bottom:6pt;
+}
+
+div.credits {
+   font-size: 9pt;
+   text-align: right;
+   padding-left: 40px;
+   padding-right: 0px;
+   margin-top:6pt;
+   margin-bottom:6pt;
+}
+
+
+

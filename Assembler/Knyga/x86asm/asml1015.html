@@ -1,0 +1,417 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=en-us">
+<meta http-equiv="Content-Language" content="en-us">
+<link href="../style.css" rel="stylesheet" type="text/css">
+<title>x86 Assembly Lesson 1 Chapter 15</title>
+</head>
+
+<body background="../tile01.jpg">
+<CENTER>
+<h1>A Little Bit of Theory</h1>
+</CENTER><BR><BR><BR><BR>
+<H3>Welcome</H3>
+<p>Hi! Welcome to the last chapter of this series. By now you should know the very
+essence of assembly language. You can basically transform a lot of programs from
+high-level languages into assembly as necessary. The only thing to do is to read
+the hardware manual if you'd go for hardware accesses. Hardware accesses is a lot
+faster if it is handled properly. But, how we can handle it lies the real question.
+<p>Handling hardware access require basic knowledge of the PC itself. Today,
+I'd like to explain this to you. Hopefully, after you do understand this, you can
+unleash the true power of your PC. ;-)
+<p>&nbsp;
+
+<h3>Memory Mode Explained</h3>
+<p>We've discussed some details in "tiny" memory mode in <a href="asml1009.html">chapter 9</a>.
+You may want to go back to review it. There are other memory modes (sometimes called "memory model")
+which enable us to incorporate more code and data, not limited to the 64KB barrier that the "tiny"
+mode has. These modes correspond to the <tt>.EXE</tt> file, whereas "tiny" correspond to the simple
+<tt>.COM</tt> file. With an exception of <tt>flat</tt> mode, the code, data, and stack segment may
+be separated, instead of to the same segment as it is in "tiny" mode. Here is a table of the mode
+comparison:
+<p>&nbsp;
+<table width=100% border=1 align=center>
+<tr><th>Mode</th><th>Code</th><th>Data</th><th>Stack</th><th>Max Total</th></tr>
+<tr><td align=center>Tiny</td><td align=center colspan=3>Point to one segment, limited to 64 KB</td><td align=center>64 KB</td></tr>
+<tr><td align=center>Small</td><td align=center>One segment, max. 64 KB</td><td align=center colspan=2>One segment, max 64 KB</td><td align=center>128 KB</td></tr>
+<tr><td align=center>Compact</td><td align=center>One segment, max. 64 KB</td><td align=center colspan=2>Many segments, 64 KB each,<br>Stack may be placed in separate segment</td><td align=center>640 KB</td></tr>
+<tr><td align=center>Medium</td><td align=center>Many segments, 64 KB each</td><td align=center colspan=2>One segment, max 64 KB </td><td align=center>640 KB</td></tr>
+<tr><td align=center>Large</td><td align=center>Many segments, 64 KB each</td><td align=center colspan=2>Many segments, 64 KB each,<br>Stack may be placed in separate segment</td><td align=center>640 KB</td></tr>
+<tr><td align=center>Huge</td><td align=center>Many segments, 64 KB each</td><td align=center colspan=2>Many segments, 64 KB each,<br>Stack may be placed in separate segment</td><td align=center>640 KB</td></tr>
+</table>
+<p>The <tt>large</tt> and <tt>huge</tt> memory mode are similar. The only difference that the <tt>huge</tt>
+memory mode allows data to cross 64 KB. The <tt>flat</tt> mode simply like <tt>tiny</tt> mode, but it
+is used in 32-bit protected mode programming, and the limit is 4 GB. Wow... that's enormous.
+<p>These modes are confusing at first. Which one to use then? It definitely depends of the requirement of
+your code and data. You can pick one that is most suitable.
+<p>Of course there are consequences. Having multiple segments will require you to set the segment
+registers, except the code segment. In <tt>small</tt> and <tt>medium</tt> mode, since data with stack is
+placed in one segment, we can initialize DS and SS (and sometimes ES if you use string instructions) to
+point to that segment and we don't have to modify them anymore for the rest of the program. If we have
+multiple segments of data, we have to set the segment registers appropriately whenever we'd like to
+access data. Failing to do this will result a chaos.
+<p>Having multiple segments for code will require us to declare far subroutines and do a far calls.
+In the mode that contains only one segment of code like <tt>tiny</tt> and <tt>small</tt> mode,
+when we declare subroutines, the assembly will automatically declares them as near subroutines. What's
+that mean? In calling subroutines, the processor will automatically push the returning address to the stack.
+If the called subroutine is a near subroutine, the processor will only push the offset of the address since
+it "knows" that both the caller and the callee reside within the same segment. So, no need to push the
+segment part. Pushing only the offset part when calling a subroutine is called <b>"near" call</b>.
+<p>However, in the mode that enables multiple segments of code will require the segment part
+of return address to be pushed too because the processor is not sure whether the caller and the callee
+reside within the same segment. Declaring subroutines to be <b>"far"</b>, will force the processor to push both
+segment and offset of the return address.
+<p>Fortunately, you don't have to worry about setting "near" or "far" since modern assembly will do
+this automatically for you. If you are more experienced, tweaking "far" and "near" calls may speed up
+your code. However, since we're learning now, don't bother tweaking up first. ;-) The only thing you
+should pay attention to is setting up the DS, ES, or SS (whichever appropriate) to point to the correct
+data. I will explain more about this later in lesson 2.
+<p>It may be complicated at first, but as we go on, it will turn out to be a piece of cake. That's why
+I chose "tiny" model for our tutorial examples because we don't have to fuss around with these details.
+<p>&nbsp;
+
+<h3>Addressing Mode Explained</h3>
+<p>Well, at first I think I don't need to explain you about this since I have explain it indirectly
+through out the chapters. However, this information is necessary if you want to read assembly
+instruction manual yourself. What is addressing mode actually? It is basically the types of parameters
+that can be passed into an assembly instruction. There are several addressing modes in IBM PC:
+<p>&nbsp;
+<table width=100% border=1 align=center>
+<tr><th>Mode</th><th width=25%>Operand Type</th><th>Example</th><th>Comment</th></tr>
+<tr><td align=center>Register</td><td align=center>Register</td><td align=center><tt>inc bx</tt></td>
+    <td align=center>This <tt>inc</tt>'s operand is a register</td></tr>
+<tr><td align=center>Immediate</td><td align=center>Constant</td><td align=center><tt>mov cx, 10</tt></td>
+    <td align=center>This <tt>mov</tt>'s operands are register and immediate</td></tr>
+<tr><td align=center>Memory</td><td align=center>Variable</td><td align=center><tt>mov cx, [n]</tt></td>
+    <td align=center>This <tt>mov</tt>'s operands are register and memory</td></tr>
+<tr><td align=center>Register Indirect</td><td align=center>Pointer pointed by a register</td><td align=center><tt>mov cx, [bx]</tt></td>
+    <td align=center>This <tt>mov</tt>'s operands are register and register indirect</td></tr>
+<tr><td align=center>Base Relative</td><td align=center>Pointer pointed by a register with an added index</td><td align=center><tt>mov cx, [bx+1]</tt></td>
+    <td align=center>This <tt>mov</tt>'s operands are register and base relative</td></tr>
+<tr><td align=center>Direct Indexed</td><td align=center>Pointer pointed by an <u>index</u> register with an added index</td><td align=center><tt>mov cx, [si+1]</tt></td>
+    <td align=center>This <tt>mov</tt>'s operands are register and direct index</td></tr>
+<tr><td align=center>Base Indexed</td><td align=center>Pointer pointed by a register and an index register</td><td align=center><tt>mov cx, [bx+si]</tt></td>
+    <td align=center>This <tt>mov</tt>'s operands are register and base indexed</td></tr>
+</table>
+<p>It turns out that all of this already explained right? The first three plus "base relative"
+have been explained in the <a href="asml1002.html">chapter 2</a>. The rest are explained in
+<a href="asml1012.html">chapter 12</a>.
+<p>&nbsp;
+
+<h3>Effective Address</h3>
+<p>What is an effective address? It means the actual address the instruction is referring to.
+Calculating effective address is always linked to the addressing mode. As you may recall that
+all variable names in assembly are treated as <b>pointers</b>. That's why when I explain
+variables in <a href="asml1002.html">the second chapter</a>, I always refer to address table.
+<p>Putting a square bracket in a pointer always dereference its value. That's why <tt>[myvar]</tt>
+actually refers to the contents of <tt>myvar</tt> instead of its address. TASM's ideal syntax
+enforces us to use this notation. This is good because it always remind us that variable names are
+pointers. However, in MASM, the assembler is "smart" so that <tt>mov ax, n</tt> will always fetch
+the contents of variable <tt>n</tt>. This may confuse a lot of people.
+<p>Likewise, putting a square bracked in a register, will treat the register as a pointer and then
+dereference the address of whatever that register points to. This is the trick used in base relative,
+direct indexed, and base indexed addressing mode. For example: BX = 100h, SI=50h, and the memory table is
+as below:
+<p>&nbsp;
+<div align="center">
+  <table border="1" width="25%" height="20">
+    <tr>
+      <td width="50%" height="20" align=center><b>Address</b></td>
+      <td width="50%" height="20" align=center><b>Content</b></td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>100h</td>
+      <td width="50%" height="20" align=center>10h</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>101h</td>
+      <td width="50%" height="20" align=center>11h</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>:</td>
+      <td width="50%" height="20" align=center>:</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>150h</td>
+      <td width="50%" height="20" align=center>16h</td>
+    </tr>
+  </table>
+</div>
+<p>Doing <tt>mov ax, bx</tt> will make AX = 100h. But doing <tt>mov ax, [bx]</tt> will make AX=10h.
+Why? Because BX is treated as an address the address. The address 100h contains 10h. Since
+BX is dereferenced, then the contents of that memory address gets returned to AX. Likewise,
+doing <tt>mov ax, [bx+1]</tt> will make AX=11h. Why? Because BX is treated as an address. Then,
+add 1 to that address, which yields the address 101h. Since the address gets dereferenced, the
+content of address 101h is returned. Analogously, <tt>mov ax, [bx+si]</tt> will return 16h. Why?
+I'll leave that for you to answer.
+<p>In <tt>mov ax, [bx]</tt>; the effective address is 100h because the dereferenced address is 100h.
+Similarly, in <tt>mov ax, [bx+1]</tt>; the effective address is 101h and in <tt>mov ax, [bx+si]</tt>;
+the effective address is 150h.
+<p>I hope the examples are clear enough.
+<p>&nbsp;
+
+<h3>Machine Codes</h3>
+<p>You probably have heard this term. What is machine code actually? Well, machine code is the only code that
+the processor could understand. Machine codes consist of binary numbers which will be decoded by
+the processor prior to executing. Processors don't know <tt>mov</tt>, <tt>printf</tt>, <tt>println</tt>
+or <tt>writeln</tt>. They only know zeroes and ones. How can this happen? We wrote programs and run
+it and the processor do its job.
+
+<p>Well, assembly program is assembled by the assembler into the machine codes in order to execute.
+In fact, assembly language is created for us so that we don't have to remember all of those arcane
+numbers. Analoguously, compilers will compile high-level languages to machine codes too.
+That's why the processor seems to "understand" your program. The difference is that one instruction
+of assembly code [almost always] correspond to one machine code whereas one statement in high-level
+languages may translate into tens or hundreds (even thousands) of machine code. This one-one
+translation of assembly program can make more speed in less space compared to those in high-level
+languages.
+
+<p>Even worse, some high level languages don't get translated into machine codes. Instead, it
+is interpreted by a program called <b>interpreter</b>. Interpreter scans and runs the program
+(usually) line by line basis. Everytime the interpreter reads a line, it tries to dechiper what
+it means and execute it. Then the interpreter moves to the next line then do the same thing. This
+approach turns out to be very slow. BASIC, older version of Visual Basic, all kinds of script programs
+(VBScript, JavaScript, ASP, Perl, etc), and even Java fell into this category.
+
+<p>So, for a definitive speed advantage, you should choose assembly programs. But then again, assembly
+programs are hard, error-prone, etc, etc, which already mentioned in <a href="asml1001.html">the first
+chapter</a>.
+<p>&nbsp;
+
+<a name="comparch">
+<h3>PC Architecture In Brief</h3>
+<p>It is also important to know a little bit further about the current PC architecture in general.
+I have mentioned in <a href="asml1009.html">chapter 9</a> a little bit about this. What I'm going
+to explain here is the essentials of computer architecture. Understanding this, you basically
+get Computer Architecture 101. ;-)
+
+<p>Today's computer architecture is still based on Von Neumann's, which was spun off in 1940s.
+This architecture was mixing code and data (and stack) into one memory. This solution turns out
+to be pretty effective both in terms of technology and cost. Let's look into the "original"
+architecture diagram in 40,000 feet bird eye view ;-):
+<p>&nbsp;
+<center><img src="neumann.png"></center>
+
+<h4>Bus</h4>
+<p>You can see here that the processor is the center of everything: It controls the memory and
+hardwares. The processor is connected to the memory and hardware controller through paths that
+consist of a set of cable called <b>bus</b>. The number of cables connecting in the same path
+determines the <b>bus width</b>. Typical bus-width are 8-bit 16-bit, and 32-bit, which contains
+8, 16, and 32 cables respectively. 8-bit bus can deliver 8-bit data at a time. 16-bit can
+deliver 16-bit of data at a time. So, the larger the bus, the speedier is the access.
+Since bus typically consist of multiple cable, we seldom draw the cable one by one in a diagram,
+but rather a single line with a slash in the middle.
+
+<p>There are two kinds of busses: <b>data bus</b> and <b>address bus</b>. Data bus is used
+to deliver data and address bus is used to notify address. Typically, the processor connects
+to the memory through both data bus and address bus. When the processor tries to read the
+memory, it sends the address in the address bus to denote which memory part it wants, and then
+the memory (or I should say memory controller) will send back the data through data bus. If
+the processor wants to write something into the memory, it will send the address to the memory
+controller and send the data through the data bus.
+<p>&nbsp;
+
+<h4>Clock</h4>
+<p>Certainly, processor sends or receives many data to both memory and hardware controller.
+How can they cooperate so that no clashes occur? Well, the processor, memory and hardware
+controller is controlled by a <b>clock</b>. This clock is not the same as system clock, but
+rather it is the clock that regulates the timings, The clock is generated by a <b>clock chip</b>
+which determines the bus speed. The clock chip generates clock signal regularly.
+You probably have heard that processor has 100 Mhz <b>bus speed (or bus clock rate)</b>.
+It means that the clock chip generates clock signal in every <sup>1</sup>/<sub>100,000,000</sub>
+<sup>th</sup> of a second, Each component of the system (processor, memory, hardware, etc) may
+only sends or receive data whenever a clock is generated. So, think of the clock chip as the
+policeman in the computer system.
+<p>Note that <b>bus speed does not equal to the processor speed</b>.
+<p>&nbsp;
+
+<h4>Hardware Access</h4>
+<p>Whenever the processor encounters an instruction for a hardware access, the processor then pass
+this instruction to hardware controller. The hardware controller then send
+the instruction to the appropriate device. If the device responds with an output, the output is then
+sent back to the processor through the hardware controller.
+<p>Before hardware controller was "invented", the processor controls all the hardwares. At that time,
+whenever the processor encounters a hardware access request, then it determines which hardware
+the instruction should go and it waits until the device sends an acknowledgement message back and
+then continue executing program. This caused a great deal of waiting. The idea of inventing the
+hardware controller is to reduce this stall. The processor send this hardware access request to the
+hardware controller and then continue to work. When the device send an output to the hardware
+controller, the hardware controller will then send this signal back to the processor. The processor
+interrupts the current running program to handle this signal appropriately. After the signal and the
+device output get handled, the processor resumes the previously interrupted program. This is the
+process on how we get <b>hardware interrupt</b>.
+<p>Hardware interrupt does not have to be initiated by hardware access requests. Input devices like
+keyboards or mouse regularly sends this interrupt signal to the processor whenever there is a keypress,
+a mouse move or click so that the input gets handled properly. Other hardware interrupts may be sent
+regularly like timer interrupt, which control the system clock.
+<p>Modern architecture has a little bit modification. Today, we usually have two hardware controllers:
+the northbridge and the south bridge. The north bridge is (usually) attached to the processor and
+the memory controller. The south bridge handles all the hardware stuff. North and south bridges communicate
+with a specialized high-speed bus to further enhance the performance. This design is due to the
+intensive communication between processor and memory. To avoid a performance bottleneck, the
+north bridge is created to handle this.
+<p>&nbsp;
+
+<h4>Memory Subsystem</h4>
+<p>Memory modules in computer systems are called <b>Random Access Memory (RAM)</b>. It is called
+"random access" because we can request a byte (or several bytes) at any address point. Why RAM
+is able to do that? It's because every single byte in RAM has an address.
+<p>In order to make the program executed by the processor, it has to be loaded to RAM with the
+help of the operating system. Whenever the processor wants to execute an instruction, it fetches
+one or more bytes of machine code from the memory, decodes them and execute them. If there are
+results need to be stored in the memory, the processor then has to write them back. It turns out
+that the memory access, both read and write, is slooow. The processor has to wait until the
+requested byte get read (or get written). This waiting time is called <b>memory latency time</b>.
+<p>This latency is due to the memory architecture. Years ago, memory access was called <b>asynchronous</b>,
+which means the memory timing (or clock) is not the same as the bus clock rate (usually a lot slower).
+This makes the processor wait for the result because the processor doesn't know when the result is ready.
+<p>This delay is further worsened by the fact that the memory modules has to be refreshed
+every couple microseconds. The refresh is needed because the memory module will lose its contents
+if the system do that. While the refreshing, all requests to the memory are suspended.
+This is the inherent nature of <b>dynamic RAM (DRAM)</b>.
+<p>Modern memory (like SDRAM) access is <b>synchronous</b> (That's how SDRAM got its name).
+In synchronous memory module, the memory timing is set equal to the bus speed or its multiple.
+So, the processor doesn't have to wait because it knows exactly how long the memory request get
+processed. Therefore, the processor can continue executing the next instruction and then go back
+after the wait-interval elapsed. Of course, if the next instruction requires (or contingent to)
+the result of current memory request, the processor has to wait anyway. But then, this approach
+will save some time.
+<p>&nbsp;
+
+<h4>Cache</h4>
+<p>Another way to reduce the memory access is to buffer some portion of memory into processor's
+<b>cache</b>. A cache is a very high speed memory module that is planted inside the processor
+chip. Cache is a lot faster than the DRAM. First of all because caches are made of <b>Static
+RAM (SRAM)</b> instead of dynamic RAM. SRAM does not need refreshing as DRAM, thus the refreshing
+delay is eliminated. Secondly, SRAM circuitry is inherently faster, but a lot more expensive.
+No wonder cache sizes are usually small, usually a few kilobytes. Lastly, if the cache resides
+within the processor core (<b>L1 cache</b>), since cache operates at the same speed as processor's
+core, which is usually multiple times of bus speed. Therefore, having cache is an advantage.
+
+<p>Usually, the processor caching strategy is putting several kilobytes after the currently
+processed instruction into cache memory. So, whenever the processor wants to fetch an instruction,
+it fetches from the cache and continue working. Meanwhile, cache controller retrieve some more
+bytes from the memory so that the cache is constantly populated. You can think cache is like a
+high-speed queue (although this is not always the case). The processor retrieve from the front,
+the cache controller will add at the end.
+
+<p>Whenever the cache controller retrieves a conditional jump, it must predict whether the jump
+is taken or not. It doesn't know for sure whether the jump should be taken or not. Why? Because
+the test preceeding the conditional jump is not executed yet. So, we don't know whether the jump
+should be taken or not. Remember we're at the end of the "queue" and the processor is yet to execute
+several kilobytes in the front "queue". So, anyway the cache controller must "guess" whether
+the jump should be taken or not. This guessing mechanism is called <b>branch prediction</b>.
+If the prediction is correct or a <b>cache hit</b>, then everything's
+happy and work as usual. Otherwise, it is a <b>cache miss</b>, and the processor instructs the cache
+controller to trash the cache and repopulate the cache due to the misprediction. In cache miss,
+it is either cache controller predict "jump taken", but in turns out to be "not taken" or the
+other way round.
+
+<p>After knowing this caching mechanism, the best thing you could do is: Avoid conditional jump
+whenever possible. But, do this wisely since it may add more difficulty in programming.
+
+<p>In case you wonder what is the difference between L1 and L2 cache (or even L3 cache),
+L1, L2, and L3 cache are <b>cache levels</b>. Processor will fetch instructions (or data) from
+L1 cache. L1 cache controller will retrieve bytes from L2 cache, L2 cache will retrieve bytes
+from L3 cache, if any, otherwise it will fetch bytes from the RAM. This cascading nature has
+been proven to increase the performance of the processor. L1 cache typically resides in the
+processor core, thus operate at the same speed as your processor's Mhz rate. L2 cache typically
+closely coupled with the core, but it's not inside the core. L2 cache typically operates
+at bus speed or its multiples (0.5x for half speed, 2x for double speed like Athlon, 4x for
+quad-pumped like Pentium 4; well, not quite, though).
+<p>&nbsp;
+
+<h4>The Processor</h4>
+<p>What about the processor itself? The processor's MHz clock is revered as <b>processor core
+speed</b>. Like bus clock, the processor core speed is the clock rate that dictates the internal
+working of the processor. So, what is inside a processor. The processor chip contains the cache,
+the processing units and the registers. Well, the cache is not really inside the processor's
+core but outside the core. Everything else (well, not quite) is inside the core. So, what does
+it mean? Everything inside the core operates at the same clock rate at the processor's. Thus,
+if you have 950 MHz processor, the core will operate on that speed. This is a lot faster than
+the bus clock (usually 100 or 133MHz) or the clock that dictates the cache (usually around 400 Mhz).
+What does it tell us? Since the registers are inside the core, the registers are faster than
+memory, even the cache. So, use registers whenever possible.
+<p>How about its processing units? The processor has several steps (or stages) in treating
+each instruction. The stages vary from one processor to another, but it can generally be
+broken down into these stages:
+<ul>
+<li><b>Fetch stage</b>. In this stage, the processor fetches the instruction from the memory
+(or the cache)</li>
+<li><b>Decode stage</b>. In this stage, the processor tries to figure out the meaning of the
+instruction. Remember that the instruction is in the form of machine codes.</li>
+<li><b>Execute stage</b>. After figuring out the meaning, the processor execute the instruction.
+Here, the processor also fetches any data in memory if needed.</li>
+<li><b>Writeback stage</b>. If there are results need to be stored back to the memory, the processor
+dispatches them.</li>
+</ul>
+<p>Each of these stages can actually be expanded into several stages. The old Pentium, for example,
+expand the execution stage into two: one stage is to fetch any data from memory if needed, the other
+is to actually execute it. Also, in Pentium, after the writeback stage, we have "error reporting"
+stage which is, obviously, to report errors if any. Pentium 4 even has 20 stages.
+<p>Obviously, these stages are arranged into a single sequential <b>pipeline</b> so that
+the instruction enters from the first stage, sequentially to the end like this:
+<p>&nbsp;
+<center><img src="pipeline.png"></center>
+<p>Staging the instruction process has a great advantage. Suppose you have instruction 1 to n
+to be executed sequentially. At clock 1, instruction 1 enters the first stage. At clock 2,
+instruction 1 enters the second stage. Since at clock 2, the first stage is empty, we can
+fed in instruction 2. At clock 3, instruction 1 is at stage 3, instruction 2 is at stage 2, so
+we can put in instruction 3 into stage 1. And so on.
+<p>So, what's the effect? If we have four stages of processing, we are like processing 4
+instructions at the same times (but in different stages). So, the net effect is like 4 times
+the "normal" performance. This pipelining certainly boost up performance. No wonder when
+the pipelining first introduced in the old Pentium, the Pentium outperforms 80486 by several
+times.
+<p>However, there is a catch: Again, if we have conditional jumps. If instruction number 3
+is being executed (thus in stage 3 in our diagram above), the instructions in stage 1 and 2
+must be dumped if the prediction is wrong.
+<p>Today's computers have more than one pipelines. This is refered as <b>multi-pipeline</b>
+processor. The old Pentium has 2 pipelines, so, it's like having two separate processors (but
+of course not equal). If we have two pipelines, the processor can execute two instructions
+in parallel. If each pipelines has 5 stages, we're effectively pump up the performance
+up to 10 times. Running two or more instructions in parallel needs a precaution: These
+instructions must be independent to each other in order to be able to be executed in parallel.
+For example:
+<pre>mov   bx, ax
+mov   cx, bx</pre>
+<p>This instructions cannot be run in parallel. Why? Because the second instruction needs the
+outcome of the first instruction, i.e. the value of BX is determined by the result of the
+first instruction. Look at the next example:
+<pre>mov   bx, ax
+mov   cx, ax</pre>
+<p>This program can be run in parallel because now both of them only depends on AX (which is
+assumed already set way ago). We know that both excerpts mean the same thing. But the second
+example is faster because they can run in parallel. Therefore, the instruction "ordering"
+can make difference because of multi-pipelining.
+<p>Therefore, if you want to speed up your code, sometimes it's worth to reorder instructions
+so that many of them can be run in parallel.
+<p>&nbsp;
+
+<h3>Summing Up</h3>
+<p>Here are the tricks of what you should have learnt from the theory:
+<ul>
+<li>Avoid jumps if possible, especially conditional jumps.</li>
+<li>Use registers whenever possible.</li>
+<li>If you have to use hardware, try to do caching since hardware access may take a while.</li>
+<li>Reorder instructions to make it run parallel.</li>
+</ul>
+<p>&nbsp;
+
+<h3>Closing</h3>
+<p>Whew! What a lengthy theory! :-) Well, actually this theory should be taught <u>before</u>
+you program in assembly language because it lays out the foundation. I decided to move this
+at the very end because I think you might get offended by these enourmous details. I'm a
+pragmatic person. I don't like theory much either. So, my style in explaining assembly is
+to get your hands on and poke into the codes as soon as possible.
+<p>OK, I think that's all for now. This is the end of the lesson 1. It should be enough
+for you to wander in assembly world yourself. Or, if you'd like, you can wait for the
+second lesson to be up, which may be several years to come. :-) See you next time. Good luck.
+<p>&nbsp;
+<HR><H3>Where to go</H3>
+<p><b><a href="../news.html">News Page</a><br>
+<a href="asmles01.html">x86 Assembly Lesson 1 index</a><br>
+<a href="../faq.html">Contacting Me</a></B></P>
+<hr><p class="cpy">Roby Joehanes &copy; 2001</p>
+</body></html>

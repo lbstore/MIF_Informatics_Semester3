@@ -1,0 +1,713 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=en-us">
+<meta http-equiv="Content-Language" content="en-us">
+<link href="../style.css" rel="stylesheet" type="text/css">
+<title>x86 Assembly Lesson 1 Chapter 2</title>
+</head>
+
+<body background="../tile01.jpg">
+<CENTER>
+<h1>Variables in Assembly</h1>
+<h2><b>Variable Basics and MOV Command</b></h2>
+</CENTER><BR><BR><BR>
+<H3>Welcome</H3>
+<p>Hi! Welcome to the second chapter of this series. This time, I'm
+going to talk about the variables in Assembly. This is quite significant
+since it behaves differently than that of the high programming languages
+like C/C++, Pascal, or Java. I hope after following this lesson, you'll
+be able to use the assembly variable context fully. Let's begin!
+<p>Before starting, I just remind you that assembly language (in TASM or MASM)
+is <b>NOT</b> case-sensitive. It means that "this", "This", and "tHiS" are
+considered as the same. I just forgot whether I have mentioned this in the
+last chapter or not. Well, you can always tell the assembly to be case-sensitive
+if you'd like to. That will involves in setting some command line switches.
+It will be discussed later.
+<p>Moreover, I remind you that comments in assembly begins with a semicolon (;).
+Everything after a semicolon until the end of the line is ignored. So, it's like
+a double-slash in C++ or a quote in BASIC.
+<p>I give examples in TASM ideal syntax most of the times. I assume
+that you have followed the <a href="asml1001.html">previous chapter</a>
+concerning the format. I don't want to specify each example in both
+MASM and TASM formats since they are largely the same. The subtle
+differences in MASM syntax will be mentioned.
+<p>&nbsp;
+
+<h3>Variables Declaration</h3>
+<p> If you recall our first program from the <a href="asml1001.html">last chapter</a>,
+our ideal syntax (TASM based) looks like this:
+<pre>ideal
+p286n
+model tiny
+
+codeseg
+   org 100h
+   jmp start
+
+   ; your data and subroutine here (this is a comment)
+
+start:
+   mov ax, 4c00h
+   int 21h
+end</pre>
+<P>Notice where you'd put your variable declarations. It's right after the <tt>jmp
+start</tt> statement. Well, you can actually place your declarations <b>anywhere</b>
+inside the program. However, for now, let's just place them there. Placing it after
+the <tt>start</tt> label can be disastrous if you do not handle it carefully.
+<p>OK, now, there are 3 types of variable declarations in assembly that you need to
+know now: <tt>db</tt>, <tt>dw</tt>, and <tt>dd</tt>. The <tt>db</tt> is to declare
+the one-byte-length variables. Likewise, <tt>dw</tt> and <tt>dd</tt> are for
+the word (2 bytes) variables and double-word (4 bytes) variables. Of course there
+are more variable types available, but all of them deals only with numeric variables
+and will be discussed later, after you grasped the core concept of assembly language.
+
+<p>How can we declare variables then? The declaration syntax is as follows:
+<pre>var_name   db   value</pre>
+<p>That's simple. You need to change <tt>var_name</tt> with your variable name
+and <tt>value</tt> with the corresponding default value of <tt>var_name</tt>.
+Declaring word and double-word variables are just similar, you just change the
+<tt>db</tt> into <tt>dw</tt> and <tt>dd</tt>. For example:
+
+<pre>ideal
+p286n
+model tiny
+
+codeseg
+   org 100h
+   jmp start
+
+   <span style="background-color: #C0FFC0">score db 100</span>
+   <span style="background-color: #C0FFC0">year  dw 2001</span>
+   <span style="background-color: #C0FFC0">money dd 1000000</span>
+
+start:
+   mov ax, 4c00h
+   int 21h
+end</pre>
+<P>Ah, that's straight forward. Of course you can assign those variables with
+binary or hexadecimal values. Binary values would need to be appended by the
+letter 'b' at the end of the number. Likewise, hexadecimals with 'h' at the
+end. If the hexadecimal numbers start with letters (i.e. A, B, C, D, E, or F),
+you need to add a zero in front of that number and add an 'h' after that number.
+For example:
+<pre>   :
+   <span style="background-color: #C0FFC0">bits  db 101001b</span>
+   <span style="background-color: #C0FFC0">var2  dw 4567h</span>
+   <span style="background-color: #C0FFC0">var3  dw 0BABEh</span>
+   :</pre>
+<p>&nbsp;
+<h3>Variable Limits and Negative Values</h3>
+<p>How about the limits of those variable types then? See the table below:
+<p>&nbsp;
+<div align="center">
+  <table border="1" width="50%" height="20">
+    <tr>
+      <td width="25%" height="20" align=center><b>Declaration</b></td>
+      <td width="25%" height="20" align=center><b>Acronym</b></td>
+      <td width="25%" height="20" align=center><b>Length</b></td>
+      <td width="25%" height="20" align=center><b>Limit</b></td>
+    </tr>
+    <tr>
+      <td width="25%" height="20" align=center><b>db</b></td>
+      <td width="25%" height="20" align=center>define byte</td>
+      <td width="25%" height="20" align=center>1 byte</td>
+      <td width="25%" height="20" align=center>0-255</td>
+    </tr>
+    <tr>
+      <td width="25%" height="20" align=center><b>dw</b></td>
+      <td width="25%" height="20" align=center>define word</td>
+      <td width="25%" height="20" align=center>2 bytes</td>
+      <td width="25%" height="20" align=center>0-65535</td>
+    </tr>
+    <tr>
+      <td width="25%" height="20" align=center><b>dd</b></td>
+      <td width="25%" height="20" align=center>define double</td>
+      <td width="25%" height="20" align=center>4 bytes</td>
+      <td width="25%" height="20" align=center>0-4294967295</td>
+    </tr>
+  </table>
+</div>
+<p>"Ah, I see that the <tt>db</tt>, <tt>dw</tt>, and <tt>dd</tt> are for
+positive values only. How can I define a negative ones?" Well, you can
+assign the variables as negative values, too. However, assembler will
+convert them to the corresponding positive value. For example: If you
+assign -1 to a <tt>db</tt> variable, assembler will convert them to
+positive 255 integer. "How can it be? It will certainly confuse my
+calculation then." Nope. In fact, the converted negative values will
+behave similarly as if they are not flipped. Trust me. ;-) The only
+thing you need to beware of is just when you want to print the
+contents of that variable out to the screen and to distinguish
+the negative values from the positive ones.
+<p>To distinguish negatives from positives, usually programmers likes to
+divide the variable ranges into two roughly equal parts. For bytes, if
+the value is between 0 and 127, it is considered as positive, the rest
+(128-255) are considered negative. This scheme also perpetuates in
+dividing words and double-words. It's not hard at all, you just remember
+which variables are considered negative and treat them accordingly.
+You may find it cumbersome at first, though.
+<p>Now, the next question would be on how can we find the corresponding
+positive values for each negative numbers. Before we start, I just remind you
+that 1 byte equals to 8 bits. So 2 bytes is 16 bits, 4 bytes is 32 bits.
+I assume that you are able to convert a decimal number to binary and
+vice versa. I also assume that you're capable in doing binary digit
+addition.
+<p>To find the corresponding positive value, you first ignore the negative
+sign, then convert that number into binary. Remember the variable type you
+are in. If it is a byte, the resulting binary number must be 8 digits. Likewise,
+a word must be 16 digits and a double must be 32 digits. If the result digit is less
+than that, pad it with zeroes. Then, flip all digits in the binary
+number (i.e. from 0 to 1 or from 1 to 0). After that, increase that binary
+by one. Convert the result back to decimal. Voila! That's the corresponding
+positive value.
+<p>For example, you want to convert -5 byte to its corresponding positive value.
+Ignore the negative and convert 5 to binary. It's 101, right? Since
+we're dealing with bytes, we must have 8 digits. The result 101 is just 3 digits,
+so we must pad it with zeroes. Therefore, we now have 00000101. Then, we flip
+the digits from 0 to 1 or 1 to 0. So, we now have 11111010. The next step is
+to increase that number by 1: 11111010 + 1 = 11111011. Then we convert this
+number back to decimal: 251. Ta da! So, -5 is 251 in positive representation.
+<p>Hmm, if you find that this calculation is cumbersome... uh... Well, you
+have to live with that if you'd like to learn assembly. Moreover, you need
+to be familiar with hexadecimal numbers too. You would need to learn some
+converting operations and do some arithmetic between decimal, binary and
+hexadecimal. If you're kinda awkward, you can always employ calculators.
+If you do it over and over again, you probably do the calculations by
+heart quickly (and amaze your friends ;-).
+<p>&nbsp;
+
+<h3>Moving Around Values</h3>
+<p>Still remember what registers are? Registers can be treated as
+variables that reside in CPU chips, right? We have a handful of
+those registers: AX, BX, CX, DX, SI, DI, and so on. If you need
+some review, <a href="../lowlevel.html">click here</a>.
+<p>"If we have some registers built-in, why on earth do we need
+another variables to declare then?" Hmm, there are a couple of
+reasons. The first is that of course we need to have more variables
+than just about twelve. The second is that some registers can't
+be used for storing values at all, for example CS and IP, as they
+are critical to running the program. That limits our freedom to
+about 6 or 7 registers, which is not adequate for most of our needs.
+
+<p>However, if you need to do some calculations or commands involving
+the variables, in most occasion, you'll have to load the variable values
+to the registers. Loading those values up to the registers and storing
+the value from registers to variables can be done through the <tt>mov</tt>
+command.
+
+<p>The syntax of the <tt>mov</tt> command is <tt>mov a,b</tt> which
+means assign <tt>b</tt> to <tt>a</tt> (i.e. <tt>a := b</tt>). So, in our
+first program, we observe the command <tt>mov ax, 4c00h</tt>. That means
+<tt>ax = 4c00h</tt>. We give the register AX value 4c00 hexadecimal. Note that
+we <b>CAN'T</b> do <tt>mov 4c00h, ax</tt>. ;-)
+
+<p>Similarly, you can load the variables to a register or store them back.
+You can even transfer values between registers. Let's look at the example below:
+<pre>    :
+    :  ; (the usual preamble)
+   jmp start
+
+   our_var dw 10
+
+start:
+   <span style="background-color: #C0FFC0">mov bx, [our_var]</span>
+   <span style="background-color: #FFFFC0">mov cx, bx</span>
+   <span style="background-color: #C0FFF0">mov [our_var], cx</span>
+
+   mov ax, 4c00h
+   int 21h
+end</pre>
+<p>Ah. that's pretty straight forward. The first statement (i.e. <tt>mov bx, [our_var]</tt>)
+is to load <tt>our_var</tt> variable to BX register. The second
+statement (<tt>mov cx, bx</tt>) is to transfer that value from BX to CX.
+The third statement (<tt>mov [our_var], cx</tt>) is to save the value from CX
+register back to <tt>our_var</tt> variable. Note the square brackets when you
+deal with variables. In MASM, those square brackets are not needed. However,
+these square brackets are good to distinguish the variable from its address
+so that in later on when we deal with pointers, we are not confused.
+
+<p>When we deal with byte variables (i.e. <tt>db</tt>), we need to use
+byte registers (e.g. AL, AH, BL, BH, and so on) to do our bidding.
+AX, BX, CX, DX, and so on are word registers. How about moving around
+double-word variables then? You can use double-word registers which is
+available in 80386 processors or better (use <tt>p386n</tt> instead of <tt>p286n</tt>
+to enable double-word registers). The double-word registers includes
+EAX, EBX, ECX, EDX, and so on. Or, you can have a work around, which
+is discussed later (in caveats section). Better not to do 80386 instructions
+first. I'll explain that in later chapters.
+
+<p>We can later assign variables with constants with <tt>mov</tt> instruction.
+However, <b>this will work only with 80286 or better</b> processors. In 8086,
+this instruction is illegal. See below:
+<pre>    :
+   <span style="background-color: #FFFFC0">mov [word ptr our_var], 1</span>
+    :</pre>
+<p>Notice the <tt>word ptr</tt> modifier. Modifiers <b>must</b> be used when
+you assign constants to variables. Why? It will be explained later.
+You don't have to worry about this now. ;-) Since <tt>our_var</tt> is a word
+variable, we need to use <tt>word ptr</tt> modifier. Likewise, byte variable
+uses <tt>byte ptr</tt> modifier and double-word variable uses <tt>dword ptr</tt>.
+Note that moving constants to dword ptr variables need to have a 80386 processors
+or better (and use <tt>p386n</tt> instead of <tt>p286n</tt>).
+<p>&nbsp;
+
+<h3>Caveats in MOVs</h3>
+<p>There are caveats in using <tt>mov</tt> command. You <b>CANNOT</b> use
+<tt>mov [var1], [var2]</tt>. In other words, <tt>mov</tt> command cannot
+transfer values between two variables directly. So, how can we get around with
+this? Use the register.
+<p>Suppose both <tt>var1</tt> and <tt>var2</tt> are word variables. We can use
+any word registers (AX, BX, CX, DX, and so on) to do the transfer. Suppose
+we use AX. Thus, <tt>mov [var1], [var2]</tt> must be transformed into:
+<pre>mov ax, [var2]
+mov [var1],ax</pre>
+<p>That's the way. Why do we do this? Well, don't ask me... ask the
+maker of the assembler ;-). My guess is that we do not know the variable
+types when that program is translated into machine codes. So, there is no
+way for the processor to distinguish the variable types.
+<p>The other is that variables in assembly <b>are treated differently</b>
+than that of any high level programming language (Pascal, C/C++, Java, etc).
+The assembler actually treat variables as a label that has an address in the memory
+(RAM in most cases) associated to it. Moreover, the assembly language is later
+assembled (or compiled) into a machine codes. Informations concerning variable
+names and their respective types <b>are LOST</b>. Also, assembler <b>does not</b>
+check the types of variables. It simply doesn't care. So, if you declare a
+variable as bytes, but you use a word register to move them around, it's legal.
+However, that particular <tt>mov</tt> will read and write 2 bytes instead of 1.
+Likewise, using byte register to move a word variable will only transfer one byte
+instead of two.
+<p>This fact confuses a lot of people learning assembler, especially if they
+have no low level view at all. However, <b>this is</b> the benefit of assembler.
+You can tweak it around, use it or abuse it. ;-) See the example below:
+<pre>    :
+    :  ; (the usual preamble)
+   jmp start
+
+   var1 db 1
+   var2 db 2
+   var3 dw 305h
+
+start:
+   mov ax, [var1]  ; ax now equals to 0201h (i.e. 2*256+1)
+   mov ax, [var3]  ; ax now equals to 0305h
+   mov ax, [var2]  ; ax now equals to 0502h
+   mov al, [var3]  ; al now equals to 05h
+   :
+   :</pre>
+<p>OK, I know it's confusing. It becomes less murky when we deal with how the
+assembler store those variables in the memory. Suppose <tt>var1</tt> get stored
+in memory address 100h. Those variables placed adjacently will also be placed
+adjacently in the memory. So, the memory diagram will look like this:
+<p>&nbsp;
+<div align="center">
+  <table border="1" width="25%" height="20">
+    <tr>
+      <td width="50%" height="20" align=center><b>Address</b></td>
+      <td width="50%" height="20" align=center><b>Value</b></td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>100h</td>
+      <td width="50%" height="20" align=center>01h</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>101h</td>
+      <td width="50%" height="20" align=center>02h</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>102h</td>
+      <td width="50%" height="20" align=center>05h</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>103h</td>
+      <td width="50%" height="20" align=center>03h</td>
+    </tr>
+  </table>
+</div>
+<p>Clearly, address 100h contains <tt>var1</tt>. Address 101h contains
+<tt>var2</tt>. Address 102h-103h contains <tt>var3</tt>. Notice
+the way that Intel assembler store a word value. It stores the
+least significant byte first, then the most significant byte later.
+The value 305h is broken into two parts: 03h as the most significant
+byte and 05h as the least significant byte. So, 05h get stored first,
+then 03h. Note: Dealing with memories is better expressed by hexadecimals (or
+hex for short). If you have a decimal number, you'd like to convert
+the value to hex first. Each two digits of hex is worth one byte.
+
+<p>Now, how can we deal with the <tt>mov</tt> then? OK, let's look into
+this fragment of the code:
+<pre>
+   mov ax, [var1]  ; ax now equals to 0201h (i.e. 2*256+1)
+   mov ax, [var3]  ; ax now equals to 0305h
+   mov ax, [var2]  ; ax now equals to 0502h
+   mov al, [var3]  ; al now equals to 05h</pre>
+<p>Remember that AX is a word register and AL is a byte register and
+one word equals to two bytes. The first instruction will read two bytes
+from <tt>var1</tt>. So, it will read 01h and 02h altogether and
+compose it to AX. The result is <b>0201h, not 0102h</b>. The second
+instruction will read two bytes starting from <tt>var3</tt>. So, it will
+read 05h and then 03h. The result is 0305h. Notice that the reading
+is always swapped too. Likewise the third instruction. AX reads
+two bytes from <tt>var2</tt> at address 101h: 02h first, then
+05h next. The result is 0502h. The last one, AL reads only one
+byte at the starting point of <tt>var3</tt> which gives us only 05h.
+<p>That's the way the variables work.
+<p>&nbsp;
+
+<h3>Oh, No! More Gotchas in MOVs</h3>
+<p>You <b>NEED</b> to know this in order to understand the double-word
+<tt>mov</tt> work around. So, this is important. ;-) Recall that
+variables in assembly are treated as addresses. You can even
+view it as pointers too. Suppose we have this example:
+
+<pre>    :
+    :  ; (the usual preamble)
+   jmp start
+
+   var1 db 1
+   var2 db 2
+   var3 dw 305h
+
+start:
+   <span style="background-color: #FFFFC0">mov ax, [var1+1]</span>
+   :
+   :</pre>
+<p>Yes, it's similar to the one we use above. Note the new +1
+thing. What does it mean? Recall the memory table displacement
+from the previous section: <tt>var1</tt> has the address 100h.
+So, <tt>mov ax, [var1+1]</tt> gives register AX 2 bytes from
+address 101h (because 100h + 1 = 101h). Analoguously,
+<tt>mov ax, [var1+2]</tt> is from address 102h and so on.
+However, you cannot have the plus constant too high, like
+<tt>mov ax, [var1+1000]</tt>. ;-) I guess the maximum is 8.
+I'm not certain. Why don't you try it then?
+
+<p>Now about the double-word work around. Double-word variables
+are also stored similarly (i.e. bottom-up, flipped like the
+word variables). Suppose we have this variable:
+<pre>  my_var dd 1234BABEh</pre>
+<p>Let's say that this variable get the address 100h. The memory
+address mapping is as follows:
+<p>&nbsp;
+<div align="center">
+  <table border="1" width="25%" height="20">
+    <tr>
+      <td width="50%" height="20" align=center><b>Address</b></td>
+      <td width="50%" height="20" align=center><b>Value</b></td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>100h</td>
+      <td width="50%" height="20" align=center>0BEh</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>101h</td>
+      <td width="50%" height="20" align=center>0BAh</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>102h</td>
+      <td width="50%" height="20" align=center>34h</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>103h</td>
+      <td width="50%" height="20" align=center>12h</td>
+    </tr>
+  </table>
+</div>
+<p>See, it's similarly flipped up. In 80286 processor or below,
+we are not able to use double-word registers to transfer values
+to and from double-word variables. However, using the work around
+I mentioned earlier, it is possible to do that. The way we usually
+do it is as follows:
+<pre>   mov ax, [my_var]
+   mov dx, [my_var+2]</pre>
+<p>Ah... Did you notice that? ;-) Now, the register pair DX:AX
+contains the double-word value. Let's see how it works. Since
+<tt>my_var</tt> has the address 100h, so AX get 2 bytes read
+from there: 0BEh and 0BAh. Now AX has the value 0BABEh. Then
+DX registers read 2 bytes from address 100h+2 (i.e. 102h). So,
+34h and 12h are read. DX get the value 1234h. Therefore, pairing
+DX:AX, get the original double-word value: 1234BABEh. Writing
+to double-word variables are done similarly.
+<p>&nbsp;
+
+<h3>Impacts on Registers</h3>
+<p>Recall that the word register AX consists of AH and AL. Modifying
+either AH or AL will modify the contents of AX. Likewise, modifying
+AX will be likely modify AH and AL. This situation is analogous to
+other word registers that have two byte registers (i.e. BX, CX, and DX).
+Take look at this example:
+<pre>   mov  ax, 1234h     ; AX = 1234h ==>  AH = 12h, AL = 34h
+   mov  al, 56h     ; AX = 1256h ==>  AH = 12h, AL = 56h
+   mov  ah, 99h     ; AX = 9956h ==>  AH = 99h, AL = 56h</pre>
+<p>Ah. So, when I assign value to AX and AX is important to me,
+I must not modify neither AL nor AH. That's true. Similar manner
+occur on BX (with its BL and BH), CX (CL and CH), and DX (DL and DH).
+To refresh your memory, please take a look at the picture below:
+<p>&nbsp;
+<CENTER><IMG SRC="regs.png" HEIGHT=355 WIDTH=314></CENTER>
+<p>Please keep in mind this behavior when you do programs in assembly.
+<p>&nbsp;
+
+<h3>Question Marks On Variables</h3>
+<p>If you are not certain about the default value of a variable,
+or you just lazy to specify one, you can give a question mark ("?")
+instead. For example:
+<pre>   another_var dw ?</pre>
+<p>Well, this usually useful when you treat absolute memory address
+to which is unsafe to determine the default value. Or may be
+it is a requirement on combining assembly programs with other high
+level programming languages (i.e. Pascal or C/C++).
+<p>&nbsp;
+
+<h3>[Not Exactly] String Variables</h3>
+<p>You can define strings variables in assembly. It is as follows:
+<pre>  message db "Hello World!$"</pre>
+<p>String variables are required to be stored as <tt>db</tt> variables.
+The string is then surrounded by quotes, either single or double, up
+to you. If you begin a string with a double quote, you'll have to
+close it with another double quote. If it is a single quote at start,
+a single quote as well to finish. This is neat. So, if you plan to
+use a quote in the middle of your string, you can enclose your string
+by a double quote, and vice versa.
+<p>Why do we have to end our string with a dollar sign ("$")? Well,
+some of the ye olde DOS services require us to do so. However, some
+of the system may require you to end it by zero ASCII code instead:
+<pre>  message db "Hello World!",0</pre>
+<p>How strange! Yes, we've got to live with these peculiarities. So,
+before doing your string, make sure where your string will go. If it
+is used to feed DOS (to print them), we have to end it with a dollar
+sign ("$"). If we use new Windows or using C libraries, we have to
+end it with zero ASCII code. I will tell you which one to use each
+time. Don't worry. Eventhough you use Windows right now, most of
+the times you'll still need to invoke the old DOS services. Windows
+still provide those severely outdated thing to afford compatibility.
+<p>How is the string variables are stores then? It is similar to
+the normal variables except now, each characters of the string is
+converted to its corresponding ASCII code. Uh oh, need to memorize
+them. ;-) You can download any ASCII table program somewhere on
+the net. There are plenty of resources.
+<p>Another thing to remember in string variables is that the string
+ASCII codes are <b>NOT flipped</b> as it usually is in normal variables.
+So, suppose we have that <tt>message</tt> variable above stored at
+address 100h. The memory contents is as follows:
+<p>&nbsp;
+<div align="center">
+  <table border="1" width="35%" height="20">
+    <tr>
+      <td width="33%" height="20" align=center><b>Address</b></td>
+      <td width="33%" height="20" align=center><b>Value</b></td>
+      <td width="34%" height="20" align=center><b>ASCII Code</b></td>
+    </tr>
+    <tr>
+      <td width="33%" height="20" align=center>100h</td>
+      <td width="33%" height="20" align=center>H</td>
+      <td width="34%" height="20" align=center>48h</td>
+    </tr>
+    <tr>
+      <td width="33%" height="20" align=center>101h</td>
+      <td width="33%" height="20" align=center>e</td>
+      <td width="34%" height="20" align=center>65h</td>
+    </tr>
+    <tr>
+      <td width="33%" height="20" align=center>102h</td>
+      <td width="33%" height="20" align=center>l</td>
+      <td width="34%" height="20" align=center>6ch</td>
+    </tr>
+    <tr>
+      <td width="33%" height="20" align=center>103h</td>
+      <td width="33%" height="20" align=center>l</td>
+      <td width="34%" height="20" align=center>6ch</td>
+    </tr>
+    <tr>
+      <td width="33%" height="20" align=center>104h</td>
+      <td width="33%" height="20" align=center>o</td>
+      <td width="34%" height="20" align=center>6fh</td>
+    </tr>
+    <tr>
+      <td width="33%" height="20" align=center>105h</td>
+      <td width="33%" height="20" align=center>&lt;space&gt;</td>
+      <td width="34%" height="20" align=center>32h</td>
+    </tr>
+    <tr>
+      <td width="33%" height="20" align=center>106h</td>
+      <td width="33%" height="20" align=center>W</td>
+      <td width="34%" height="20" align=center>57h</td>
+    </tr>
+    <tr>
+      <td width="33%" height="20" align=center>107h</td>
+      <td width="33%" height="20" align=center>o</td>
+      <td width="34%" height="20" align=center>6fh</td>
+    </tr>
+    <tr>
+      <td width="33%" height="20" align=center>108h</td>
+      <td width="33%" height="20" align=center>r</td>
+      <td width="34%" height="20" align=center>72h</td>
+    </tr>
+    <tr>
+      <td width="33%" height="20" align=center>109h</td>
+      <td width="33%" height="20" align=center>l</td>
+      <td width="34%" height="20" align=center>6ch</td>
+    </tr>
+    <tr>
+      <td width="33%" height="20" align=center>10Ah</td>
+      <td width="33%" height="20" align=center>d</td>
+      <td width="34%" height="20" align=center>64h</td>
+    </tr>
+    <tr>
+      <td width="33%" height="20" align=center>10Bh</td>
+      <td width="33%" height="20" align=center>!</td>
+      <td width="34%" height="20" align=center>21h</td>
+    </tr>
+    <tr>
+      <td width="33%" height="20" align=center>10Ch</td>
+      <td width="33%" height="20" align=center>$</td>
+      <td width="34%" height="20" align=center>24h</td>
+    </tr>
+  </table>
+</div>
+<p>Hmm... The string is stored contiguously.
+<p>&nbsp;
+
+<h3>Multi-valued Variables</h3>
+<p>"Hey, that's strange. You said that <tt>db</tt> variables
+contain one byte." Well, I should say: Not exactly. The variables
+defined as <tt>db</tt> means each value is defined as bytes.
+However, there is no restriction on how many values we can
+define for each variable names. ;-) See the example below:
+<pre>   multivar db 12h, 34h, 56h, 78h, 00h, 11h, 22h, 00h</pre>
+<P>That's a legal variable definition. The memory map is as follows
+(assume that <tt>multivar</tt> is at address 100h):
+<p>&nbsp;
+<div align="center">
+  <table border="1" width="25%" height="20">
+    <tr>
+      <td width="50%" height="20" align=center><b>Address</b></td>
+      <td width="50%" height="20" align=center><b>Value</b></td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>100h</td>
+      <td width="50%" height="20" align=center>012h</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>101h</td>
+      <td width="50%" height="20" align=center>034h</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>102h</td>
+      <td width="50%" height="20" align=center>56h</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>103h</td>
+      <td width="50%" height="20" align=center>78h</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>104h</td>
+      <td width="50%" height="20" align=center>00h</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>105h</td>
+      <td width="50%" height="20" align=center>11h</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>106h</td>
+      <td width="50%" height="20" align=center>22h</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>107h</td>
+      <td width="50%" height="20" align=center>00h</td>
+    </tr>
+  </table>
+</div>
+<p>Ah, so multi valued variables are stored contiguously. No flipping,
+right? Hmm... not quite. Check this out:
+<pre>   multivar2 dw 1234h, 5678h, 0011h, 2200h</pre>
+<p>Its corresponding memory map (assume <tt>multivar2</tt> is at address 100h):
+<p>&nbsp;
+<div align="center">
+  <table border="1" width="25%" height="20">
+    <tr>
+      <td width="50%" height="20" align=center><b>Address</b></td>
+      <td width="50%" height="20" align=center><b>Value</b></td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>100h</td>
+      <td width="50%" height="20" align=center>034h</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>101h</td>
+      <td width="50%" height="20" align=center>012h</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>102h</td>
+      <td width="50%" height="20" align=center>78h</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>103h</td>
+      <td width="50%" height="20" align=center>56h</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>104h</td>
+      <td width="50%" height="20" align=center>11h</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>105h</td>
+      <td width="50%" height="20" align=center>00h</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>106h</td>
+      <td width="50%" height="20" align=center>00h</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>107h</td>
+      <td width="50%" height="20" align=center>22h</td>
+    </tr>
+  </table>
+</div>
+<p>Hmm... the flipping is done word-wise. It's because
+we declare the variable as define word (<tt>dw</tt>), so
+the flipping is word-wise. Analoguously, declaring variables
+as bytes (<tt>db</tt>) will not cause flipping since in
+<tt>db</tt>, we don't do flipping. Also, declaring variables
+as double-word (<tt>dd</tt>) will also be flipped double-word
+wise (i.e. four bytes flipped at a time).
+<p>Well, you can consider that multi-valued variable as
+an array. In fact, high level programming language will
+translate array definitions to this. Of course you can use
+the plussed <tt>mov</tt> instructions to access the array.
+However, it is not efficient. The proper way to access that
+multi-valued array will be discussed later in this lesson.
+Just stay tuned.
+<p>&nbsp;
+
+<h3>Using dup</h3>
+<p>Another way to declare a multi-valued variables are using
+<tt>dup</tt> command. See the example below:
+<pre>   my_array db 5 dup (00h)</pre>
+<p>That example above is similar to:
+<pre>   my_array db 00h, 00h, 00h, 00h, 00h</pre>
+<p>Oh, so <tt>dup</tt> is kinda shortcut (or -- more precisely --
+a macro) to define variables with the same values. Of course
+you can define something like this:
+<pre>   bar_array db 10 dup (?)</pre>
+<p>&nbsp;
+
+<h3>Closing</h3>
+<p>I know this new variable concepts will overwhelm you for
+a moment, but fret not. You'll get used to it. One suggestion
+is to draw its memory table like I did for those examples.
+This will clarify most situations. If you are in doubt, you're
+always welcome to review through the preliminary chapter,
+chapter 1 and 2.
+<p>So far, I haven't even explained on a program that says
+"Hello World!" All I did is to explain you the crucial
+concepts on assembly language just to enable you to write
+some basic assembly program. With these key concepts in mind,
+you'll hopefully program in assembly more gracefully.
+<p>OK, I think that's all for now. See you next time.
+<p>&nbsp;
+<HR><H3>Where to go</H3>
+<p><b><a href="asml1003.html">Chapter 3</a><br>
+<a href="../news.html">News Page</a><br>
+<a href="asmles01.html">Lesson 1 contents</a><br>
+<a href="../faq.html">Contacting Me</a></B></P>
+<hr><p class="cpy">Roby Joehanes &copy; 2001</p>
+</body></html>

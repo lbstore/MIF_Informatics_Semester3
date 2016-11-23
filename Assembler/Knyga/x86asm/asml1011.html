@@ -1,0 +1,203 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=en-us">
+<meta http-equiv="Content-Language" content="en-us">
+<link href="../style.css" rel="stylesheet" type="text/css">
+<title>x86 Assembly Lesson 1 Chapter 11</title>
+</head>
+
+<body background="../tile01.jpg">
+<CENTER>
+<h1>Macros</h1>
+<h2><b>Another Way For Modularization</b></h2>
+</CENTER><BR><BR><BR>
+<H3>Welcome</H3>
+<p>Hi! Welcome to the eleventh chapter of this series. I hope that you really
+understood the subroutine concept we discussed <a href=asml1010.html>in the last
+chapter</a>. Now, we're going to learn about another way to do code modularization:
+by grouping them into macros. C/C++ folks probably familiar with macros but others
+may have no clue. In explaining macro, I don't really detail the definition of macro,
+but rather to have you examine it and use it in the program. Then, I will wrap
+up all of these in the conclusion. For now, to simplify matters, think that the macro
+is just like subroutine, of course it has some differences. You will understand after
+I explain the whole stuff. Note that I will tightly link
+this discussion with what we have understood from the last chapter. So, probably
+you'd like to go back and forth.
+<p>&nbsp;
+
+<h3>Macro Syntax</h3>
+<p>How can we define a macro? It's pretty much like defining subroutine. Recall
+our revised <tt>printout</tt> subroutine discussed in <a href=asml1010.html>the
+last chapter</a>
+<p>&nbsp;
+<table align=center width=100% border=1>
+<tr><th>TASM</th><th>MASM</th></tr>
+<tr><td><pre>macro printout  msgptr
+     push   dx
+     push   ax
+
+     mov    dx, msgptr
+     mov    ah, 9
+     int    21h
+
+     pop    ax
+     pop    dx
+endm</pre>
+</td><td><pre>printout macro  msgptr
+     push   dx
+     push   ax
+
+     mov    dx, msgptr
+     mov    ah, 9
+     int    21h
+
+     pop    ax
+     pop    dx
+printout endm</pre></td></tr></table>
+<p>Hmm, pretty similar isn't it? You'll quickly notice some differences:
+<ul>
+<li>We use <tt>macro</tt> and <tt>endm</tt> keyword instead</li>
+<li>We may not specify the parameter type. The <tt>msgptr</tt> is supposedly a <tt>word</tt>
+variable, but in macro we may not specify that.</li>
+<li>There is no <tt>ret</tt> instruction at the end.</li>
+</ul>
+<p>Uhuh... so, how can we call the macro then? It's simple:
+<pre>    :
+    :
+    printout  offset message
+    :</pre>
+<p>So, there is no <tt>call</tt> or <tt>invoke</tt> keyword too. The rules in subroutines
+you know so far also apply here in macros, except that the usual place to declare macros is
+just before the <tt>codeseg</tt> keyword (instead of the area 1 and 2).
+<p>&nbsp;
+
+
+<h3>Under the Hood</h3>
+<p>OK, now the real difference between macros and subroutines. Whenever the assembler (not
+the processor) encounters macro invocation while assembling the program, it <b>replaces</b>
+that invocation with the definition. It also replaces the arguments appropriately. So, suppose
+we have this main program:
+<pre>   :
+   :
+codeseg
+   msg1 db 'Hello World!$'
+   msg2 db 'Hi there!$'
+   msg3 db 'Selamat Datang!$'
+start:
+   printout  offset msg1
+   ;----------------------
+   printout  offset msg2
+   ;----------------------
+   printout  offset msg3
+
+   mov  ax, 4c00h
+   int  21h
+   :
+</pre>
+<p>This program will actually converted to this first:
+<pre>   :
+   :
+codeseg
+   msg1 db 'Hello World!$'
+   msg2 db 'Hi there!$'
+   msg3 db 'Selamat Datang!$'
+start:
+
+     push   dx
+     push   ax
+
+     mov    dx, <span style="background-color: #C0FFC0">offset msg1</span>
+     mov    ah, 9
+     int    21h
+
+     pop    ax
+     pop    dx
+   ;----------------------
+     push   dx
+     push   ax
+
+     mov    dx, <span style="background-color: #C0FFC0">offset msg2</span>
+     mov    ah, 9
+     int    21h
+
+     pop    ax
+     pop    dx
+   ;----------------------
+     push   dx
+     push   ax
+
+     mov    dx, <span style="background-color: #C0FFC0">offset msg3</span>
+     mov    ah, 9
+     int    21h
+
+     pop    ax
+     pop    dx
+
+   mov  ax, 4c00h
+   int  21h
+   :
+</pre>
+<p>Ah, so the macros just behave like a broiler-plate of codes. Notice that the parameter
+<tt>msgptr</tt> get replaced appropriately. The assembler just stamp the codes out and
+replaces whenever it encounter a match. Because of this behavior, we (usually) don't need
+to have <tt>ret</tt> in macros. Of course we don't want to make our program quit early, right?
+The subroutines doesn't behave like this. Instead it keeps one copy of the subroutine intact.
+Everytime there is an invocation, an actuall <tt>call</tt> instruction is inserted appropriately.
+<p>Notice also that the assembly do the replacement "dumb-foundedly". It means, prior to
+the replacement it doesn't check the types (whether legal or not) and other stuffs. Rather,
+it checked the validity of your program after it gets expanded. This behavior can create
+a lot of headaches for programmers because: For one particular macros, there are cases
+that the result of replacement are legal, some aren't depending on how you invoke macros
+or how the parameters get passed. You probably don't realize this at this moment, but as
+you go along, you will notice this too. I don't want to explain this now as I think it would
+be premature. One rule of thumb for building macros is "program defensively" think all
+possibilities that it may go wrong.
+<p>Note that: <b>The source code of expanded program is not dumped out
+or some sort, it exist only in your mind or in the debugger</b>. So, employing macros
+may hamper you in debugging because you don't know what is actually replaced and the
+correspondence between the executable code with your <tt>.asm</tt> files may blur.
+<p>However, there is a significant advantage too. Since macros use string-based subtitution,
+you can rearrange your program to benefit from this approach. Notice that the expanded
+version of the program employs unnecessary <tt>push</tt>es and <tt>pop</tt>s. Since you
+know the context of all <tt>printout</tt> macro invocation in the program, you know
+that these can be thrown out. Thus, our macro can be slimmed down by four bytes -- trimming
+out <tt>push</tt>es and <tt>pop</tt>s. This way, you can optimize a bit more than you
+can do in subroutines. <b><font color=red>Warning:</font></b> Do this with great caution
+since the elimination may make the macros unsafe. But of course, in this example, it's
+perfectly safe.
+<p>Pay more attention if your macro uses labels. It is likely that the labels will
+conflict each others. Why? I leave this for you to answer. :-)
+<p>Since macro do not need <tt>call</tt> and <tt>ret</tt>, macro is considerably
+faster than subroutines because the calling and returning time penalty is usually high
+(in more advanced processors, it may involve trashing caches and so on).
+<p>&nbsp;
+
+<h3>Recap</h3>
+<p>OK, so the main differences (behavior-wise) are:
+<ul>
+<li>Macros use string replacement for its invocation whereas subroutines use calls.</li>
+<li>Due to replacement nature, macro can exist multiple copies in the programs whereas
+subroutine can exist only in one copy.</li>
+<li>Because of multiple copies possibility, you cannot obtain a macro's address, whereas
+you can obtain a subroutine's address.</li>
+<li>Macros can be faster since it doesn't have calling and return time penalty.</li>
+<li>Macros can be harder to debug since the replacement may obfuscate the resulting code.</li>
+</ul>
+<p>OK, now.... So when we should use macros or subroutines? The rule of thumb is that:
+You should generally use subroutines. Macros are ideal to specify small helper routines
+which tend to be oftenly used, just like <tt>printout</tt> example above, which involves
+less than 10 instructions. These kind of macros are easy to make and will speed up your
+overall code. For larger ones, just go for subroutines.
+<p>&nbsp;
+
+<h3>Closing</h3>
+<p>OK, I think that's all for now. See you next time.
+<p>&nbsp;
+<HR><H3>Where to go</H3>
+<p><b><a href="asml1012.html">Chapter 12</a><br>
+<a href="../news.html">News Page</a><br>
+<a href="asmles01.html">x86 Assembly Lesson 1 index</a><br>
+<a href="../faq.html">Contacting Me</a></B></P>
+<hr><p class="cpy">Roby Joehanes &copy; 2001</p>
+</body></html>

@@ -1,0 +1,10 @@
+1. AL=FC AH=07 CX=0000 vykdoma komanda AAD. AX=?
+2. AL=FB AF=1 vykdoma komanda DAA. AL=?
+3. Uzrasyti desimtaini skaiciu -43,3 slankaus kablelio formatu astuoniuose baituose sesioliktaine sistema.
+4. AX=0003 BX=0000 CX=0001 DX=0000    FFFA EB A1    JMP nb    valdymo perdavimo adresas=?
+5. DS=21FE SS=5634 CS=3122 ES=41E3 BP=9A32 BX=7536 SI=45FA DI=22F1 adresavimo baitas 73 po jo seka    90 01  EA=?
+6. Rasti AA.
+7. Parasyti mikrokomanda MPL kalba kuri skaiciu -6 nusiuncia i registra MBR
+8.SF=0000 Sudedama desimtainiai skaiciai -119 ir 122 SF=?
+9. SS=ABCD SP=FFF2 BP=AF00 CX=0011 Kokia registro SP reiksme ivykdzius gryzima is tolimos proceduros komandos (kaskas panasaus)    CA   CB 00
+10. SI=E587 DI=fff8 CX=0011 SF=0000 Kokia SI ir DI suma ivykdzius komanda rep stosb?

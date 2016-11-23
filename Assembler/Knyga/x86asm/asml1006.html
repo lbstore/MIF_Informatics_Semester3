@@ -1,0 +1,270 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=en-us">
+<meta http-equiv="Content-Language" content="en-us">
+<link href="../style.css" rel="stylesheet" type="text/css">
+<title>x86 Assembly Lesson 1 Chapter 6</title>
+</head>
+
+<body background="../tile01.jpg">
+<CENTER>
+<h1>Branching</h1>
+<h2><b>Using Unconditional and Conditional Jumps</b></h2>
+</CENTER><BR><BR><BR>
+<H3>Welcome</H3>
+<p>Hi! Welcome to the sixth chapter of this series. Now, I'd like to explain about
+how can we do jumps, conditionally or unconditionally. Conditional jumps always consider
+some condition. If the condition is satisfied, then the jump is taken, otherwise it is not.
+The conditions are usually reflected in the processor flags. This may be confusing at first.
+So, I'll take a different approach so that you, that are more familiar with higher level
+language, can quickly absorb the idea. This conditional jumps is basically like an <tt>if</tt>
+construct by large.
+<p>On the other hand, unconditional jumps do not regard any conditions. So, it is more like
+<tt>goto</tt>s in a sense. In assembly, we can do a more interesting stuffs for sure. But I don't
+want to explain the bag of clever tricks here at first. I'm covering the basic ones and will reveal
+more deeper materials later, probably in lesson 2 or so.
+<p>&nbsp;
+
+<h3>Making Labels</h3>
+<p>Labels are essential to jump instructions. It marks the destination. Of course you need to set
+where to jump, don't you? ;-) Making labels in assembly are easy. Perhaps I already explained this
+in <a href="asml1001.html">chapter 1</a>, but let me reclarify this once more. Labels can be made
+like this:
+<pre>
+   example:
+</pre>
+<P>So, we can pick out any names and stick a colon after it (<tt>:</tt>). Voila! That's it.
+You must make sure that all label names throughout your programs are unique, no duplicates.
+This limitation will be lifted up when you know subroutines though. I'll explain this later.
+For now, let's just follow the uniqueness rule, OK?
+<p>&nbsp;
+
+<h3>Unconditional Jumps</h3>
+<p>Syntax of jump instructions are the same. It usually takes form of <tt>jump_instr dest_label</tt>
+and of course we have lots of different jump instructions in Intel x86 processors. For unconditional
+jump, the instruction is <tt>jmp</tt>. For example:
+<pre>
+            jmp   somewhere
+             :
+             :
+ somewhere: ; it will continue here
+</pre>
+<p>As mentined earlier, unconditional jumps takes no regard on conditions. So, whenever the processor
+arrives at the instruction <tt>jmp somewhere</tt>, it will directly skip all the instructions below
+it up to until the instruction marked by the label <tt>somewhere</tt>.
+<p>&nbsp;
+
+<h3>Conditional Jumps</h3>
+<p>Conditional jumps are just verisimilar. However, before the jump instruction, we (usually) have to
+put a comparison or testing instruction. The comparison instruction I'm going to introduce here is
+<tt>cmp</tt>. As I already mention, the conditional jump is analoguous to an <tt>if</tt> construct.
+So, I'm going to explain it this way. Look at the following example:
+<p>&nbsp;
+<table width=70% border=1 align=center>
+<tr><th width=34%>Assembly</th><th width=33%>C/C++/Java Equivalent</th><th width=33%>Pascal Equivalent</th></tr>
+<tr><td><pre>
+    cmp   ax, bx
+    jg    isgreater
+       :
+       :   ; block 1  (else part)
+       :
+    jmp   after
+isgreater:
+       :
+       :   ; block 2  (then part)
+       :
+after:
+       :   ; after if
+</pre></td><td><pre>
+    if (ax > bx)
+    {
+        // block 2
+    } else
+    {
+        // block 1
+    }
+    // after if
+</pre></td><td><pre>
+    if ax > bx then
+    begin
+        { block 2 }
+    end else
+    begin
+        { block 1 }
+    end
+    { after if }</pre></td></tr>
+</table>
+<p>This should be clear enough. You can observe that the <tt>cmp</tt> instruction above is used
+to compare <tt>ax</tt> and <tt>bx</tt>. The jump instruction is the one that actually does the check.
+So, the jump instruction used above is <tt>jg</tt> which means "jump if greater". Other commonly
+used jump instructions are as follows:
+<p>&nbsp;
+<table width=50% border=1 align=center>
+<tr><th>Instruction</th><th>Meaning</th></tr>
+<tr><td><tt>jg</tt></th><td>Jump if greater</td></tr>
+<tr><td><tt>jge</tt></th><td>Jump if greater or equal</td></tr>
+<tr><td><tt>jl</tt></th><td>Jump if less</td></tr>
+<tr><td><tt>jle</tt></th><td>Jump if less or equal</td></tr>
+<tr><td><tt>je</tt></th><td>Jump if equal</td></tr>
+<tr><td><tt>jne</tt></th><td>Jump if not equal</td></tr>
+<tr><td><tt>jc</tt></th><td>Jump if carry flag is set</td></tr>
+</table>
+<p><b>Note</b> that <tt>jg</tt>, <tt>jge</tt>, <tt>jl</tt>, and <tt>jle</tt> will work <b>for signed variables
+only</b> (i.e. the ones that may have negatives). For unsigned variables, use <tt>ja</tt>, <tt>jae</tt>, <tt>jb</tt>,
+and <tt>jbe</tt> as the subtitution respectively. The rest (i.e. <tt>je</tt>, <tt>jne</tt>, and
+<tt>jc</tt>) work with both signed and unsigned variables. If you're curious about the meaning of <tt>ja</tt>
+or <tt>jb</tt>, they are "jump if above" and "jump if below" respectively.
+<p>&nbsp;
+
+<h3>Testing Instruction</h3>
+<p>Probably you encounter a lot of <tt>test</tt> instruction when reading assembly programs.
+It seems that it may replace the functionalify of <tt>cmp</tt> instruction above since after that
+it is usually followed by a conditional jump instruction. The answer is: Not quite. Let's look at
+the syntax of <tt>test</tt> instruction:
+<pre>
+   test x, y
+</pre>
+<p>What this instruction do? Well, it behaves like an <tt>and</tt> but it does not store the result
+back to <tt>x</tt>. So it is more like <tt>x and y</tt>. Usually after this instruction, we usually
+check whether the result of the and-ing is zero or not using <tt>jz</tt> or <tt>jnz</tt> (i.e.
+"jump if zero").
+<p>&nbsp;
+
+<h3>Example 1</h3>
+<p>Let's try to wrap up with an example. Say, we'd like to add 1+2+3+...+10. The program in C/C++ or
+Pascal is simple. Let's examine the assembly counterpart:
+<pre>ideal
+p286n
+model tiny
+
+codeseg
+   org 100h
+   jmp start
+
+start:
+   mov  cx, 10       ; The counter is in CX
+   mov  ax, 0        ; I use AX as a sum holder
+
+myloop:
+   add  ax, cx       ; ax = ax + cx
+   dec  cx           ; decrement the counter
+   cmp  cx, 0        ; is cx zero?
+   jne  myloop       ; if not, then loop. If yes, then quit.
+
+quit:
+   ; here ax will hold the value of 1+2+...+10
+
+
+   mov  ax, 4c00h
+   int  21h
+end</pre><hr>
+<p>In MASM version:
+<hr><pre>.286
+.model tiny
+
+.code
+   org 100h
+entry:
+   jmp start
+
+   ; your data and subroutine here
+
+start:
+   mov  cx, 10       ; The counter is in CX
+   mov  ax, 0        ; I use AX as a sum holder
+
+myloop:
+   add  ax, cx       ; ax = ax + cx
+   dec  cx           ; decrement the counter
+   cmp  cx, 0        ; is cx zero?
+   jne  myloop       ; if not, then loop. If yes, then quit.
+
+quit:
+   ; here ax will hold the value of 1+2+...+10
+
+
+   mov  ax, 4c00h
+   int  21h
+end entry
+</pre>
+<hr>
+<p>Hopefully the examples above helps you to understand. Of course that example is not optimized and
+just plain vanilla.
+<p>&nbsp;
+
+<h3>Example 2: Factorial</h3>
+<p>The world of programming tutorials seems incomplete without doing this factorial example.
+I assume you know what factorial means. Suppose we'd like to calculate 8 factorial.
+Let's examine the example below:
+<hr><pre>ideal
+p286n
+model tiny
+
+codeseg
+   org 100h
+   jmp start
+
+start:
+   mov  cx, 8         ; Again, CX becomes the counter
+   mov  ax, 1         ; Since mul instruction uses DX:AX register pair
+   mov  dx, 0         ; We use them to hold our factorial product.
+                      ; We initially set it to 1
+myloop:
+   mul  cx            ; DX:AX = AX * CX
+   dec  cx            ; decrement counter
+   cmp  cx, 0
+   jne  myloop
+
+quit:
+   ; here DX:AX will hold the value of the factorial
+
+   mov  ax, 4c00h
+   int  21h
+end</pre><hr>
+<p>In MASM version:
+<hr><pre>.286
+.model tiny
+
+.code
+   org 100h
+entry:
+   jmp start
+
+   ; your data and subroutine here
+
+start:
+   mov  cx, 8         ; Again, CX becomes the counter
+   mov  ax, 1         ; Since mul instruction uses DX:AX register pair
+   mov  dx, 0         ; We use them to hold our factorial product.
+                      ; We initially set it to 1
+myloop:
+   mul  cx            ; DX:AX = AX * CX
+   dec  cx            ; decrement counter
+   cmp  cx, 0
+   jne  myloop
+
+quit:
+   ; here DX:AX will hold the value of the factorial
+
+   mov  ax, 4c00h
+   int  21h
+end entry</pre><hr>
+<p>&nbsp;
+
+<h3>Closing</h3>
+<p>OK, I think that's all for now. Higher assembly level constructs like <tt>if</tt>, <tt>switch</tt> (or
+<tt>case..of</tt> in Pascal), <tt>while</tt>, and <tt>for</tt> are built using these commands.
+It involves a go to like construct and seems to be a taboo for structured programming approach.
+Well, that's all we've got. Anyway, jumping around is not that bad. ;-) It's probably better for you
+to construct higher level programming structure in terms of instructions you've learned so far.
+However, assembly has a loop instruction too. I'll discuss this on the next chapter.
+See you next time.
+<p>&nbsp;
+<HR><H3>Where to go</H3>
+<p><b><a href="asml1007.html">Chapter 7</a><br>
+<a href="../news.html">News Page</a><br>
+<a href="asmles01.html">x86 Assembly Lesson 1 index</a><br>
+<a href="../faq.html">Contacting Me</a></B></P>
+<hr><p class="cpy">Roby Joehanes &copy; 2001</p>
+</body></html>

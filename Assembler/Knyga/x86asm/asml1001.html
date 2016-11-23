@@ -1,0 +1,156 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=en-us">
+<meta http-equiv="Content-Language" content="en-us">
+<link href="../style.css" rel="stylesheet" type="text/css">
+<title>x86 Assembly Lesson 1 Chapter 1</title>
+</head>
+
+<body background="../tile01.jpg">
+<CENTER><H1>Chapter 1: COM Program Structure</H1></CENTER><BR><BR><BR><BR>
+<H3>Welcome</H3>
+<p>Welcome to your first assembly lesson. I suggest you to read the <a href="../lowlevel.html">preliminary
+lesson</a> before proceeding. If you have read it, I understand that everything
+is not clear. Now, I try to clarify things here. I also assume that you have the
+tools you need: an assembler and a text editor. If you don't have either TASM or
+MASM, you can look at free assemblers <a href="../mylink.html">in here</a>. Of
+course you'd have to adjust your code a bit. I assume that you are able convert
+numbers from decimal to binary or to hexadecimal and vice versa. You would
+probably need a Norton Guide for assembly language. It acts like a help when you
+forget any commands or &quot;magic numbers&quot;.
+<p>&nbsp;
+<h3>Why Assembly?</h3>
+<p>Some of you may complain about assembly: It's difficult, error prone, hard to
+debug, takes a lot of time to develop, etc. Yes, that's true. However:
+<ol>
+  <li>Assembly is <b><u>fast</u></b>. A LOT faster than any compiler of any
+    language could ever produce.</li>
+  <li>Assembly is a lot closer to machine level than any language because the
+    commands of assembly language is mapped 1-1 to machine instructions.</li>
+  <li>Assembly code is <b><u>A LOT smaller</u></b> than any compiler of any
+    language could ever produce.</li>
+  <li>In Assembly, you have the <b>RAW power</b> of your machine. You can tweak
+    it any way you want.</li>
+  <li>In Assembly, we can do <b>a lot of things</b> that we can't do in any
+    higher level language, such as playing with processor flags, etc.</li>
+</ol>
+<p>'Nuff said. You must have a really good reason in writing assembly language.
+Don't do anything in assembly. Instead, tweak any codes that need speed or size
+smashed into assembly. Otherwise you'd end up with unfinished projects.
+<p>&nbsp;
+<h3>COM Structure</h3>
+<p>Among the simplest structure of assembly language is COM structure. The
+structure is quite straight forward to implement. However, there are some
+restrictions apply:
+<ul>
+  <li>Code and data must be contained within 64KB limit (there is a work around
+    for this, but that's another story).</li>
+  <li>Cannot reserve memory through operating system (there is a work around for
+    this, too).</li>
+</ul>
+<p>Well, don't bother about the 64KB restriction. It is a whole lot of code and
+data -- for now. Trust me! Probably after you code some assembly language, you'd
+understand why Bill Gates said that 1 MB is <b>THE</b> unreachable limits years
+ago :-).<p>OK, let's look into our first program (TASM ideal version):
+<hr><pre>ideal
+p286n
+model tiny
+
+codeseg
+   org 100h
+   jmp start
+
+   ; your data and subroutine here
+
+start:
+   mov ax, 4c00h
+   int 21h
+end</pre><hr>
+<p>In MASM version:
+<hr><pre>.286
+.model tiny
+
+.code
+   org 100h
+entry:
+   jmp start
+
+   ; your data and subroutine here
+
+start:
+   mov ax, 4c00h
+   int 21h
+end entry</pre><hr>
+<p>It's pretty much similar. Let's save your file into <TT>MYPROG.ASM</TT>
+<p>To assemble it using TASM, type the following:
+<pre>tasm myprog
+tlink /t myprog</pre>
+<p>For MASM, type: <TT>ML myprog.asm</TT>
+<p>Here is line-by-line explanation on the program:
+<ul>
+  <li><TT>ideal</TT> says that we're using ideal syntax of TASM.</li>
+  <li><TT>p286n</TT> or <TT>.286</TT> says that we're using 80286 processor instructions.
+    Here, we still use 8088 assembly language, so the result is runnable in
+    PC/XT.</li>
+  <li><TT>model tiny</TT> or <TT>.model tiny</TT> says that we're using COM format.</li>
+  <li><TT>codeseg</TT> or <TT>.code</TT> says that this is the begining of our code.</li>
+  <li><TT>org 100h</TT> is the magic word you have to say for (almost) every normal COM
+    programs. Don't worry about its meaning first.</li>
+  <li>In MASM, we have to define an entry point while in TASM, you don't have
+    to. The entry point is a label. Here we have a label called <TT>entry</TT> (marked
+    with a colon <TT>:</TT>).</li>
+  <li>COM programs are almost always begin with a jump, i.e. jump to the
+    beginning of the code. Between the jump and the beginning of your code, you
+    place your variables here. The jump is denoted by the word <TT>jmp</TT> and
+    followed with a label (here we call it <TT>start</TT>).</li>
+  <li>After the label <TT>start</TT>, the next two lines is just the code to
+    terminate your program. <STRONG>IMPORTANT:</STRONG> Do not&nbsp;assume that
+    after the end point your program terminates. You <b>have to</b> explicitly
+    say that you want to quit. These two lines are used to terminate the
+    program.</li>
+  <li><TT>end</TT> or <tt>end entry</TT> specify the end point of your program.
+    In MASM, you have to specify the entry point again after the word <TT>end</TT>.</li>
+</ul>
+<p>&nbsp;
+<h3>Making Labels</h3>
+<p>In assembly, to make labels is simple, just put any name and stick it with a
+colon(<TT>:</TT>). Label usually serves as a tag of where you'd like to jump and
+so on. You have to pick <b>unique names</b> for each label, otherwise the
+assembler will fail. There is a way to make it local: to prefix it with a <TT>@@</TT>
+in front of the label name and still end it with a colon. However, this kind of
+label only valid in procedures or sub-routines. So, don't use this kind of
+labels right now.
+<p>&nbsp;
+<h3>Note</h3>
+<p>In assembly, after the word <TT>end</TT> or <TT>end entry</TT>, your program <b>DOES
+NOT</b> terminate automatically. Pay attention to this. You have to specify that
+you would like to terminate your program. The two line commands in above example
+can be used to terminate programs.
+<p>Assembly language command in x86 platform is usually formatted as follows:
+<pre>[label:] mneumonic target, source</PRE>
+<p>Mneumonic is just the jargon for assembly commands. Why is it called that
+way? It is because that the commands in assembly (somewhat) resemble English
+words. Then followed by the target, and then comma, and then the source. Label
+can precede the command if any. For example:
+<pre>mov ax, 4c00h</pre>
+<p>Is to move the value 4c00 hexadecimal into the register AX. Simple right?
+<p>If there is only one parameter (like in <TT>int 21h</TT>), usually it denotes
+the source or the destination depending on the command. Like in <TT>jmp start</TT>, it
+means jump to the destination <TT>start</TT>. As in <TT>int 21h</TT>,&nbsp;you
+are invoking operating system library in vector 21 hexadecimal.
+<p>You must notice that many of assembly language numbers are expressed in
+either hexadecimal or binary. So, be really prepared.
+<p>If you list the directory after you correctly assemble your program, you will
+be surprised: The whole bunch of lines is squashed into <b>only 8 bytes! And
+it's running!</b> WOW! See? It is still could be even smaller (5 bytes or even 2
+bytes).
+<p>&nbsp;
+
+<HR><H3>Where to go</H3>
+<p><b><a href="asml1002.html">Chapter 2</a><br>
+<a href="../news.html">News Page</a><br>
+<a href="asmles01.html">Lesson 1 contents</a><br>
+<a href="../faq.html">Contacting Me</a></B></P>
+<hr><p class="cpy">Roby Joehanes &copy; 2000</p>
+</body></html>

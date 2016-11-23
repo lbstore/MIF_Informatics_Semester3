@@ -1,0 +1,232 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=en-us">
+<meta http-equiv="Content-Language" content="en-us">
+<link href="../style.css" rel="stylesheet" type="text/css">
+<title>x86 Assembly Lesson 1 Chapter 12</title>
+</head>
+
+<body background="../tile01.jpg">
+<CENTER>
+<h1>Accessing Arrays</h1>
+</CENTER><BR><BR><BR>
+<H3>Welcome</H3>
+<p>Hi! Welcome to the twelveth chapter of this series. Now, I'm going to explain
+about how we can access arrays in assembly. Actually, there is nothing really new in
+accessing array. Most of the things are already discussed in <a href=asml1002.html>the
+second chapter</a>. In this chapter I just explain on how we can access array effectively.
+Intel x86 assembly has two handy instructions: <tt>xlat</tt> and <tt>xchg</tt> which
+will be explained shortly.
+<p>&nbsp;
+
+<h3>Array Revisited</h3>
+<p>To refresh our mind, declaring array a ten-byte array is like this:
+<pre>   my_arr db 5, 2, 8, 9, 1, 7, 3, 0, 4, 6</pre>
+<p>To load the first element of the array into register al is like this:
+<pre>   mov al, [my_arr]</pre>
+<p>Accessing the second, the third, and the forth element is like this:
+<pre>   mov al, [my_arr+1]
+   mov al, [my_arr+2]
+   mov al, [my_arr+3]</pre>
+<p>Now, how can we access this through a loop? You probably do the loop like this:
+<pre>   :
+   mov  bx, offset my_arr
+   mov  cx, 10
+@@myloop:
+   mov  al, [bx]
+   inc  bx           ; increment bx
+     :
+     :   ; do something here
+     :
+   loop @@myloop
+     :</pre>
+<p>This loop is perfectly fine. You can access the array this way. There is another
+way to access the array:
+<pre>   :
+   mov  bx, offset my_arr
+   sub  si, si
+   mov  cx, 10
+@@myloop:
+   mov  al, [bx+si]
+   inc  si           ; increment index si
+     :
+     :   ; do something here
+     :
+   loop @@myloop
+     :</pre>
+<p>This loop does exactly the same thing as the first one. However, this one may be
+preferable because it doesn't move the array's base pointer (which is pointed by BX),
+but instead it use the register SI as index increment. The first approach uses what
+we called pointer arithmetic. It is called pointer arithmetic because we increment
+BX, which at that time acted as a pointer. This approach is somehow disliked because
+it will mess up debugging or analysis. To me, it's just a matter of personal taste.
+<p>Anyway, the second approach has a slight advantage over the first. Suppose you'd
+like to reverse the array. See the snippet below:
+<pre>   :
+   mov  bx, offset my_arr
+   sub  si, si
+   mov  di, 10
+   mov  cx, 5
+@@myloop:
+   mov  al, [bx+si]
+   mov  ah, [bx+di]
+
+   mov  [bx+si], ah
+   mov  [bx+di], al
+
+   inc  si           ; increment index si
+   dec  di           ; decrement index di
+
+   loop @@myloop
+     :
+</pre>
+<p>See? So, the beginning of the array is pointed by BX+SI, and the end is by BX+DI.
+SI is incremented and DI is decremented. The process goes on until they meet in the
+middle. If we increment the BX register, it would be hard to mark up the other end.
+<p>Notice that this indexing capability can only be carried out by BX, DX, SI and DI. BX
+and DX act as the base registers, whereas SI and DI act as the indices. This limitation
+is further lifted in 80386 or above processor (but it still doesn't mean that you can
+jumble up any registers).
+<p>Note: Because of this, BX is nicked as 'base register', SI as 'source index' and
+DI as 'destination index'. DX is nicked as 'data register' because it always used to
+do input and output between peripherals (which is somehow irrelevant here).
+<p>&nbsp;
+
+<h3>XLAT Instruction</h3>
+<p>Intel x86 processor has a nice instruction called <tt>xlat</tt>, which is now
+largely forgotten because using index registers are much nicer. Suppose we'd like
+to access the third element of the array:
+<pre>   mov  bx, offset my_arr
+   mov  al, 2
+   xlat my_arr
+   ; after this, register AL will be equal to 8
+</pre>
+<p>Nice huh?
+<p>&nbsp;
+
+<h3>Bubble Sort</h3>
+<p>Let's see how we can apply this into a nice bubble sort program:
+<pre>ideal
+p286n
+model tiny
+
+codeseg
+   org 100h
+   jmp start
+
+   my_arr db 5, 2, 8, 9, 1, 7, 3, 0, 4, 6
+
+   ; ----------------------------
+   ; | bubble_sort
+   ; |     sort an array whose pointer pointed by arr_idx
+   ; | modifies:
+   ; |     none
+   ; | algorithm outline:  (when size = 10)
+   ; |     for i = 0 to 8
+   ; |        for j = i+1 to 9
+   ; |            if arr_idx[i]>arr_idx[j] then swap(arr_idx[i], arr_idx[j]);
+   ; |
+   ; |  i is mapped to SI
+   ; |  j is mapped to DI
+   ; |  bx hold the base array index
+   ; |  ah, al is to aid processing
+   ; |  cx is to hold the size
+   ; ----------------------------
+   proc bubble_sort  arr_idx: word, size: word
+        pusha     ; save all registers
+        mov   bx, [arr_idx]
+        mov   cx, [size]
+        dec   cx          ; because maximum index bound is always one less than
+                          ; the size (i.e. when size is 10, the index is 0..9, not 1..10)
+        sub   si, si
+        sub   di, di
+
+   @@loop_i:
+        mov   di, si
+        inc   di           ; j = i + 1
+
+        @@loop_j:
+             mov   ah, [bx+si]  ; AH = arr_idx[i]
+             mov   al, [bx+di]  ; AL = arr_idx[j]
+
+             cmp   ah, al       ; if (arr_idx[i] <= arr_idx[j]) then no swap
+             jle   @@noswap
+
+             mov   [bx+si], al  ; else swap
+             mov   [bx+di], ah
+
+        @@no_swap:
+
+             inc   di        ; (increase j)
+             cmp   di, cx    ; (compare with bound)
+             jbe   @@loop_j  ; if below or equal, then go to @@loop_j
+
+        ; end of loop j
+
+        inc  si        ; increment i
+        cmp  si, cx    ; compare with bound
+        jb   @@loop_i  ; if below, then loop to @@loop_i
+
+
+        popa      ; restore all registers
+        ret
+   endp
+
+start:
+
+   mov  dx, offset my_arr
+   call bubble_sort, dx, 10
+
+   ; After this call, the array my_arr is sorted
+
+   mov  ax, 4c00h
+   int  21h
+end</pre>
+<p>MASM lovers can modify this program pretty easily.
+<p>&nbsp;
+
+<h3>XCHG: A Nice Extra</h3>
+<p>Intel x86 processor does have an instruction to swap things. It is <tt>xchg</tt> (exchange).
+Let's look into the bubble sort above:
+<pre>
+             :
+        @@loop_j:
+             mov   ah, [bx+si]  ; AH = arr_idx[i]
+             mov   al, [bx+di]  ; AL = arr_idx[j]
+
+             cmp   ah, al       ; if (arr_idx[i] <= arr_idx[j]) then no swap
+             jle   @@noswap
+
+             mov   [bx+si], al  ; else swap
+             mov   [bx+di], ah
+
+        @@no_swap:
+             :</pre>
+<P>You can use <tt>xchg</tt> to exchange values. See the change below:
+<pre>
+             :
+        @@loop_j:
+             mov   ah, [bx+si]  ; AH = arr_idx[i]
+
+             <b>cmp   ah, [bx+di]</b>  ; if (arr_idx[i] <= arr_idx[j]) then no swap
+             jle   @@noswap
+
+             <b>xchg  ah, [bx+di]</b>  ; else swap
+
+        @@no_swap:
+             :</pre>
+<p>These two programs are equal.
+<p>&nbsp;
+
+<h3>Closing</h3>
+<p>OK, I think that's all for now. You've seen the bubble sort in assembly. How about quick sort?
+Try that as an exercise. See you next time.
+<p>&nbsp;
+<HR><H3>Where to go</H3>
+<p><b><a href="asml1013.html">Chapter 13</a><br>
+<a href="../news.html">News Page</a><br>
+<a href="asmles01.html">x86 Assembly Lesson 1 index</a><br>
+<a href="../faq.html">Contacting Me</a></B></P>
+<hr><p class="cpy">Roby Joehanes &copy; 2001</p>
+</body></html>

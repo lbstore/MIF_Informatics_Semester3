@@ -1,0 +1,11 @@
+
+ Start  Stop   Length Name               Class
+
+ 00000H 00000H 00000H _TEXT              CODE
+ 00000H 0005FH 00060H KODAS              CODE
+ 00060H 00060H 00000H _DATA              DATA
+ 00060H 00189H 0012AH DUOMENYS           DATA
+ 0018AH 00989H 00800H STEKAS             STACK
+
+Program entry point at 0000:0000
+

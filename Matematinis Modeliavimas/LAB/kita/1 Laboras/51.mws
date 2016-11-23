@@ -1,0 +1,176 @@
+{VERSION 6 0 "IBM INTEL NT" "6.0" }
+{USTYLETAB {PSTYLE "_pstyle10" -1 200 1 {CSTYLE "" -1 -1 "Times" 1 12 
+0 0 0 1 2 2 2 2 2 2 0 0 0 1 }1 3 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Da
+sh Item" -1 16 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 
+0 0 1 }1 1 0 0 3 3 2 0 2 0 2 2 -1 3 }{PSTYLE "Warning" -1 7 1 {CSTYLE 
+"" -1 -1 "Courier" 1 10 0 0 255 1 0 0 0 2 2 1 0 0 0 1 }1 0 0 -1 -1 -1 
+2 0 2 0 2 2 -1 1 }{PSTYLE "_pstyle9" -1 201 1 {CSTYLE "" -1 -1 "Times"
+ 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }
+{PSTYLE "Bullet Item" -1 15 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 
+2 2 2 2 2 0 0 0 1 }1 1 0 0 3 3 2 0 2 0 2 2 -1 2 }{PSTYLE "_pstyle8" 
+-1 202 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }3 
+3 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "_pstyle7" -1 203 1 {CSTYLE "" -1 
+-1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 
+-1 1 }{PSTYLE "_pstyle6" -1 204 1 {CSTYLE "" -1 -1 "" 0 1 0 0 0 0 0 0 
+0 2 2 2 0 0 0 1 }0 0 0 -1 -1 -1 2 0 2 0 2 2 -1 1 }{PSTYLE "Normal256" 
+-1 205 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }3 
+1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "_pstyle5" -1 206 1 {CSTYLE "" -1 
+-1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 
+-1 1 }{PSTYLE "_pstyle4" -1 207 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 
+1 2 2 2 2 2 2 0 0 0 1 }1 3 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "_pstyle3
+" -1 208 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }
+3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "_pstyle2" -1 209 1 {CSTYLE "" 
+-1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }3 3 0 0 0 0 2 0 2 0 2 
+2 -1 1 }{PSTYLE "_pstyle1" -1 210 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 
+0 1 2 2 2 2 2 2 0 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Line P
+rinted Output" -1 6 1 {CSTYLE "" -1 -1 "Courier" 1 10 0 0 255 1 0 0 0 
+2 2 1 0 0 0 1 }1 0 0 -1 -1 -1 2 0 2 0 2 2 -1 1 }{PSTYLE "Heading 4" 
+-1 20 1 {CSTYLE "" -1 -1 "Times" 1 10 0 0 0 1 1 1 2 2 2 2 0 0 0 1 }1 
+1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Heading 3" -1 5 1 {CSTYLE "" -1 
+-1 "Times" 1 12 0 0 0 1 1 1 2 2 2 2 0 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 
+-1 1 }{PSTYLE "Heading 2" -1 4 1 {CSTYLE "" -1 -1 "Times" 1 14 0 0 0 
+1 2 1 2 2 2 2 0 0 0 1 }1 1 0 0 8 2 2 0 2 0 2 2 -1 1 }{PSTYLE "Maple Ou
+tput" -1 11 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 
+1 }3 3 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Heading 1" -1 3 1 {CSTYLE ""
+ -1 -1 "Times" 1 18 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }1 1 0 0 8 4 2 0 2 0 
+2 2 -1 1 }{PSTYLE "Author" -1 19 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 
+0 1 2 2 2 2 2 2 0 0 0 1 }3 1 0 0 8 8 2 0 2 0 2 2 -1 1 }{PSTYLE "Maple \+
+Plot" -1 13 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 
+1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Maple Output12" -1 211 1 
+{CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }1 3 0 0 0 
+0 2 0 2 0 2 2 -1 1 }{PSTYLE "Help" -1 10 1 {CSTYLE "" -1 -1 "Courier" 
+1 9 0 0 255 1 0 0 0 2 2 1 0 0 0 1 }1 0 0 -1 -1 -1 2 0 2 0 2 2 -1 1 }
+{PSTYLE "Left Justified Maple Output" -1 12 1 {CSTYLE "" -1 -1 "Times"
+ 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }1 3 0 0 0 0 2 0 2 0 2 2 -1 1 }
+{PSTYLE "Fixed Width" -1 17 1 {CSTYLE "" -1 -1 "Courier" 1 10 0 0 0 1 
+2 2 2 2 2 2 0 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Text Outpu
+t" -1 2 1 {CSTYLE "" -1 -1 "Courier" 1 10 0 0 255 1 0 0 0 2 2 1 0 0 0 
+1 }1 0 0 -1 -1 -1 2 0 2 0 2 2 -1 1 }{PSTYLE "List Item" -1 14 1 
+{CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }1 1 0 0 3 
+3 2 0 2 0 2 2 -1 5 }{PSTYLE "Error" -1 8 1 {CSTYLE "" -1 -1 "Courier" 
+1 10 255 0 255 1 0 0 0 2 2 1 0 0 0 1 }1 0 0 -1 -1 -1 2 0 2 0 2 2 -1 1 
+}{PSTYLE "Diagnostic" -1 9 1 {CSTYLE "" -1 -1 "Courier" 1 10 64 128 
+64 1 0 0 0 2 2 1 0 0 0 1 }1 0 0 -1 -1 -1 2 0 2 0 2 2 -1 1 }{PSTYLE "Ti
+tle" -1 18 1 {CSTYLE "" -1 -1 "Times" 1 18 0 0 0 1 2 1 1 2 2 2 0 0 0 
+1 }3 1 0 0 12 12 2 0 2 0 2 2 -1 1 }{PSTYLE "Normal" -1 0 1 {CSTYLE "" 
+-1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 
+2 -1 1 }{PSTYLE "_pstyle12" -1 212 1 {CSTYLE "" -1 -1 "" 0 1 0 0 0 0 
+0 0 0 2 2 2 0 0 0 1 }0 0 0 -1 -1 -1 2 0 2 0 2 2 -1 1 }{PSTYLE "_pstyle
+11" -1 213 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 
+1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "2D Math Bold Small" -1 10 "T
+imes" 0 1 0 0 0 0 0 1 2 2 2 2 0 0 0 1 }{CSTYLE "Output Labels" -1 29 "
+Times" 1 8 0 0 0 1 0 0 0 2 2 2 0 0 0 1 }{CSTYLE "2D Math" -1 2 "Times"
+ 0 1 0 0 0 0 0 0 2 2 2 2 0 0 0 1 }{CSTYLE "Help Notes" -1 37 "" 0 1 0 
+0 0 1 0 1 0 2 2 2 0 0 0 1 }{CSTYLE "LaTeX" -1 32 "" 0 1 0 0 0 0 0 0 0 
+2 2 2 0 0 0 1 }{CSTYLE "2D Comment" -1 18 "Times" 0 1 0 0 0 0 0 0 2 2 
+2 2 0 0 0 1 }{CSTYLE "Prompt" -1 1 "Courier" 0 1 0 0 0 1 0 0 0 2 2 2 
+0 0 0 1 }{CSTYLE "Help Italic" -1 42 "Times" 1 12 0 0 0 0 1 0 0 2 2 2 
+0 0 0 1 }{CSTYLE "Page Number" -1 33 "Times" 0 1 0 0 0 0 0 0 2 2 2 2 
+0 0 0 1 }{CSTYLE "Maple Input" -1 0 "Courier" 0 1 255 0 0 1 0 1 0 2 1 
+2 0 0 0 1 }{CSTYLE "Help Bold" -1 39 "Times" 1 12 0 0 0 0 0 1 0 2 2 2 
+0 0 0 1 }{CSTYLE "Help Underlined Bold" -1 41 "Times" 1 12 0 0 0 0 0 
+1 1 2 2 2 0 0 0 1 }{CSTYLE "Help Fixed" -1 23 "Courier" 1 10 0 0 0 0 
+0 0 0 2 2 2 0 0 0 1 }{CSTYLE "Copyright" -1 34 "Times" 1 10 0 0 0 0 2 
+2 2 2 2 2 0 0 0 1 }{CSTYLE "2D Math Small" -1 7 "Times" 0 1 0 0 0 0 0 
+0 2 2 2 2 0 0 0 1 }{CSTYLE "ParagraphStyle4" -1 200 "Times" 1 12 0 0 
+0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "Popup" -1 31 "" 0 1 0 128 128 1 1 0 
+1 2 2 2 0 0 0 1 }{CSTYLE "ParagraphStyle3" -1 201 "Times" 1 12 0 0 
+255 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "ParagraphStyle2" -1 202 "Times" 1 
+12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "ParagraphStyle1" -1 203 "Time
+s" 1 12 0 0 255 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "2D Math Symbol 2" -1 
+204 "Times" 0 1 0 0 0 0 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "Plot Text" -1 
+28 "" 1 8 0 0 0 0 0 0 0 2 2 2 0 0 0 1 }{CSTYLE "Hyperlink" -1 17 "" 0 
+1 0 128 128 1 2 0 1 2 2 2 0 0 0 1 }{CSTYLE "Help Underlined Italic" 
+-1 43 "Times" 1 12 0 0 0 0 1 0 1 2 2 2 0 0 0 1 }{CSTYLE "2D Math Itali
+c Small" -1 205 "Times" 0 1 0 0 0 0 1 0 2 2 2 2 0 0 0 1 }{CSTYLE "2D M
+ath Italic" -1 3 "Times" 0 1 0 0 0 0 1 0 2 2 2 2 0 0 0 1 }{CSTYLE "Map
+le Comment" -1 21 "Courier" 0 1 0 0 0 1 0 0 0 2 2 2 0 0 0 1 }{CSTYLE "
+2D Math Bold" -1 5 "Times" 0 1 0 0 0 0 0 1 2 2 2 2 0 0 0 1 }{CSTYLE "_
+cstyle9" -1 206 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "_cs
+tyle8" -1 207 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "_cs
+tyle7" -1 208 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "Plot \+
+Title" -1 27 "" 1 10 0 0 0 0 0 1 0 2 2 2 0 0 0 1 }{CSTYLE "_cstyle6" 
+-1 209 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "_cstyle5" 
+-1 210 "Courier" 1 12 255 0 0 1 2 1 2 2 1 2 0 0 0 1 }{CSTYLE "_cstyle4
+" -1 211 "Times" 0 1 0 0 255 1 0 0 2 2 2 2 0 0 0 1 }{CSTYLE "Help Head
+ing" -1 26 "" 1 14 0 0 0 0 0 1 0 2 2 2 0 0 0 1 }{CSTYLE "_cstyle3" -1 
+212 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "_cstyle2" -1 
+213 "Courier" 0 1 255 0 0 1 0 1 0 2 1 2 0 0 0 1 }{CSTYLE "_cstyle1" 
+-1 214 "Courier" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "Help Itali
+c Bold" -1 40 "Times" 1 12 0 0 0 0 1 1 0 2 2 2 0 0 0 1 }{CSTYLE "2D In
+put" -1 19 "Times" 0 1 255 0 0 1 0 0 2 2 2 2 0 0 0 1 }{CSTYLE "Help No
+rmal" -1 30 "Times" 1 12 0 0 0 0 0 0 0 2 2 2 0 0 0 1 }{CSTYLE "2D Outp
+ut" -1 20 "Times" 0 1 0 0 255 1 0 0 2 2 2 2 0 0 0 1 }{CSTYLE "Help Men
+us" -1 36 "" 0 1 0 0 0 1 0 1 0 2 2 2 0 0 0 1 }{CSTYLE "_cstyle21" -1 
+215 "Courier" 0 1 0 0 0 1 0 1 0 2 2 2 0 0 0 1 }{CSTYLE "Help Underline
+d" -1 44 "Times" 1 12 0 0 0 0 0 0 1 2 2 2 0 0 0 1 }{CSTYLE "_cstyle16"
+ -1 216 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "_cstyle15" 
+-1 217 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "Text" -1 
+218 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "_cstyle14" -1 
+219 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "_cstyle13" -1 
+220 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "_cstyle12" 
+-1 221 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "_cstyle11" 
+-1 222 "Courier" 1 12 255 0 0 1 2 1 2 2 1 2 0 0 0 1 }{CSTYLE "_cstyle1
+0" -1 223 "Courier" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "_cstyle
+263" -1 224 "" 0 1 0 0 0 0 0 1 0 2 2 2 0 0 0 1 }{CSTYLE "_cstyle262" 
+-1 225 "" 0 1 0 0 0 0 0 1 0 2 2 2 0 0 0 1 }{CSTYLE "_cstyle261" -1 
+226 "" 0 1 0 0 0 0 0 1 0 2 2 2 0 0 0 1 }{CSTYLE "_cstyle260" -1 227 ""
+ 0 1 0 0 0 0 0 1 0 2 2 2 0 0 0 1 }{CSTYLE "Default" -1 38 "" 0 1 0 0 
+0 0 0 0 0 2 2 2 0 0 0 1 }{CSTYLE "Help Variable" -1 25 "Courier" 0 1 
+0 0 0 1 2 2 0 2 2 2 0 0 0 1 }{CSTYLE "_cstyle259" -1 228 "" 0 1 0 0 0 
+0 0 1 0 2 2 2 0 0 0 1 }{CSTYLE "_cstyle258" -1 229 "" 0 1 0 0 0 0 0 1 
+0 2 2 2 0 0 0 1 }{CSTYLE "Help Emphasized" -1 230 "" 0 1 0 0 0 0 1 2 
+0 2 2 2 0 0 0 1 }{CSTYLE "_cstyle257" -1 231 "" 0 1 0 0 0 0 1 1 0 2 2 
+2 0 0 0 1 }{CSTYLE "Help Maple Name" -1 35 "" 0 1 104 64 92 1 0 1 0 2 
+2 2 0 0 0 1 }{CSTYLE "_cstyle256" -1 232 "" 0 1 0 0 0 0 1 0 0 2 2 2 0 
+0 0 1 }{CSTYLE "Help Nonterminal" -1 24 "Courier" 0 1 0 0 0 1 0 1 0 2 
+2 2 0 0 0 1 }{PSTYLE "_pstyle13" -1 214 1 {CSTYLE "" -1 -1 "Times" 1 
+12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE 
+"_cstyle17" -1 233 "Courier" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }
+{CSTYLE "_cstyle18" -1 234 "Courier" 1 12 255 0 0 1 2 1 2 2 1 2 0 0 0 
+1 }{CSTYLE "_cstyle19" -1 235 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 
+1 }{PSTYLE "_pstyle14" -1 215 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 
+2 2 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "_cstyle20"
+ -1 236 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{PSTYLE "_pstyle15" 
+-1 216 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }1 
+1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "_pstyle16" -1 217 1 {CSTYLE "" 
+-1 -1 "" 0 1 0 0 0 0 0 0 0 2 2 2 0 0 0 1 }0 0 0 -1 -1 -1 1 0 1 0 2 2 
+-1 1 }}
+{SECT 0 {EXCHG {PARA 214 "" 0 "" {TEXT 233 402 "51. Vandens rezervuara
+s yra formos, kuri gaunama sukant parabole y = sqr (x) aplink Y asi. 1
+2 valanda dienos vandens gylis yra 4 ft, kai tuo metu pasalinamas dugn
+e esantis apvalus kamstis. 13 valanda vandens lygis yra 1 ft. a) Rasti
+ vandens gyli y(t) po t valandu. b) Kada vandens rezervuaras istustes?
+ c) Jei pradinis vandens pavirsiaus skersmuo yra  2 ft. tai koks skers
+muo yra dugne esancios skyles?" }}}{EXCHG {PARA 214 "> " 0 "" 
+{MPLTEXT 1 234 8 "restart;" }}}{EXCHG {PARA 214 "" 0 "" {TEXT 235 29 "
+Konverteris is pedu i metrus:" }}}{EXCHG {PARA 214 "> " 0 "" {MPLTEXT 
+1 234 10 "Pedos:= 1:" }{MPLTEXT 1 234 25 "\nMetrai:= 0.3048 * Pedos;" 
+}}}{EXCHG {PARA 214 "> " 0 "" {MPLTEXT 1 234 23 "PradinisLygis:= 1.219
+2:" }}}{EXCHG {PARA 214 "" 0 "" {TEXT 235 27 "Vandens lygis po valando
+s: " }}}{EXCHG {PARA 214 "> " 0 "" {MPLTEXT 1 234 20 "PoValandos:= 0.3
+048:" }}}{EXCHG {PARA 214 "" 0 "" {TEXT 235 16 "Pradinis laikas:" }}}
+{EXCHG {PARA 214 "> " 0 "" {MPLTEXT 1 234 8 "t0:= 12:" }}}{EXCHG 
+{PARA 214 "" 0 "" {TEXT 235 25 "Toriceli's law vandeniui:" }}}{EXCHG 
+{PARA 214 "> " 0 "" {MPLTEXT 1 234 35 "TL:= 0.84 * sqrt (2 * 9.81 * h(
+t)):" }}}{EXCHG {PARA 215 "" 0 "" {TEXT 236 22 "Ivairus pskaiciavimai:
+" }}}{EXCHG {PARA 214 "" 0 "" {TEXT 235 69 "Pasinaudoju Vx formule, ka
+d z = (3 / 11) * h(t) ^ (7 / 6) ir uzrasau:" }}}{EXCHG {PARA 214 "" 0 
+"" {TEXT 235 21 "Bendrasis Sprendinys:" }}}{EXCHG {PARA 214 "> " 0 "" 
+{MPLTEXT 1 234 109 "BendrasSprendinys:= subs (h = h(t), (7 / 8) * C1 =
+ C, h = ((7 / 8) * (-3.720735411 * A * t + C1)) ^ (8 / 7));" }}}
+{EXCHG {PARA 214 "> " 0 "" {MPLTEXT 1 234 73 "AtskirasSprendinys:= sub
+s (C = PradinisLygis ^ (7/8), BendrasSprendinys);" }}}{EXCHG {PARA 
+214 "> " 0 "" {MPLTEXT 1 234 65 "A:= solve (subs (h(t) = PoValandos, t
+ = 60, AtskirasSprendinys));" }}}{EXCHG {PARA 214 "> " 0 "" {MPLTEXT 
+1 234 114 "plot (rhs (AtskirasSprendinys), t = 0..100, labels = [Laika
+s, Aukstis], labeldirections = [HORIZONTAL, VERTICAL]);" }}}{EXCHG 
+{PARA 216 "" 0 "" {TEXT 218 72 "Parodys laika (minutemis), per kuri ik
+i H aukscio sumazes vandens lygis:" }}}{EXCHG {PARA 214 "> " 0 "" 
+{MPLTEXT 1 234 6 "H:= 0:" }{MPLTEXT 1 234 51 "\nats:= solve (subs (h(t
+) = H, AtskirasSprendinys)):" }{MPLTEXT 1 234 33 "\nvalandos:= (t0 * 6
+0 + ats) / 60;" }}}{EXCHG {PARA 214 "" 0 "" {TEXT 235 29 "Vandens auks
+tis po T minuciu:" }}}{EXCHG {PARA 214 "> " 0 "" {MPLTEXT 1 234 8 "T :
+= 60:" }{MPLTEXT 1 234 34 "\nsubs (t = T, AtskirasSprendinys);" }}}
+{PARA 217 "" 0 "" }}{VIEWOPTS 1 1 0 1 1 1803 1 1 1 1 }{PAGENUMBERS 0 
+1 2 33 1 1 }

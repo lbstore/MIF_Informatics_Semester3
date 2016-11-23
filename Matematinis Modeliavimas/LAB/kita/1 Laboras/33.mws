@@ -1,0 +1,60 @@
+{VERSION 2 3 "IBM INTEL NT" "2.3" }
+{USTYLETAB {CSTYLE "Maple Input" -1 0 "Courier" 0 1 255 0 0 1 0 1 0 0 
+1 0 0 0 0 }{CSTYLE "2D Math" -1 2 "Times" 0 1 0 0 0 0 0 0 2 0 0 0 0 0 
+0 }{CSTYLE "2D Output" 2 20 "" 0 1 0 0 255 1 0 0 0 0 0 0 0 0 0 }
+{PSTYLE "Normal" -1 0 1 {CSTYLE "" -1 -1 "" 0 1 0 0 0 0 0 0 0 0 0 0 0 
+0 0 }0 0 0 -1 -1 -1 0 0 0 0 0 0 -1 0 }{PSTYLE "Maple Output" 0 11 1 
+{CSTYLE "" -1 -1 "" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 }3 3 0 -1 -1 -1 0 0 
+0 0 0 0 -1 0 }{PSTYLE "Maple Plot" 0 13 1 {CSTYLE "" -1 -1 "" 0 1 0 0 
+0 0 0 0 0 0 0 0 0 0 0 }3 0 0 -1 -1 -1 0 0 0 0 0 0 -1 0 }}
+{SECT 0 {EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 719 "\n\n#tarkim sodos p
+entobarbitalis naudojamas uzmigdyti suni. suo uzmiega kai vaistu konce
+ntracija jo kraujyje yra 45mg kiekvienam gyvuno kilogramui. vaistu pus
+amzis 5h. kokia doze turetu buti skirta 5kg suniui kad jis uzmigtu 1 v
+alandai.\n\n# laik - laikas(h)\n# m - suns svoris(kg)\n# v - chemine m
+edziaga(mg)\n# pus - pusamzis(h)\n\n\nbendra_formule:=N[0]*((1/2)^(t/T
+));\n\n\n#is_salygos:\nlaik:=1;\npus:=5;\nv:=45;\nm:=5;\n\n\n#sprendim
+as:\n\nN[o]:=v*m;\n\n\ndoze_vaistu_miligramais_uzmigdyti_suniui_per_1h
+:=N[o]/((0.5)^(laik/pus));\n\n\npo_1h_liks=doze_vaistu_miligramais_uzm
+igdyti_suniui_per_laika_t*((0.5)^(laik/pus));\n\nplot(doze_vaistu_mili
+gramais_uzmigdyti_suniui_per_laika_t*((0.5)^(valandos/5)), valandos=0.
+.5, thickness=2, color=green);" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" 
+}}{PARA 0 "> " 0 "" {MPLTEXT 1 0 1 "\n" }}{PARA 0 "> " 0 "" {MPLTEXT 
+1 0 0 "" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#>%/bendra_formuleG*&&%\"NG6#\"\"!\"\"\")#F*\"\"#*&%\"tG
+F*%\"TG!\"\"F*" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%%laikG\"\"\"" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#>%$pusG\"\"&" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#>%\"vG\"#X" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%\"mG\"
+\"&" }}{PARA 11 "" 1 "" {TEXT -1 0 "" }}{PARA 11 "" 1 "" {XPPMATH 20 "
+6#>%Udoze_vaistu_miligramais_uzmigdyti_suniui_per_laika_tG$\"+*HrXe#!
+\"(" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#/%+po_1h_liksG$\"++++]A!\"(" }}
+{PARA 13 "" 1 "" {INLPLOT "6'-%'CURVESG6#7S7$\"\"!$\"1+++*HrXe#!#87$$
+\"1LLL3x&)*3\"!#;$\"1[MGja\"ea#F+7$$\"1nm\"H2P\"Q?F/$\"1D1ANtc7DF+7$$
+\"1LL$eRwX5$F/$\"1M>_-[pvCF+7$$\"1ML$3x%3yTF/$\"1xaWUV7RCF+7$$\"1nm\"z
+%4\\Y_F/$\"1j]=uSE.CF+7$$\"1MLeR-/PiF/$\"18))zv\")[qBF+7$$\"1***\\il'p
+isF/$\"1.k>+;-PBF+7$$\"1MLe*)>VB$)F/$\"1namOt!HI#F+7$$\"1++DJbw!Q*F/$
+\"1$y#zp!)RpAF+7$$\"1nm;/j$o/\"!#:$\"1R'*e@$QaB#F+7$$\"1LL3_>jU6Fgn$\"
+1!\\RptZf?#F+7$$\"1++]i^Z]7Fgn$\"1jFs#e8K<#F+7$$\"1++](=h(e8Fgn$\"14]N
+[P$39#F+7$$\"1++]P[6j9Fgn$\"1Z>2Vj35@F+7$$\"1L$e*[z(yb\"Fgn$\"1!3!R9va
+#3#F+7$$\"1nm;a/cq;Fgn$\"1I*=*y&o-0#F+7$$\"1nmm;t,m<Fgn$\"1-l5MeJB?F+7
+$$\"1+]iSj0x=Fgn$\"1;C`i)3C*>F+7$$\"1nmm\"pW`(>Fgn$\"1*zEh4Xa'>F+7$$\"
+1+]i!f#=$3#Fgn$\"1Anw'>\"GO>F+7$$\"1+](=xpe=#Fgn$\"1D^8'f7*3>F+7$$\"1n
+m\"H28IH#Fgn$\"1D4rP'o2)=F+7$$\"1n;zpSS\"R#Fgn$\"1g(peK*Gb=F+7$$\"1LL3
+_?`(\\#Fgn$\"10h<lK>G=F+7$$\"1M$e*)>pxg#Fgn$\"1Vfq0qY+=F+7$$\"1+]Pf4t.
+FFgn$\"1*3e:ytmx\"F+7$$\"1MLe*Gst!GFgn$\"1$)*p?]H8v\"F+7$$\"1+++DRW9HF
+gn$\"1tG:0g_D<F+7$$\"1++DJE>>IFgn$\"1+$zUD]1q\"F+7$$\"1+]i!RU07$Fgn$\"
+1/n`!4Bpn\"F+7$$\"1++v=S2LKFgn$\"1q<cdd'4l\"F+7$$\"1mmm\"p)=MLFgn$\"1`
+^!z$[)zi\"F+7$$\"1++](=]@W$Fgn$\"16z9,3!Qg\"F+7$$\"1L$e*[$z*RNFgn$\"1%
+*Hjzo>#e\"F+7$$\"1,+]iC$pk$Fgn$\"1A.FR4\"*e:F+7$$\"1m;H2qcZPFgn$\"1?F^
+8PJP:F+7$$\"1+]7.\"fF&QFgn$\"1'[wU;e]^\"F+7$$\"1mm;/OgbRFgn$\"1L6x;3h$
+\\\"F+7$$\"1+]ilAFjSFgn$\"1-X)pm#[r9F+7$$\"1MLL$)*pp;%Fgn$\"1=2:01[]9F
++7$$\"1ML3xe,tUFgn$\"1Tt;XHJH9F+7$$\"1n;HdO=yVFgn$\"1B\\Rhci39F+7$$\"1
+,++D>#[Z%Fgn$\"1'*Rnx-))*Q\"F+7$$\"1nmT&G!e&e%Fgn$\"1!*oQWDqo8F+7$$\"1
+MLL$)Qk%o%Fgn$\"1\"y+DXM+N\"F+7$$\"1+]iSjE!z%Fgn$\"1y%3Av5/L\"F+7$$\"1
+,]P40O\"*[Fgn$\"1V*ybe&*=J\"F+7$$\"\"&F($\"1++]\\cG#H\"F+-%'COLOURG6&%
+$RGBGF($\"*++++\"!\")F(-%*THICKNESSG6#\"\"#-%+AXESLABELSG6$%)valandosG
+%!G-%%VIEWG6$;F(Fdz%(DEFAULTG" 2 496 496 496 2 0 1 2 2 6 0 4 2 
+1.000000 45.000000 45.000000 10030 10061 10056 10072 0 0 0 20030 0 
+12020 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 }}}{EXCHG {PARA 0 "> " 
+0 "" {MPLTEXT 1 0 0 "" }}}}{MARK "0 0 0" 436 }{VIEWOPTS 1 1 0 1 1 
+1803 }

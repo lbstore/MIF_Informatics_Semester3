@@ -1,0 +1,179 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=en-us">
+<meta http-equiv="Content-Language" content="en-us">
+<link href="../style.css" rel="stylesheet" type="text/css">
+<title>x86 Assembly Lesson 1 Chapter 9</title>
+</head>
+
+<body background="../tile01.jpg">
+<CENTER>
+<h1>Stacks</h1>
+</CENTER><BR><BR><BR>
+<H3>Welcome</H3>
+<p>Hi! Welcome to the ninth chapter of this series. How many interrupt numbers have you
+memorized from our <a href="asml1009.html">last chapter</a>? I hope that you're not
+overwhelmed with the sheer amount of interrupt numbers out there. Today, I'd like to share
+about stacks and how we can use them in our program. Actually, this chapter acts as an
+overture for the <a href="asml1010.html">next one</a> about subroutines. I think you should
+know this first before moving on. Soon, you will understand too.
+<P>I expect you to already understand the concept of general stack data structure, which is by
+nature last in first out (LIFO). I'm not going to reexplain it once more. I don't talk about
+linked list now, but the stack we discussed here is implemented in a kind of array. However,
+the concept is still the same.
+<p>&nbsp;
+
+<h3>Why Stack?</h3>
+<p>There are several reasons why we need stacks:
+<ul>
+<li>To save register values if we ran out of registers.</li>
+<li>To pass parameters to subroutines</li>
+<li>To make space for local variables in subroutines</li>
+<li>To preserve original register values if we change them in a subroutine</li>
+<li>To fetch processor flag status</li>
+</ul>
+<p>Realizing this importance, we should learn stacks.
+<p>Stack operations mainly done by two instructions either <tt>push</tt> or <tt>pop</tt>.
+The instruction <tt>push</tt> will push values into the stack, while <tt>pop</tt> will pop it out.
+The syntax is like this:
+<pre>
+   push  x    ; push x into stack
+   pop   x    ; pop  x out of stack
+</pre>
+<p>Of course, the nature of stack still apply: last in first out (LIFO). Remember the stack of plates.
+Usually the operand <tt>x</tt> is a 16-bit registers. You can push 8-bit registers too, but the processor
+will push a 16-bit value anyway.
+<p>&nbsp;
+
+<h3>A Little Bit About Memory Layout</h3>
+<p>Understanding the instructions is not enough. The more important thing is know how to use it.
+Before you know how to use it, you must understand how the memory is lied out in our assembly program.
+<a name="memmode">
+<p>Assembly program can be arranged into several modes. These are known as <b>memory modes</b>. This is
+very important since different mode has different impacts on the same instructions. Notice that so far
+we always mention <tt>model tiny</tt> clause at the beginning of our program. Recall <a href="asml1001.html">
+our first chapter</a>. The memory mode "tiny" is one of the modes that we can select. I will describe
+a little bit about how it is arranged. I will put the rest of the explanation later.
+<p>The model "tiny" restrict the program size 64Kbytes, which should be enough for many learning purposes.
+All data and code must fit within this 64KB boundary. No exception. Whereas DOS, our ancient operating
+system, "divides" the memory system into 64KB chunk segment, this "tiny" model fits snugly in one segment.
+<p>Note also that the memory address of our computer has 2 elements: a segment and an offset. This pair
+will define exactly where in the memory, which I had covered <a href="../lowlevel.html">here</a>.
+<p>Recall that we have <a href="../lowlevel.html">segment registers</a> in our processor. Since every
+thing fits into one segment, there is no need to set segment registers. By default, the assembly (or I
+should say the OS) will set all segment registers pointing into that single segment. That's why I said
+"Ignore setting DS" or something like that in our <a href="asml1008.html">last chapter</a>.
+<p>You should know that register CS by default points to the segment where the code resides. DS will
+point to the data segment. ES usually pointed to data segment too. SS will point to stack segment.
+Since CS, DS, ES, and SS point to the same segment, it means code, data, and stack resides in the same
+region. How can we manage this? If you think this is a mess, this architecture applies to the modern
+computer nowadays whereas the concept was invented somewhere in the 1940s. If you've heard the name
+"Von Neumann architecture", this is it. Code, data, and stack is put in the same memory.
+<p>OK, now a bit deeper. The stack is not only pointed by SS register. But also SP register. So,
+the pair SS:SP points the top of the stack. Initially, SP is set to the very bottom of the segment in
+"tiny" mode, at address 0FFFEh (not 0FFFFh, that's the bottom end of the segment). Each time we push
+something into the stack, this SP register will be decremented up by 2. If we push something, SP will
+be incremented down by 2. Whereas, our code and our data starts at offset 100h.
+So, the layout looks something like this:
+<center><img src="tinylay.png" width="304" height="261"></center>
+<p>Notice that we have no boundary on stack. I draw a smear there since the boundary is not strictly
+defined. So, if you push too many things into the stack, the chance is it will overwrite your code. If
+your code is overwritten, your processor may be running garbage. But don't worry, this arrangement will
+provide sufficient room for normal use of stacks.
+<p>Note that I only mention IP there because CS:IP pair will define the next instruction to be run. How
+about data? Well, the segment usually has to be DS (or sometimes ES), and the offset part can point to
+anywhere in the segment.
+<p>To cope with this situation, recall our first assembly program:
+<pre>    :
+    :
+   org 100h
+   jmp start
+
+   ; your data and subroutine here
+
+start:
+   mov ax, 4c00h
+   int 21h
+   :
+   :
+</pre>
+<p>This <tt>org 100h</tt> actually tells assembly that our program will begin at offset 100h. Why is this
+necessary? It is because all running programs have <b>Process Control Block (PCB)</b> with it. It's sort of
+thing for operating system to manage stuffs, So, it's better for us not to interfere with that <b>unless</b>
+you're doing advanced stuff. After that, we have a jump, right? Then after that jump, you put all your data
+in, right? That's how we cope with this chaos. The unconditional jump ensures the space for data so that
+it does not interfere with code. and vice versa. It is usually the case when the code interferes with data,
+it will cause hangups, blue screen of death and so on, --again -- <b>UNLESS</b> you are an assembly guru
+that knows what you're doing (like doing some self-modification code stuff and similar arcane tricks).
+<p>When you exercise and try to build a "tiny" mode assembly program, how many bytes is usually the result
+after compilation? It's usually less than 200 bytes, right? So, it's far from the end of the segment.
+Thus, you don't have to worry about running out of stack space. There is a "huge" empty region in-between.
+<p>&nbsp;
+
+<h3>Application</h3>
+<p>Alright, so you know the internals of our "tiny" mode. Let's look at the following example.
+It's better for you to run this program in a debugger to see the effects.
+<pre>ideal
+p286n
+model tiny
+
+codeseg
+   org 100h
+   jmp start
+
+   ; your data and subroutine here
+
+start:
+   mov  ax, 100h  ; initially SP = 0FFFEh, AX is set to 100h
+   push ax        ; now SP = 0FFFCh
+   mov  ax, 200h  ; AX = 200h
+   pop  ax        ; SP back to 0FFFEh, but now AX back to 100h
+
+   mov  ax, 4c00h
+   int  21h
+end</pre>
+<p>See the effect? When AX is stored in the stack, we're free to modify AX. If we pop the
+old value back, voila! The old value is restored. This can be handy in storing (very) temporary
+value. You don't need to declare variables and thus reducing the code size by some bytes.
+<p>In fact, subroutine call will use a lot of stack stuffs. So, you'd better understand the
+underlying concept before going on.
+<p>OK, now for a surprise. Try changing <tt>push ax</tt> into <tt>push ah</tt> and <tt>pop ax</tt>
+into <tt>pop ah</tt>. See what happens? The SP is decremented into 0FFFCh, it is <b>as if it
+is pushing a 16-bit value</b>! Remember this gotcha!
+<p>&nbsp;
+
+<h3>Other Uses</h3>
+<p>Can we push a constant? In 8086 no. In 80286 or above yes. So, doing <tt>push 1</tt>, this
+will be treated as if a 16-bit value. No need to specify <tt>word ptr</tt> and stuff.
+<p>Pushing and popping to and from stack is useful in assigning values too. In the <tt>mov</tt> instruction,
+it is illegal to assign segment registers with constants. For example: It is illegal to say:
+<tt>mov es, 400h</tt>. Why? I don't know, ask Intel engineers. :-) Probably they try to avoid
+inadvertent segment changing. So, one may want to do a work around like this:
+<pre>   push 400h
+   pop es</pre>
+<p>Of course this code is for 80286 or above. Well, I should say that code is not good. The
+better work around is to use register like this:
+<pre>   mov bx, 400h
+   mov es, bx</pre>
+<a name="pushflag">
+<p>The more useful usage of push and pop is to push flag and then pop it into register. That way,
+we can examine the flag content directly. Look at the following code:
+<pre>   pushf
+   pop ax</pre>
+<p>There... we can examine the flag values in register AX, The net effect is the same like
+assigning AX with flags. Of course, the <tt>mov</tt> instruction cannot handle this.
+<p>Likewise, you can set the flag values using <tt>push ax</tt> then <tt>popf</tt>.
+This may be handy for a lot of cases, which I will explain further in latter chapters.
+<p>&nbsp;
+
+<h3>Closing</h3>
+<p>OK, I think that's all for now. See you next time.
+<p>&nbsp;
+<HR><H3>Where to go</H3>
+<p><b><a href="asml1010.html">Chapter 10</a><br>
+<a href="../news.html">News Page</a><br>
+<a href="asmles01.html">x86 Assembly Lesson 1 index</a><br>
+<a href="../faq.html">Contacting Me</a></B></P>
+<hr><p class="cpy">Roby Joehanes &copy; 2001</p>
+</body></html>

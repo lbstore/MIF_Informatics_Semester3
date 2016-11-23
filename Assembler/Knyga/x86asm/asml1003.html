@@ -1,0 +1,140 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=en-us">
+<meta http-equiv="Content-Language" content="en-us">
+<link href="../style.css" rel="stylesheet" type="text/css">
+<title>x86 Assembly Lesson 1 Chapter 3</title>
+</head>
+
+<body background="../tile01.jpg">
+<CENTER>
+<h1>Arithmetic Instructions</h1>
+<h2><b>Using Them for Simple Calculations</b></h2>
+</CENTER><BR><BR><BR>
+<H3>Welcome</H3>
+<p>Hi! Welcome to the third chapter of this series. Now, we'll try to learn a bit more about
+doing math in assembly. I hope that you really grasped the idea discussed in
+<a href="asml1002.html">the previous chapter</a>. The arithmatic operations discussed here
+is done in integers. No reals yet.
+<p>Doing math in assembly will likely change the flag. To refresh our mind: Flags are just
+the way to tag something after the processor executes an operation: whether the last operation
+holds zero value, negatives, has a carry or borrow (for addition and subtractions), and so on.
+If you'd like to review, please <a href="../lowlevel.html">click here</a>.
+<p>&nbsp;
+
+<H3>Addition And Subtraction</H3>
+<p>Additions and subtractions are straightforward. It takes the following formats:
+<pre>
+   add   x, y     ; --> means:  x = x + y
+   sub   x, y     ; --> means:  x = x - y
+</pre>
+<p>Additions and substractions can be done on any registers except the segment registers.
+Just like the <tt>mov</tt> command, you can have one of them as memory locations.
+I encourage you to experiment on how to use this command. What is allowable and
+what is not. The following is legal in assembly (assuming the variables are already defined):
+<pre>
+   add   ax, 5    ; --> means:  ax = ax + 5
+   add   bx, cx   ; --> means:  bx = bx + cx
+   add   [n], ax  ; --> means:  [n] = [n] + ax
+   add   cx, [n]  ; --> means:  cx = cx + [n]
+   sub   di, di   ; --> means:  di = di - di  (in other words: di = 0)
+   sub   ax, si   ; --> means:  ...
+   sub   ax, 4    ; --> means:  ...
+</pre>
+<p>As I pointed out in <a href="asml1002.html">the previous chapter</a>, for those of you
+that has 80286 processor or faster may actually add or subtract variables with constants. But
+don't forget to add the <tt>word ptr</tt> or <tt>dword ptr</tt> as appropriate. For example:
+<pre>
+   add   [word ptr i], 10
+</pre>
+<p>Ah... that's simple! However, remember that the operation depends on the registers you are
+using. For example, if you say <tt>add al, cl</tt>, you are doing an 8-bit addition. So, the
+processor actually "expects" (well... sort of) the result to be bounded within 8-bit range (i.e.
+0 to 255). Similarly, for 16-bit addition, it should be within 0 to 65535. For substraction,
+the processor also "expects" it to be non-negative (i.e. no borrows). "Oh? So we have such
+limitation?" you asked. Well, we actually have a "work around" to do that.
+<p>If the result of an addition overflows, the carry flag is set to 1, otherwise it is 0.
+By detecting the carry flag after doing the addition, we'll know whether the last addition
+overflows or not. Similarly, if the result of subtraction requires a borrow, then ... (guess
+what) the carry flag is also set to 1, otherwise it is 0. Wait.... is this a typo? No...
+The internal circuitry to store carry or borrow is the same. How can this be? Well, this
+will involve a deeper understanding about computer logic, which is out of scope of this
+chapter. Don't bother... :-) Just accept it for now.
+<p>Now the next question would be: "So, if the last addition overflows, does the next add
+automatically count the carry flag too?" Good question. The answer is no. However, Intel processor
+has a special instruction called <tt>adc</tt>. This command behaves similarly as the <tt>add</tt>
+command. The only extra thing is that it also add the value carry flag along. So, this
+may be very handy to add large integers. Suppose you'd like to add a 32-bit integers with 16-bit
+registers. How can we do that? Well, let's say that the first integer is held on the register
+pair DX:AX, and the second one is on BX:CX. This is how:
+<pre>
+   add  ax, cx
+   adc  dx, bx
+</pre>
+<p>Ah, so first, the lower 16-bit is added by <tt>add ax, cx</tt>. Then the higher 16-bit
+is added using <tt>adc</tt> instead of <tt>add</tt>. It is because: if there are overflows,
+the carry bit is automatically added in the higher 16-bit. So, no cumbersome checking.
+This method can be extended to 64 bits and so on... Note that: If the 32-bit integer
+addition overflows too at the higher 16-bit, the result will not be correct and the carry
+flag is set, e.g. Adding 5 billion to 5 billion.
+<p>For the subtraction, we have similar instruction called <tt>sbb</tt>. It is pretty much
+the counterpart for <tt>sub</tt>. I won't discuss it much here. You should try it out yourself.
+<p>How about adding and subtracting negative values? <tt>add</tt>, <tt>adc</tt>, <tt>sub</tt>,
+and <tt>sbb</tt> handles that "automatically". Well, again, the internal logic for addition
+and subtraction both for positive and negative values are the same. So, don't worry if you have
+negative operands. These instruction can go smoothly.
+<p>&nbsp;
+
+<h3>Multiplication, Division, and Remainder</h3>
+<p>While addition and subtraction can be done on any register, multiplication and division do not.
+Multiplication and division always assume AX as the place holder. The format is as follows:
+<pre>
+   mul   x     ; --> If x is 8-bit,  then AX = AL * x;
+               ;     if x is 16-bit, then DX:AX = AX * x;
+   div   x     ; --> If x is 8-bit,  then AL = AX / x, AH stores the remainder;
+               ;     if x is 16-bit, then AX = DX:AX / x, DX stores the remainder;
+</pre>
+<p>See, that's different depending on the source. As far as I recall, you cannot have
+variables for x in 8086. In 80286 or above you could (but again you must mention the
+<tt>xxxx ptr</tt> modifier). If you'd like to multiply or divide by constants (i.e. x is a
+constant), you'll need to load the constants into one of the registers (especially 8086).
+In 80286, you probably could. Anyone may correct this. I'm not quite remember.
+<p>Doing division is the same. The result of division is always rounded down. The nice extra
+is that we can obtain the remainder for free.
+<p>If there is an overflow in multiplication, the overflow flag will be set. There is no
+extra instruction like <tt>adc</tt> or <tt>sbb</tt>. So, you'll want to have an extra caution
+on this. Similarly, if you divide a number by 0, you'll likely to trigger an error. In windows
+machines this may cause a blue screen of death. So, watch out.
+<p>Note: <tt>mul</tt> and <tt>div</tt> will treat every numbers as positive. If you have
+negative values, you'll need to replace them <tt>imul</tt> and <tt>idiv</tt> respectively.
+<p>&nbsp;
+
+<h3>Increment and Decrement</h3>
+<p>Often times, we'd like to incrementing something by 1 or decrement thing by 1. You can use
+<tt>add x, 1</tt> or <tt>sub x, 1</tt> if you'd like to, but Intel x86 assembly has
+a special instruction for them. Instead of <tt>add x, 1</tt> we use <tt>inc x</tt>. These
+are equivalent. Likewise in subtraction, you can use <tt>dec x</tt> for subtitution.
+Beware that neither <tt>inc</tt> nor <tt>dec</tt> instruction sets the carry flag as
+<tt>add</tt> and <tt>sub</tt> do.
+<p>&nbsp;
+
+<h3>A Nice Tip</h3>
+<p>The arithmatic operations can have special properties. For example: <tt>add x, x</tt> is
+actually equal to multiplying <tt>x</tt> by 2. Similarly, <tt>sub x, x</tt> is actually
+setting <tt>x</tt> to 0. In 8086 processor, these arithmatic is faster than doing <tt>mul</tt>
+or doing <tt>mov x, 0</tt>. Ha! Even more, its code size is smaller. No wonder why the
+assembly wizards often fond of this subtitution.
+<p>&nbsp;
+
+<h3>Closing</h3>
+<p>OK, I think that's all for now. See you next time. The next chapter would be about bitwise
+operation.
+<p>&nbsp;
+<HR><H3>Where to go</H3>
+<p><b><a href="asml1004.html">Chapter 4</a><br>
+<a href="../news.html">News Page</a><br>
+<a href="asmles01.html">x86 Assembly Lesson 1 index</a><br>
+<a href="../faq.html">Contacting Me</a></B></P>
+<hr><p class="cpy">Roby Joehanes &copy; 2001</p>
+</body></html>

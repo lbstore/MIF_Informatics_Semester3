@@ -1,0 +1,33 @@
+> Atliko Karolis Linkevicius MIF, informatika 6 gr. II kursas
+> 
+> Individuali uzduotis Nr. 45 (gando sklidimas)
+> 
+> Naudojamu simboliu reiksmes
+>  t - laikas dienomis
+>  k - proporcingumo konstanta
+>  PP - miesto gyventoju populiacija
+>  P(t) - zinanciu ganda zmoniu skaicius laiko momentu t
+>  P0 - zmoniu skaicius kurie zino ganda kai t=0
+>  T - laikas po kurio ganda sizinojo p zmoniu
+>  p - zinanciu ganda zmoniu skaicius laiko momentu T
+>  zinos - zmoniu skaicius kurie zinos ganda po musu ieskomo laiko
+> restart;
+> Pagrindine_lygtis := diff(P(t),t)=k*(PP-P(t));
+> Konstantu priskyrimas
+> PP := 100000;
+> T := 7;
+> p := 10000;
+> P0 := 0;
+> zinos := 50000;# 
+> Bendrasis_sprendinys := dsolve({Pagrindine_lygtis,P(0)=P0},P(t));# 
+> k := fsolve(subs(t=T,P(T)=p,Bendrasis_sprendinys));
+> Atskirasis_sprendinys := Bendrasis_sprendinys;# 
+> Grafikas
+> plot(rhs(Atskirasis_sprendinys),t=0..100,
+> labels=['metai','populiacija']);
+> Krypciu laukas
+> with(plots): fieldplot([t,rhs(Atskirasis_sprendinys)], t=0..100,
+> N=0..200000, arrows=SLIM, color=red);
+> Ieskomas kaikas t dienomis
+> t := fsolve(subs(P(t)=zinos,Atskirasis_sprendinys));
+> round(t);

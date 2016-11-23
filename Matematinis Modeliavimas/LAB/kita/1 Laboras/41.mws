@@ -1,0 +1,372 @@
+{VERSION 5 0 "IBM INTEL NT" "5.0" }
+{USTYLETAB {CSTYLE "Maple Input" -1 0 "Courier" 1 12 255 0 0 1 0 1 0 
+2 1 2 0 0 0 1 }{CSTYLE "2D Output" -1 20 "Times" 1 12 0 0 255 1 0 0 0 
+2 2 1 0 0 0 1 }{CSTYLE "_cstyle1" -1 201 "Times" 1 16 0 0 0 1 2 2 2 2 
+2 2 0 0 0 1 }{CSTYLE "_cstyle2" -1 202 "Times" 1 14 0 0 0 1 2 2 2 2 2 
+2 0 0 0 1 }{CSTYLE "_cstyle3" -1 203 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 
+0 0 0 1 }{CSTYLE "_cstyle4" -1 204 "Times" 1 14 0 0 0 1 2 2 2 2 2 2 0 
+0 0 1 }{CSTYLE "_cstyle5" -1 205 "Courier" 1 12 255 0 0 1 2 1 2 2 1 2 
+0 0 0 1 }{CSTYLE "_cstyle6" -1 206 "Courier" 1 12 255 0 0 1 0 1 0 2 1 
+2 0 0 0 1 }{PSTYLE "Normal" -1 0 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 
+0 1 2 2 2 2 2 2 1 1 1 1 }1 1 0 0 0 0 2 0 2 0 2 2 0 1 }{PSTYLE "Maple O
+utput" -1 11 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 
+1 1 }3 3 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Maple Plot" -1 13 1 
+{CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }3 1 0 0 0 
+0 1 0 1 0 2 2 0 1 }{PSTYLE "_pstyle1" -1 200 1 {CSTYLE "" -1 -1 "Times
+" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }3 1 0 0 0 0 2 0 2 0 2 2 0 1 }
+{PSTYLE "_pstyle2" -1 201 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 
+2 2 2 2 1 1 1 1 }1 1 0 0 0 0 2 0 2 0 2 2 0 1 }{PSTYLE "_pstyle3" -1 
+202 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }3 1 
+0 0 0 0 2 0 2 0 2 2 0 1 }{PSTYLE "_pstyle6" -1 205 1 {CSTYLE "" -1 -1 
+"Courier" 1 12 255 0 0 1 2 1 2 2 1 2 1 1 1 1 }1 1 0 0 0 0 1 0 1 0 2 2 
+0 1 }{PSTYLE "_pstyle7" -1 206 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 
+1 2 2 2 2 2 2 1 1 1 1 }1 1 0 0 0 0 1 0 1 0 2 2 0 1 }}
+{SECT 0 {EXCHG {PARA 200 "" 0 "" {TEXT 201 22 "1 laboratorinis darbas
+" }}{PARA 200 "" 0 "" {TEXT 201 43 "Banko saskaitos likucio augimo mod
+eliavimas" }}{PARA 200 "" 0 "" {TEXT -1 0 "" }}{PARA 200 "" 0 "" 
+{TEXT 202 18 "Uzdavinio salyga: " }}}{EXCHG {PARA 201 "" 0 "" {TEXT 
+203 88 "Isivaizduok saskaita kurioje is pradzu yra A(0) baksu ir per m
+etus priauga po r procentu" }{TEXT 203 9 "\n========" }{TEXT 203 71 "
+\nIsivaizduok kad indeliai i sia saskaita dedami po Q doleriu per metu
+s." }{TEXT 203 111 "\nKad supaprastinti matematini modeli, isivaizduok
+, kad tie indeliai inesami be perstojo dazniau nei kas menesi." }
+{TEXT 203 20 "\n(a) Gauti DL  A(t)." }{TEXT 203 96 "\n(b) Isivaizduok,
+ gimus dukteriai, kad tu nori, kai jai bus 18 metu, sukaupti $40,000 k
+oledzui. " }{TEXT 203 125 "\nKad tai igyvendintum tu planuoji inesinet
+i nepertraukiamai indelius i kaupiamaja saskaita po Q tukstanciu doler
+iu per metus." }{TEXT 203 81 "\nSioje saskaitoje prisikaupia po 11% pe
+r metus, inesant indelius nepertraukiamai." }{TEXT 203 50 "\nKoks ture
+tu buti Q, kad tu pasiektum savo tiksla?" }}{PARA 201 "" 0 "" {TEXT 
+-1 0 "" }}{PARA 202 "" 0 "" {TEXT 204 31 "Uzdavinio sprendimo algoritm
+as:" }}{PARA 201 "" 0 "" {TEXT 203 4 "    " }}{PARA 201 "" 0 "" {TEXT 
+203 3 "   " }{TEXT 205 1 " " }{TEXT 203 32 "a) Uzrsom diferiancialin
+\346 lygti." }}{PARA 201 "" 0 "" {TEXT 203 34 "     b) Surandam bendr
+\340 sprendin\341." }}{PARA 201 "" 0 "" {TEXT 203 36 "     c) Randame \+
+atskir\340j\341 sprendin\341." }}{PARA 201 "" 0 "" {TEXT 203 138 "    \+
+ d) Naudojantis pradiniais duomeninmis apskai\350iuojame pinigu kieki,
+inesamu per metus, kad per 18 metu saskaitoje susikauptu 40 000 Lt." }
+{TEXT -1 0 "" }}{PARA 201 "" 0 "" {TEXT 203 46 "     e)  Atsakome \341
+ s\340lygoje keltus klausimus." }}{PARA 201 "" 0 "" {TEXT 203 48 "    \+
+ f) Papildom savo pasirinktais sprendiniais." }{TEXT -1 0 "" }}{PARA 
+200 "" 0 "" {TEXT 202 18 "Programos tekstas:" }}}{EXCHG {PARA 201 "" 
+0 "" {TEXT -1 0 "" }}}{EXCHG {PARA 201 "" 0 "" {TEXT 203 28 "Naudojamo
+s simboliu reiksmes" }}{PARA 201 "" 0 "" {TEXT 203 19 "t - laikas (met
+ais)" }}{PARA 201 "" 0 "" {TEXT 203 31 "A0 - pradinys saskaitos likuti
+s" }}{PARA 201 "" 0 "" {TEXT 203 31 "A0 - pradinys saskaitos likutis" 
+}}{PARA 201 "" 0 "" {TEXT 203 44 "Q - pinigu suma inesama i saskaita p
+er metus" }}{PARA 201 "" 0 "" {TEXT 203 26 "r - metiniu palukanu norma
+" }}{PARA 201 "" 0 "" {TEXT -1 0 "" }}}{EXCHG {PARA 201 "> " 0 "" 
+{MPLTEXT 1 206 8 "restart;" }}}{EXCHG {PARA 201 "> " 0 "" {MPLTEXT 1 
+206 34 "dif_lygtis:=diff(A(t),t)=r*A(t)+Q;" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#>%+dif_lygtisG/-%%diffG6$-%\"AG6#%\"tGF,,&*&%\"rG\"\"\"
+F)F0F0%\"QGF0" }}}{EXCHG {PARA 201 "> " 0 "" {MPLTEXT 1 206 44 "bendra
+s_sprendinys:=dsolve(dif_lygtis,A(t));" }}{PARA 11 "" 1 "" {XPPMATH 
+20 "6#>%3bendras_sprendinysG/-%\"AG6#%\"tG,&*&%\"QG\"\"\"%\"rG!\"\"F/*
+&-%$expG6#*&F.F-F)F-F-%$_C1GF-F-" }}}{EXCHG {PARA 201 "> " 0 "" 
+{MPLTEXT 1 206 55 "atskiras_sprendinys:=dsolve(\{dif_lygtis,A(0)=A0\},
+A(t));" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%4atskiras_sprendinysG/-%\"
+AG6#%\"tG,&*&%\"QG\"\"\"%\"rG!\"\"F/*(-%$expG6#*&F.F-F)F-F-,&F,F-*&%#A
+0GF-F.F-F-F-F.F/F-" }}}{EXCHG {PARA 201 "> " 0 "" {MPLTEXT 1 206 65 "a
+tskiras_sprendinys_A0_lygus_0:=dsolve(\{dif_lygtis,A(0)=0\},A(t));" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#>%?atskiras_sprendinys_A0_lygus_0G/-%
+\"AG6#%\"tG,&*&%\"QG\"\"\"%\"rG!\"\"F/*(-%$expG6#*&F.F-F)F-F-F,F-F.F/F
+-" }}}{EXCHG {PARA 201 "" 0 "" {TEXT -1 0 "" }}}{EXCHG {PARA 201 "" 0 
+"" {TEXT -1 0 "" }}}{EXCHG {PARA 201 "> " 0 "" {MPLTEXT 1 206 74 "#Spr
+endziam uzdavini koks turi buti Q, kad po 18 metu sakaitoje butu 40000
+" }}}{EXCHG {PARA 201 "> " 0 "" {MPLTEXT 1 206 69 "lygtis:=subs(t=18,A
+(18)=40000,r=0.11,atskiras_sprendinys_A0_lygus_0);" }}{PARA 201 "" 0 "
+" {TEXT -1 0 "" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%'lygtisG/\"&++%,&%
+\"QG$!+\"4444*!\"**($\"+\"4444*F+\"\"\"-%$expG6#$\"$)>!\"#F/F(F/F/" }}
+}{EXCHG {PARA 201 "> " 0 "" {MPLTEXT 1 206 27 "Atsakymas:=solve(lygtis
+,Q);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%*AtsakymasG$\"+.Q=[q!\"(" }}
+}{EXCHG {PARA 201 "" 0 "" {TEXT -1 0 "" }}}{EXCHG {PARA 201 "> " 0 "" 
+{MPLTEXT 1 206 76 "SaskaitaNuoLaiko:=subs(r=0.11,Q=704.8183803,atskira
+s_sprendinys_A0_lygus_0);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%1Saskai
+taNuoLaikoG/-%\"AG6#%\"tG,&$!+@)RuS'!\"'\"\"\"*&$\"+@)RuS'F-F.-%$expG6
+#,$F)$\"#6!\"#F.F." }}}{EXCHG {PARA 201 "> " 0 "" {MPLTEXT 1 206 55 "p
+lot(\{rhs(SaskaitaNuoLaiko),40000\},t=0..20,A=0..50000);" }}{PARA 13 "
+" 1 "" {GLPLOT2D 502 420 420 {PLOTDATA 2 "6&-%'CURVESG6$7S7$$\"\"!F)$
+\"&++%F)7$$\"39LLLL3VfV!#=F*7$$\"3%pmm;H[D:)F/F*7$$\"3MLLLe0$=C\"!#<F*
+7$$\"3iLLL3RBr;F6F*7$$\"3imm;zjf)4#F6F*7$$\"3ULL$e4;[\\#F6F*7$$\"3!)**
+**\\i'y]!HF6F*7$$\"3oLL$ezs$HLF6F*7$$\"3=++]7iI_PF6F*7$$\"3Onmm;_M(=%F
+6F*7$$\"3%QLL$3y_qXF6F*7$$\"3]+++]1!>+&F6F*7$$\"3J+++]Z/NaF6F*7$$\"3;+
+++]$fC&eF6F*7$$\"3qLL$ez6:B'F6F*7$$\"3/nmm;=C#o'F6F*7$$\"3Mnmmm#pS1(F6
+F*7$$\"3<++]i`A3vF6F*7$$\"3Rmmmm(y8!zF6F*7$$\"3K,+]i.tK$)F6F*7$$\"3!3+
++v3zMu)F6F*7$$\"3Yomm\"H_?<*F6F*7$$\"3-nm;zihl&*F6F*7$$\"39LLL3#G,***F
+6F*7$$\"3WLLezw5V5!#;F*7$$\"3/++v$Q#\\\"3\"FcpF*7$$\"3]LL$e\"*[H7\"Fcp
+F*7$$\"3-+++qvxl6FcpF*7$$\"31++]_qn27FcpF*7$$\"37++Dcp@[7FcpF*7$$\"3++
++]2'HKH\"FcpF*7$$\"3`mmmwanL8FcpF*7$$\"35+++v+'oP\"FcpF*7$$\"3CLLeR<*f
+T\"FcpF*7$$\"3C+++&)Hxe9FcpF*7$$\"3gmm\"H!o-*\\\"FcpF*7$$\"3:++DTO5T:F
+cpF*7$$\"3emmmT9C#e\"FcpF*7$$\"3\"****\\i!*3`i\"FcpF*7$$\"3_LLL$*zym;F
+cpF*7$$\"3fLL$3N1#4<FcpF*7$$\"3!pm;HYt7v\"FcpF*7$$\"3A+++q(G**y\"FcpF*
+7$$\"3'pmmT6KU$=FcpF*7$$\"3eLLL`v&Q(=FcpF*7$$\"30++DOl5;>FcpF*7$$\"3A+
++v.Uac>FcpF*7$$\"#?F)F*-%'COLOURG6&%$RGBG$\"#5!\"\"F(F(-F$6$7S7$F(F(7$
+F-$\"3]R)=zLqu9$!#:7$F1$\"3(QZ\"z?9f6gFgu7$F4$\"3O*Qo_?Q'y$*Fgu7$F8$\"
+3E!\\D2:RJH\"!#97$F;$\"31h&*)*ehyj;Fav7$F>$\"36/>R*RUL-#Fav7$FA$\"3I5X
+QF*HDT#Fav7$FD$\"3\"*z#z=?OR$GFav7$FG$\"3Sb#o8[FSF$Fav7$FJ$\"3UD;iM;f[
+PFav7$FM$\"3s4&G43>e=%Fav7$FP$\"3xz(emr'f+ZFav7$FS$\"37t$o3bfEC&Fav7$F
+V$\"3))*p_yn^+z&Fav7$FY$\"3<@fpwsQ4jFav7$Ffn$\"3!>+9KD$ybpFav7$Fin$\"3
+o/=h\\f+HvFav7$F\\o$\"34H.?$z3oA)Fav7$F_o$\"3mM*>w*)yN())Fav7$Fbo$\"3X
+*Q6f)*>hh*Fav7$Feo$\"3NnK)ypqc.\"!#87$Fho$\"3mPk%R^%f;6Fey7$F[p$\"3S5#
+ej5WV>\"Fey7$F^p$\"31c!\\(3#o?G\"Fey7$Fap$\"3]\")4eW=jx8Fey7$Fep$\"3))
+pS-[)yYY\"Fey7$Fhp$\"3WK!)ylN\"Hc\"Fey7$F[q$\"3Mf4o&e:#p;Fey7$F^q$\"3y
+/iX()=<y<Fey7$Faq$\"33=I3m?[))=Fey7$Fdq$\"3Y>ZyBh'o,#Fey7$Fgq$\"3]ypo
+\"4ux8#Fey7$Fjq$\"3[MOE^t%HF#Fey7$F]r$\"3pMf!4=06S#Fey7$F`r$\"3%zH#fkV
+nZDFey7$Fcr$\"3gt;34t-#p#Fey7$Ffr$\"3+zGA\"e3*\\GFey7$Fir$\"3rrYnkX\\6
+IFey7$F\\s$\"3#osmfO!o)=$Fey7$F_s$\"3O0!z#3HXnLFey7$Fbs$\"3uk+#G33*eNF
+ey7$Fes$\"3Sl@B\"\\3yv$Fey7$Fhs$\"3M42%)H>()[RFey7$F[t$\"37mNiB03yTFey
+7$F^t$\"3C\\c=y#oFR%Fey7$Fat$\"3ma&*fng@KYFey7$Fdt$\"3m=BdT'f?([Fey7$F
+gt$\"3kvO.1\"z>9&Fey-Fjt6&F\\uF(F]uF(-%+AXESLABELSG6$Q\"t6\"Q\"AF]_l-%
+%VIEWG6$;F(Fgt;F($\"&++&F)" 1 2 0 1 10 0 2 9 1 4 2 1.000000 45.000000 
+45.000000 0 0 "Curve 1" "Curve 2" }}}}{EXCHG {PARA 201 "" 0 "" {TEXT 
+-1 0 "" }}{PARA 205 "> " 0 "" {MPLTEXT 1 0 58 "subs(r=0.11,Q=704.81838
+03,atskiras_sprendinys_A0_lygus_0);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6
+#/-%\"AG6#%\"tG,&$!+@)RuS'!\"'\"\"\"*&$\"+@)RuS'F+F,-%$expG6#,$F'$\"#6
+!\"#F,F," }}}{EXCHG {PARA 201 "> " 0 "" {MPLTEXT 1 206 80 "LaikasNuoSa
+skaitosDydzio:=t(A)=solve(A = -6407.439821+6407.439821*exp(.11*t),t);
+" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%9LaikasNuoSaskaitosDydzioG/-%\"t
+G6#%\"AG,$-%#lnG6#,&F)$\"+Ydog:!#8$\"\"\"\"\"!F3$\"+\"4444*!\"*" }}}
+{EXCHG {PARA 201 "" 0 "" {TEXT -1 0 "" }}}{EXCHG {PARA 201 "> " 0 "" 
+{MPLTEXT 1 206 60 "plot(\{rhs(LaikasNuoSaskaitosDydzio),18\},A=0..5000
+0,t=0..20);" }}{PARA 13 "" 1 "" {GLPLOT2D 400 400 400 {PLOTDATA 2 "6&-
+%'CURVESG6$7S7$$\"\"!F)$\"#=F)7$$\"3YLLL3x&)*3\"!#9F*7$$\"3(pm;H2P\"Q?
+F/F*7$$\"3mLL$eRwX5$F/F*7$$\"3-ML$3x%3yTF/F*7$$\"3Anm\"z%4\\Y_F/F*7$$
+\"3YLLeR-/PiF/F*7$$\"3;++DcmpisF/F*7$$\"3:MLe*)>VB$)F/F*7$$\"3+,+DJbw!
+Q*F/F*7$$\"3umm;/j$o/\"!#8F*7$$\"3XLL3_>jU6FKF*7$$\"3E++]i^Z]7FKF*7$$
+\"31++](=h(e8FKF*7$$\"3E++]P[6j9FKF*7$$\"3SL$e*[z(yb\"FKF*7$$\"3wmm;a/
+cq;FKF*7$$\"3ummm;t,m<FKF*7$$\"3%***\\iSj0x=FKF*7$$\"3ymmm\"pW`(>FKF*7
+$$\"3Q+]i!f#=$3#FKF*7$$\"3;+](=xpe=#FKF*7$$\"33nm\"H28IH#FKF*7$$\"3#pm
+\"zpSS\"R#FKF*7$$\"3[LL3_?`(\\#FKF*7$$\"3WL$e*)>pxg#FKF*7$$\"3-+]Pf4t.
+FFKF*7$$\"3iLLe*Gst!GFKF*7$$\"3&******\\#RW9HFKF*7$$\"3)****\\7j#>>IFK
+F*7$$\"3>+]i!RU07$FKF*7$$\"3K++v=S2LKFKF*7$$\"3Fmmm\"p)=MLFKF*7$$\"3=+
++](=]@W$FKF*7$$\"39L$e*[$z*RNFKF*7$$\"3%3++DYKpk$FKF*7$$\"3'pm\"H2qcZP
+FKF*7$$\"3c+]7.\"fF&QFKF*7$$\"3kmm;/OgbRFKF*7$$\"3++]ilAFjSFKF*7$$\"3'
+RLLL)*pp;%FKF*7$$\"3#RL$3xe,tUFKF*7$$\"3in;HdO=yVFKF*7$$\"3#4++]#>#[Z%
+FKF*7$$\"3=nmT&G!e&e%FKF*7$$\"3OLLL$)Qk%o%FKF*7$$\"3;+]iSjE!z%FKF*7$$
+\"3S+]P40O\"*[FKF*7$$\"&++&F)F*-%'COLOURG6&%$RGBG$\"#5!\"\"F(F(-F$6$7S
+7$F(F(7$F-$\"3a2&G\"3e-G9!#<7$F1$\"3Ddj_/_v5DFfu7$F4$\"3C&)y\\<Dy\"f$F
+fu7$F7$\"3Stl$H'z)Qc%Ffu7$F:$\"3:v^52S.QaFfu7$F=$\"3u#)3[:_kzhFfu7$F@$
+\"3/#RmiLr'))oFfu7$FC$\"3WAc(y:^!ovFfu7$FF$\"3OuLd>D@)>)Ffu7$FI$\"3q<m
+C-v#Q!))Ffu7$FM$\"3JlYR!yedI*Ffu7$FP$\"3Mk.Bqz^R)*Ffu7$FS$\"3IgOX=#oX.
+\"!#;7$FV$\"3m8]l:o\"33\"F[x7$FY$\"3T^\")ye\"p37\"F[x7$Ffn$\"3?#osCp1j
+;\"F[x7$Fin$\"3-px>Ov4.7F[x7$F\\o$\"3!G\"Gy_35W7F[x7$F_o$\"3sw\\'Q@9*y
+7F[x7$Fbo$\"3.kpCDhj:8F[x7$Feo$\"3!RgnI/x#\\8F[x7$Fho$\"3aDd;`#*4$Q\"F
+[x7$F[p$\"3j5,!*>y389F[x7$F^p$\"38xYUbEOW9F[x7$Fap$\"3q+6@Azuv9F[x7$Fd
+p$\"3Kw+G`O@-:F[x7$Fgp$\"3T3j[<w&*H:F[x7$Fjp$\"3'ys@oZdxb\"F[x7$F]q$\"
+3y6=Qwb:%e\"F[x7$F`q$\"3P<!4!ov)*3;F[x7$Fcq$\"3r,k\\sryN;F[x7$Ffq$\"3y
+=roB>@f;F[x7$Fiq$\"3m:2&z*Rd$o\"F[x7$F\\r$\"3L34r?'*40<F[x7$F_r$\"3IdG
+>#)Q1G<F[x7$Fbr$\"3s%)f=*Ga\"\\<F[x7$Fer$\"3;G#*>+!*oq<F[x7$Fhr$\"3];v
+Ht6E\"z\"F[x7$F[s$\"3(RKD>)3J7=F[x7$F^s$\"39%yw]kL@$=F[x7$Fas$\"3;c;\"
+z\"z'>&=F[x7$Fds$\"3?mS@N'>7(=F[x7$Fgs$\"3U!o\"yxvb))=F[x7$Fjs$\"3uLYL
+s/.3>F[x7$F]t$\"3#o<vax+^#>F[x7$F`t$\"3.tef')\\&H%>F[x7$Fct$\"3A[W_h9s
+f>F[x7$Fft$\"3i&p3#e6Sx>F[x-Fit6&F[uF(F\\uF(-%+AXESLABELSG6$Q\"A6\"Q\"
+tF[_l-%%VIEWG6$;F(Fft;F($\"#?F)" 1 2 0 1 10 0 2 9 1 4 2 1.000000 
+45.000000 45.000000 0 0 "Curve 1" "Curve 2" }}}}{EXCHG {PARA 201 "> " 
+0 "" {MPLTEXT 1 206 16 "#Apskaiciuokime " }{MPLTEXT 1 206 11 "\nlaikas
+:=5;" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%'laikasG\"\"&" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 201 "> " 0 "" 
+{MPLTEXT 1 206 39 "evalf(subs(t=laikas,SaskaitaNuoLaiko));" }}{PARA 
+11 "" 1 "" {XPPMATH 20 "6#/-%\"AG6#\"\"&$\"+*eu#)p%!\"'" }}}{EXCHG 
+{PARA 201 "> " 0 "" {MPLTEXT 1 206 22 "Saskaitos_dydis:=8000;" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#>%0Saskaitos_dydisG\"%+!)" }}}{EXCHG 
+{PARA 201 "> " 0 "" {MPLTEXT 1 206 56 "evalf(subs(A=Saskaitos_dydis,La
+ikasNuoSaskaitosDydzio));" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#/-%\"tG6#
+\"%+!)$\"+GnAmt!\"*" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}
+{EXCHG {PARA 0 "" 0 "" {OLE 1 22016 1 "[xm]Br=WfoRrB:::wk;nyyI;G:;:j::
+>:B>N:F:nyyyyy]::yyyyyy:::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::fyyyyyy:nY^:f:n:>;nYnyyyYyA::::::c:e:g:i:k:m:o
+:q:s:u:w:wA;[:F>N>V>^>f>n>v>>?F?nYvY::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::_lqvGcMJ<j\\nGcMsFI>:::::::JEf:yyyxIN:<JJ\\J;J:
+>R<:T><::;tcQuC]T?KX:A:;V<B:F:YLpfF>:::::::::J?NZ;vyyyyyY:vYxY:B::::::
+:c:;:ilqNHQMkvGYmo>:;::::::::_J;@j:J<>:yayA:<::::::y:P[:B:F:AlqfG[maNF
+O=;::::::::_Z:vyyuy:>:<::::::=J:fG;J:JyK;:vY:::::::::::::::::jI>:;C:<j
+J<:wAA;C;E;wAyA:::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::F:D:<::JNYv@J:::::::F:wyyAb<vYxYJ\\J;J:>R<:TnJB:UTTAeVYuVYeScEBYdS
+GUTAUS;SKkuREEU;sOYeVQuVKUSEEWT:DnnTPm\\]HZ??In_M?g_KQ\\]nIalHH>:::::F
+[B><Tj<^wOfsAFr:]=jjO:[G;=P;>:?AsLr^:@pj@pj<LJ<LJ:::::::::::::::::?L;>
+P=U:?J:>r;B:uS:?j:^M?JAnUKJ@>:?J:@kFN:<JCN:V<?:YW:?J:^q;N:fa:N<kMI^cun
+ia>a:J:F:kd:;L;j@O:N>?:WJ;F:iW:?J:NU?B:;jRN=K@yyY[V:<J:<JWUw<@jZNHMmj^
+G];jy;<JW;::jy;<JW;::jy;<JW;::;O:<jy;<JW;::KU:vYJ:<JW;:n]>n=EjFrBSsBAC
+FsDB?CMceBqCQUsBSsB:n]>V>GJI>Z]::qsP_TSCUQsTEA;:t[^r;x;A;tLR<Mh<<VaV;:
+ZXRD\\Z^jK::VaU;::JInAOkVrQUcD;sBS;s<vegVaVg_d>>::xoPd\\\\f_\\^eZN>:<n
+ipLILJYF?m;d\\]:veFwenwegVaV;::x_dbBji:BJn=GLPFBx_drBJQZ\\:^E:::x_dbBv
+ay^eZN>:<>w:QkZZdrB:rQ:s<::ZYcDD<ji:BJ>v:^<<J:fxyA^:>Z::JZ=Lj_<=:eALI<
+:>R:fXBwB:JZ;?:eALI<:>R:fXBwB:JZ;;J:fXBwB:JZ;>:eALI<:>R:;jt[n]::;@J:fX
+BwB:JZ;>:eALI<:>R:;jt[n]::;@J:fXBwB:JZ;>:eALI<:>R:;jt[n]::;@J:fXBwB:JZ
+;>:=JJB::>Rj:V?eyyBxB:JZ;F?eyyBxB:JZ;^?eyyBxB:JZ;N?eyyBxB:JZ;F;eA\\I<:
+>RJ=>Z:F:?K:\\[:B:JZ;;J:F:;K:<lB@KZ<LZ<L:>Raf:CJB<r;xyCEJ<F\\:pZyYl<JC
+<R<xyCE:aBZIryaf:>Z:@ZyYl<JD<r<xYj@J;j<=JA^h@Z:nZ:VdbgF@M@_:=Js@jZAJ>F
+r;JKtu:^Yyk;>Z:V:n:;BU=UTQURau=<js@pshpj`Ptxps<Ll`Ql`ps`;aTRa=:BBWUWYE
+BSURvgye<\\ZLn:lZ:rRKR?HP><Z:>:ZOZ:ZPN;F;>Z@>\\:^wO:;Z=>Z:f;?j:^[:N:CE
+:YJ;F:]J;<J:>\\:>;sYd]inUdR[tIyL;F:OK;>:QK;J;oyyA:ER:?:;::j:>Z:>v?xmlI
+yI?gJVoK@;QsCaWp[C:<JJ=Z:v:<j:JZ<J:<J<J^J>>:k<_:K=S:;^:f;;J@kC>Z:>m:>:
+?:MI;n=<J>j<<jcfHUmpFF_E:mE:MLqnFYMsfG^HMmqnG;J:::::KK;n:<j<>:yyyxY:<J
+:<::::::w:[`::EJ\\vGAmtjlng:^h:VDjpFF_mv:G=_mpJtFGnG;J::>A?R:yay=J:B::
+::::N^:JtC:;:?ja^GEMb<JsfFaMR>@>Z::::::::kJ;<jysy:>:<::::::a:_i?B:F:YD
+:J:<J::::::::::O:yay=J:B::::::nYyA<:FF@P:B:w:K:=][?:<JIJB<Z:fCZ`k\\\\A
+<JZ<Z:>jfa_=fcO>s;>b:B:;VYUcB]T?Kp;J:::::::::Jy?:ER:J:::F:NZOisOamhV]J
+VlQ@;QCEmie[C:<J\\k><J:F:>d:B:YJ:<JfjEJl>:QZ:^g:>:[Z:^H;jCJxJE<J:^Jf;^
+K^;vMNZ:>:MAw:CZ:>:V:nvOV;Q:;:Q:;:Q:;:Q:;:wB>F:v:Vdb;;B=[Z<ZX>:h:Xoq:V
+HA:=:;::jysyAB:^:F:vYxY;J:JcH@_h;>mQB:=j>r:IY;<J=<JIJ:^:VZ;>[:f:<j?D:<
+j<<:Sb:eK[Ij<j>D:<j<j:Djyyyy=J<J<@j@^:NZ;N:AZ:n=C:IS:yyyA:w:v>:wj<j::E
+:M:<J<<:I;JI:=::M:<j=B:gB;ckZI:<J<jM:n=j::j>Z:v:n<:<J<jM:n=j::j>Z:v:n<
+j:F:sJ:Vy<Vxy]:JBAZ:bh;Z:FblGg[_g:J:::::C:US:;J<J<@j@:?j:<JB<J:<JSdj:n
+FGJ:<Jp@`eGFAj=<j;v:I:MJ:<JSN<An:jRXx=F;N@nN=:Xx=:d:Mp:jSXx=:_;Sq:JTXx
+=:_;YR:=:essI:N@N`;F:n`ay:JSJ=Aj:jUXx=:_;oX:=B:>aay:JSjMDj:<J:Faay:O:_
+;ce:?:]SFIB:IJ?JSjIEJ;jRDm=<j=:_;Qh:?:]sFIB:I:N@vx<N:F`nvZ:v:JSjKHJ;>:
+]SGIB:I:N@Vc=N:F`pvZ:v:JSj:IJ;jRXm=<j=:_;[w:?B:F`rv:IJI>:_c<Ak;v[:jsZc
+;C=<j=v::AJ<vZ:v:C:I:Aj=^;N@fHAJ:v`nf@Ij=j@JSjB_:;jRPmUXm=j=j@JSJT_:RG
+[SGI:I:U:d:iP<jSPMT@m=j=j@JSJw_Z:JTTmV\\m=j=j@JSjH@J<jT`mV<m=v:JF>:_;A
+T:QJ:v@aSFSSFacFcsGkSXIj=v:^:Ij=:JFJSjEAj?jV<MT<MPDmTLmVTMS`q=j=J<j=:J
+EJSjoAJ?>:]CFksFgCEcCHaSFI:I:^:v:JFJSJVDj?<J:F`o>`qFaf>akF`l>asw:v:J<j
+=:v;N@Nk<f:;jRXmTXMVHq=v:I:v;N@np<f:BFacGisVI:I:v;b<Nv<f:rFcCH]sVIB:v:
+jAZDJAHj<>:TmVPMUHq=j=:Y:d:gs:E:aCFksFesVI:I:N<;JSjjHj=>:aSG]cGeCEmCvI
+j=:^:v;N@Vm=f:^`j>@[CEIj=v:JHjw?\\:v:;J:^q<B:du:DJ;Dlc`qsLqlp@<::FZ:JJ
+QmD<jnM:CB:;B:Uk:<J<jM:<JI^:f?;j<j:D::M:<j=JE:;Z:v:^y<JZ=VZ=Z:^:f??j<j
+>>r:ARE:=JZ=FC:CR::?J;>[:>:oi:;J:<:;PZ=Z:jPV:E:cb:B:E:ab:>r=>[:>:oA;B:
+:C:UK<^;;B:;T<=KrC:j:<JZIJ:B:CJ:f?A:^<]B:;B:E:ajB>RCB:;jP^:JZ`:B:j:jB<
+:CJ:f?A:^<?C:f:V<?C:?j:>JKZ:>:jLDJ<>:yI:=N;Fr>^<f<Vj:N:;J<O:fc:ng;B:Ul
+nVf:NHYmsvGGMt>^:vc:nFGmnjl>^:^BVFempfFWMtj^fG=mm>:;j:LJ:LJh?l:VZi>:=B
+:MZ:>:Cm:F:SS:?j:j:>Z:^CEMt^HEMs>Z:>::::::::::::::::::iUTCUUB:=J:>::wI
+:F:>:>S>::::::::::::::::::jJ=JK<j>^FF:N:SS:SS:<Z:JjyMZIJ<jP^:S:;T<J:<:
+F:;x:?C:^:;jPV:JDDjS>:E:ajS<JZIJ<jP^:JZ`:B:j:jS>:CJ:f?A:^<;Z:f:V<c;C:U
+K<:;T<Z::ck:>:;J<>:Uk;:c:Am<jCjk^:f?C:>bC:<:^@jkJ:f?A:^<^KEB:V<^KC:UK<
+:;T<Z::c;^K>:Uk;:c:YG:E:a:YO<jP^:JZ`:B:JT:Y?;jPV:JDJc=j<jCJc_:f?C:>bC:
+<:^@JcK:f?A:^<fx:f:V<fXC:UK<:;T<Z::c;fX>:Uk;:c:kR:E:a:kR:CJ:f?CJ@JZ`:B
+:JT:k:;jPV:JDjW@j<jCjW@J<jP^:S:;<B:JT:q;;jPV:JDjAAj<jCjAAJ<jP^:S:;<B:J
+T:Y>;jPV:JDjkAj<jCjkAJ<jP^:S:;<B:JT:AA;jPV:JDJRDj<<:a:[c:C:UK<^;>BZ::c
+;>@jPV:JDJ<Ej<jCJ<EJ<jP^:JZ:<:^@J<;Uk;:c:Yg:>Z:JjGZ:fD?J>fi:^;>:Cc=YJ=
+N:u==j:Vu?v;G:J;n:;R;Y:?jxj=>;;B=YJ=:F;MJ:hjAn::OJ?>ZF::Qj?^^@v;?J;fI^
+;Wj^TjAJ;fIv;YJUQjAN:?jxJB>\\:npAv[:N:?jxjBF<gg;Y:?J:DJA<:;j;<J:>:_B:;
+B:Kb:[B:<:_jbAZ:>Z:R:YB:Kb:FZ:JCvy:>:;Z;v;J;<:_:>:@:=b:GZ:>:YjxO;<j:<j
+DN:nQG;?jDf<::::jBfYF:;JE<:;jX_G=j:n<>xyn<;J:<NEJ><NEJB<NEJD<NEJF<NEJH
+<NEJJ<NEJK<NEJM<NEJN<NEJO<NEJP<NEJQ<NEJR<NEjR<NEJS<nB:?J:<JEF:;J=^a:N:
+=JE>fBP]ZXeBwj:?;<J:n^:v]RVwU>mjwZs@rY>=Z:w]c^eIProA_vxa>GZ:FZ:iZ;g<Er
+:GJXJ;n<kT:cgDAibkFJK:;JM:JZ;BJ::?BjERJ:j;n<ct]cebec^AGJK:;JM:JZ;BJ::A
+BjERJ:J<JZEJN@PjetO=N><:;JM:v:;@Z:;:^Z:iZ;;Z:f:gJQqkXhN]dOS=N>J:n>:>R:
+<>:j<<v<@>:n:gJfMYL`LJQpU=>>:G;:;@Z:;:nZ:iZ;;:IJEnkA`[dI^Afq:?[:J:n>:>
+R:<>:j=<f;;:KB:gJpMkGETJ\\tZ=N>>:;JMjo;;@Z:;:>[:iZ;;:MJE>cV@fPiadfr:?;
+>:G;:;@Z:;:F[:iZ;[=:N;gJvAk@\\wmIq`=N><:;JM:JZ;BJ::OBjERJ:j?<JEvZ]p\\f
+XldFt:?;>:G;:;@Z:;:V[:iZ;;:S:yXIeHhcxraHJK:;JM:JZg:;jCjQEJ<>:UK<^;;JZ`
+:<Z::cC:=J:<jQ;Uk;B:;JDD:qh:EJ:V<Vu<^Z:jP^:JZ:<:^@jg;Uk;:c:Ir:EJ:V<vZ=
+^Z:>:UK<:;<B:JTF:v:>:Uk;:c:as:E:a:as:C:UK<:;<B:JTF:V@>:Uk;:c:qt:E:a:qt
+:C:UK<:;<B:JTF:VE>:Uk;:c:]v:E:a:]v:C:UK<:;<B:JTF:FL>:Uk;:c:;x:EB:V<>r=
+^:f?C:;JZ:<:^@=:;x:IB:;JxK:<:^:;jPf:C:F:CB:v>Z:n=C:UK:fZ:j:DJZ=FE:M:vZ
+:>:gB;FR=j:<J<jM:>::::WTJWTL<J:<Jv@j@<J><YE^wOZ:M=HZ:FV?B:[G;=P;>:?As
+\\:^:@`[GfZ>]eY=BJ:j:^[:iZ;g<E:j@n<_uEiE>McugHJK:;JM:JZyKF:<>:j@<v<@>:
+n;gJXXxKQKyEOg=N>J:n>:>R:<>:JA<v<@>Z:jA<JEnuAYpDIuVnu:?[:J:n>VWJZ;BJ::
+YBjERJ:JBn\\:flGAkshqeFv:?;>:G;:;@Z:;:>\\:iZ;g<:F<gJ>MOuyyyYrk=N>J:n>:
+>R:<>:jB<v<:iH:OJ_PJ:>_:Nb:nIwc:_JUUJ:<Z:>B;B::f]:v;AR<;R<<Z;>ZC>ZCj>P
+hDR:<J:<Z;R>;ru;b;PJ:X=;b<<ZZN^FcBq[__FBEvyyyyyYZ:B:C:=J:vyyuy?:;:_tRN
+t@B:[_:F:MJ:HJfh:KB:UK:>:C:AR:KB:<J:<j?DZ:B:E:Sb:AL[I:;j>>:<j<j:DjyC:C
+:CR:UJ<J;@:AJ:<JI^:v>V:n=jM:n=EB:F:j<<:M:<J<<:I;JI:=::M:<j=>:gB;?lZIJ:
+<Z:^:v>:w:F::F;B:I:g:Z:^:v>:w:F::F;B:I:g:F:^=;B:qQnyi:B:>l;B:dU:<Z:Fbl
+KpJ:::::C:U;sB:VYayyB:>L>Zt\\:FB:;::::^:f?=J<J<@j@:?j:>\\:B:_c<;C:AB:G
+J:<JpFGj=V:Ij=<:MJ:<JSj;G:F`:vZ::_;G?B:I:b<FS=:aC::_;SI:=:cC:IB:JSjA@:
+f@I:N@N`;:gC:I:N`DJ=A:v@I:N@Nu;B:>AI:N@v^<B:FAIJ?JSJtD:;jR@m=v:JSjIE:F
+`lv::_;Qh:jRHm=:N@vx<:]CG:N@V^=J:F`ov:I:N@Vc=:]cGv:JSj:IZ:jRXm=:N@>p=N
+Z:jR\\]:JI>:_c<]C:AB:YJ:Vh[[cks^fs[:v:I:j;^:Ij=^:v:V:IJ@>Z:N@fHAJ:v`nf
+@Ij=j@>:_;]>;jRPmUX=v:f;N@^P<:P=j=j@ZDje=:V`o^@j=j@JSJw=:^`p:v:f;N@f];
+J:f`sj=v:JF>:_;AT:QJ:<jUV@@mSrG:I:Cj=v::>=N@vl;:mCFcKP::I:C:I::g:_;QY:
+>:]CFkKUl<:I:^:v:JFJSJVD:;jRPMRFAbFk;v:J<j=:v;N@Nk<J:F`qf`q:Ij=:Y:_;gg
+:ZjV@:I:v;b<Nv<:HMT\\=<:I:v;b<n[=f:;Zp:j=:Y:d:gs:jS<MVf`m;I:N<;JSjjH:;
+jSPmRZ:v:I:J<jAJSjGI:^`j>`j>`fj=v:J<>:U[:^=VY[j=>:;JX[tH:D<LA<Z:::=B:<
+JJQ]:>:;J<<:UK;^:v^;:<JI^:f?;j<j:D::M:<j=JEv=;x:=B:CE:C:CR::?:U;_K<Vk;
+F=Vd[;Jl`A<LqPASmnvG[B:UB:SJ@f;EB:Ij@^;IJA^;Wj<^[:v:n;Uj=n:Uj<j@^:f??:
+v>:w:f?;j<>:=::M:<j=>:gJ[j:F:C:UK;:I;JI:UK::=::M:<j=JE:;Z:v:^Y>r:Ar:B:
+CB:f?Aj<j>>R;p<j:>r:M<J<@:J;N:KB:;JwC:;B:>R;H:<:UK<fZ:JDB:<j<jCv=>;NYB
+::C:Uk<^;;B:;T<B:<:v==B:;B:;J<>:UK<:c:Am<jCjk^:f?E:>bCZ:B:jIF:VF>:UK<:
+c:Sn<<:aj:<J@_:f?E:>bCZ:B:j:<j:>:S>;jP^:JDjQ=j<jCjQ_:f?E:>bC:<:F:=J:vO
+>:UK<:c:_H:EB:V<NTC:Uk<:;T<Z::=j:>:_@;jP^:JDjtgZ:jCjt_:f?E:>bC:<:F:=J:
+fX>:UK<:c:kR:EJ:V<>];^:;jPf:S:;T<Z::=j:>:k:f?Cj<JDjWf:;jCjW@J<>:Uk<^;>
+BZ::=j:>:q;f?Cj<JDjAg:;jCjAAJ<>:Uk<^;>BZ::=j:>:Y>f?Cj<JDjkAj<>:a:AY:CJ
+:f?EJ@JZ:<:F:=J:VVjP^:E:c:[c:E:a:[c:CB:f?E:>BZ::=j:>:[;f?C:^<^JE:a:Cf:
+C:Uk<:;<B:j:F:;J<;UK<:c:Yg:E:a:Yg:C:Uk<:;<B:j:F:;jQ;UK<:c:qp<jCjgEJ<jP
+f:JZ:<:F:=J:VUjP^:JDj=Hj<jCj=HJ<<J:f?E:>BZ::=j:>:I:f?C:^<V`=f:V<V`=^:f
+?E:>BZ::=j:>:a;f?C:^<VEE:a:qt:C:Uk<:;<B:j:F:;jg:UK<:c:]v:E:a:]v:C:Uk<:
+;<B:j:F:;jB;UK<:c:;x:EB:V<yJZ_Z:jPf:>:;<B:jIF:>r=vZ:>:sA;B:J<>:UK=f:F;
+;Z:f:FZ<vY^:>x;^Z:>;NYB::C:UK<f:^\\<v=;j<jCNb:>:C:Uk<J:>bCZ:B:jK<j:v=^
+:;jP^:JD>^:VFE:a:AM<B:Uk<:;T<Z::?C:=JJ<jkJ:f?C:^<^KE:a:SN<B:Uk<:;T<Z::
+?;^K>:UK<:c:YG:E:a:YO<B:Uk<:;T<Z::?;vO>:UK<:c:_p<jCJc_:<jPf:JZ`:B:JK:_
+@;jP^:JDjtg:V<fXCZ:f?E:>bC:<:N>jtK:f?C:^<>=EJ:V<>];^:;B:Uk<^;>bC:<:N>J
+F:UK<f:^<VAEJ:V<Va;^:;B:Uk<^;>BZ::?;VAjP^:E:c:Yn<>:a:YV:CJ:<jPf:S:;<B:
+JK:Y>f?Cj<JDjkg:;jCjkAJ<>Z:f?EJ@JZ:<:N>jk;UK<f:^<>@E:a:[c:CZ:f?E:>BZ::
+?;>@jP^:JDJ<g:V<^j<^:<jPf:JZ:<:N>J<;UK<:c:Yg:E:a:Yg:CZ:f?E:>BZ::?;vOjP
+^:JDjgg:V<Vu<^:<jPf:JZ:<:N>jg;UK<:c:Ij<jCj=HJ<B:Uk<:;<B:JK:I:f?C:^<V@E
+:a:as:CZ:f?E:>BZ::?;V@jP^:JDjgf:V<Ve=^:<jPf:JZ:<:N>jg:UK<:c:]n<jCjBIJ<
+B:Uk<:;<B:JK:]>f?C:^<>r=f:V<>r=^:<jPf:>:;<B:JK:;x:jPV:CJ:>XGB:j>>Rf:F:
+;@C:[Q<<J>JwK:<:;Hj;H:jP^:E:cb:?D:;j<jCVb:>:C:Uk<J:<JZ`:B:j:<j:Nb:J<>:
+UK<:cJ[VFE:a:AM<jPf:JZ`:B:j:F:?D:A=;jP^:JDNBSn<jCJ@_:f?E:>bC:<:F:=J[<J
+@K:f?C:^<?lQ=j<jCjQ_:f?E:>bC:<:F:=J[<jQK:f?C:^<?Lcg:V<NTC:Uk<:;T<Z::=j
+:Nb:NT>:UK<:cJ[fXE:a:eQ<jPf:JZ`:B:j:F:?D:eA;jP^:JDNBkj<>:a:kR:CJ:f?EJ@
+JZ`:B:j:F:?D:k:f?Cj<JDNBqk<>:a:qS:CJ:f?EJ@JZ:<:F:=J[<jW:UK<f:^<?lAg:;j
+CjAAJ<>:Uk<^;>BZ::=j:Nb:vKjP^:E:cJ[VVEJ:V<Vv;^:;jPf:S:;<B:j:F:?D:AAf?C
+j<JDNB[k<jCJRDJ<jPf:JZ:<:F:=J[<JR:UK<:cJ[^JE:a:Cf:C:Uk<:;<B:j:F:?D:C>f
+?C:^<?lQEj<jCjQEJ<jPf:JZ:<:F:=J[<jQ;UK<:cJ[VUE:a:qh:C:Uk<:;<B:j:F:?D:q
+@f?C:^<?l=f:V<vZ=^:f?E:>BZ::=j:Nb:v:jP^:JDNBak<jCjSHJ<jPf:JZ:<:F:=J[<j
+S:UK<:cJ[VEE:a:qt:C:Uk<:;<B:j:F:?D:q<f?C:^<?lBg:V<Fl=^:f?E:>BZ::=j:Nb:
+FLjP^:JDNB;p<jCJZIJ<jPf:JZ:<:F:=J[<JZ;UK<:cZ:B:E:aJ:Nr=^:f?E:>BZ::=J[I
+J:<Z:vZ:JxK:<:^:;jPn:j>>:<j<j:Djy;>X<J>Jw[::^:f?Cj<JDDjIFZ:fZ:jCv=?x:C
+:Uk<:;T<Z::=B:=x:yj:^:;jP^:JD>`:F:EZ:V<[K[;Uk<:;T<Z::=jZ?`:F:CJ:f?C:<J
+DFB=j<jCFb:NRjPf:JZ`:B:j:FR=l:vZ:Jx?:<:^:;jPv:C:[Q=^:f??J<jM:n=C:UK:f:
+FZ<:E:M:<j=JEL:F:^:v>:;:::Ja:<JR<jZIj<jC>@?@f?E:>bC:<:FZ:F:[C:^:f?C:<J
+DjZg:V<=L[;Uk<:;<B:j:F:=lZw:^YB:J<>:UK=:N:jM:<JI:UK::=b:;Hjf:F;;@I:g:F
+:^:v>:;:::Ja:<:::::::MB<[Z@fZ:^WFr:]=B:=a:>p>J;>:?As\\:^:@@=EB;CB;;:::
+:::::::::::::Nb:N:[oj@J;>:;X:<jX@:=JHO:WJiK@>Z:NZ:>ZKF]:N:<JC<J;jC<J;<
+:YW:>:sW:jX<JC>IwJ`nia>A>:=B:k\\:N:fKJKN:n;?j:vP>:oH:>:]KG>SvyyS:<J:<J
+WAw<@jZNHMmj^g:F@:yAB:o?:::yAB:o?:::yAB:o?::>N<jy;<JW;::KM:<jy;;B:o?:J
+Ij<F=;rBS[j^E?CMDlWl_]^?:n=AK=n=;rB:jWh__;:ZXBCXZYjKZhBFs<VaV;:ZXRD\\Z
+^jK::VaU;::JInAOkV>ZYg_d>^]^?^EjiplWloPd<::xoPd\\\\Jh<LK:BJyTEwJYF?m;d
+\\]:vEyliplWl?::rQd\\\\:y<Z:KInBSkZ>ZYcDH<n?bB:s<::ZYcDD<yKhN>:<>w:QkZ
+<:d\\]:ZY;^E:::x_dbB:y<Z:Kj=JD<J:<J:fxyA^:>Z::JZ=Lj=JDF:fXBwB:JZ;jt[n]
+::;@N:fXBwB:JZ;jt[n]::;@>:;jt[n]::;@J:fXBwB:JZ;>:eALI<:>R:;jt[n]::;@J:
+fXBwB:JZ;>:eALI<:>R:;jt[n]::;@J:fXBwB:JZ;>:eALI<:>R:;jt[n]::;@J:F:;[::
+JZ;=jOfXBxB:JZ;F?eA\\I<:>R:SC:eA\\I<:>R:Okt[r]::;@j>fXBxB:JZ;;J:F:;[ZF
+\\KBB;DB;JZ;GJ:<j:N^:>ZR>:<:>Ra>[BZA:F<GjCKC^Zy=aj=b:>Z:@ZyYl<JDfZyAf;
+Z:fj:n;ce;B:GB:a<@M@_:=Js@jZAJ><jZC:?ci^Yyk;<Z:V:n:;BU``[WhIB:aURRTVHC
+=`[:VD::<LqZ[kqxY:dZBb>B=;B:HP>P[]C:;B:;:R?<Z:ZPN;F;>Z@>\\:^wO:;Z=>Z:f
+;?j:^[:N:CE:YJ;F:]J;<J:>\\:>;saL]yJ;F:OK;>:QK;J;=J;F:;F:KJ:<J::Ec:>Z:v
+y:FJ?jZMZ:>:e:AF:?J:^j::ULqB:UlnVF_mqVHYMm^H;ka<JmnFME:fF;C:ClqVFempfF
+WE:<:MlpFFIM:<J:FZ>B;sPB=j;xL:<j:<j>>Z:>:Cm:F:SS:?j:j:>Z:^CEMt^HEMs>Z:
+>::::::::::::::::::i=B:=J:>::wQ:<j:J:J^K:::::::::::::::::::=G:F;C==:?J
+P^?<Z:JjyM:>Z:JjGZ:fD?J>fI>:;JLt:GJ;fIF:=jgQ:G:J;n:;R;Y:?jxj=>;;B=Y::M
+j><J:hjA:J?N;;B=:j?V;Cc;N:?jxJ@n;M<N:u=YjAnPYJ;N:u=[JB<JUw[:N:?jxjBF<g
+g;Y:?J:DJA<:;j;<Z:>:KK:<J>DJB<Z:JNFt;>Z:>Z:R:YB:Kb:FZ:JNvY;J:R:Y:NZ:B:
+K;>:@:=b:GZ:>:YB:uA<j:<JEN:nQ_D:N:gJE:::::YjA:::::::Ikx=:=J:f<>:uOrG:=
+jDJrymD>:;BJe:KBJeB:>\\:g<^\\:g<>]:g<^]:g<>^:g<N^:g<n^:g<>_:g<N?e:SkDJ
+Q<nDJR<nDjR<nDJS<nDjS<nD<:cCJe:eCJe:gCJe:iCJe:kCJe:mCJe:oCJe:qCJe:sCJe
+:uCJe:wCJe:yCJe:;DJeZ:@b:[:Fb:g<<rZ<><J[<nDBZ?DJB:ADJeZ:Xb:[:^b:w>J;>Z
+:f<=B:;J=<JX<J;F:eJj\\RGVeBCJKB:;J:n^:v=QAIJZy;Z:w=JNj:<j:<v<@nDfZ=n:s
+;?jD>e;Z\\\\:J:n>:>R:<>:J;<v<@>:V:eJdxBJ>J:n>:>R:<>:j;<v<@>:^:eJZEJNbd
+>[:J:n>:IJZ;BJ::CBjERJ:B:EjDnoWrLJ>J:n>:>R:<>:j<<v<@>:n:eJfMYL>n_wp:;;
+JM:JZ;BJ::Gj<@>:vZ:f<Wv[:K:;JM:JZ;BJ::IBjERJ:J><jD^wNJJ\\d:?;;J:n>VWJZ
+;BJ::KBjERJ:j>f<KDaTG<N>J:n>:>R:<>:j><v<@>H:J?f<kY>rV>[:J:n>:>R:<>:J?f
+Z;;:QB:ej=HDa^:?;>:G;:;@Z:;:V;E::^;<jiq=cxr>;>:G;:;@Z:;>?J@<v<@>:f;eJs
+x<J>J:n>:>R:<>:j@f::JAf<sss:K:;JM:JZ;BJ::WBjE::v;eJiYFJ><:;JMjo;;@Z:;:
+v[:i::JB<jDflGAKFv:?;>:G;:;@Z:;:>\\:iZ;g<:F\\:f<KFO:K:;JM:JZ;BJ::]BjE:
+:N<ejy=PEmo<eLm=NN>:;JM:JZ;BJ::_BjE::V<ejrLvh<ovhkn=NNJ:n>:>R:<>:jC<v<
+::cjDNyRxgHPy]_w:?_:J:n>:>R:<>:JD<v<::ejD>kG>p[X]A>x:??>:G;:;@Z:;:f\\:
+i::JEf<gIxurNGh>_IJK;;JM:JZ;BJ::gBjE::v<eJG`QGekdhOt=NNJ:n>:>R:<>s<:iB
+jE::>]:f<wXYqV[sxsgIJK;;JM:JZ;BJ::kBjE::F]:f<sTxUCsADjmIJKB:>:G;:;@Z:K
+h:jF<f;[=:N=eJZ<MSevhpXx=N><:;JM:JZ;BJ::oBjE::V=eJmxu?Uu:mM:@N><J:>:Gk
+I:>R:<>:jG<v<::sjD<JXQoTLsFXM;@N>J:n>:>R:<>JN:sBjE::f=eJ@xpSmnFmP<@N>J
+:n>:>R:<>:jH<v<::wjDVnniuNOu]qZ;?;>:G;:;@Z:;:n]:i::jI<jDffnWZ?Nj^H[;?;
+>:G;:;@Z:;:v]:i::JJ<jDVxlF]HG]q`[;?[:J:n>:>R:<>:JJ<v<::=kD<J?@Yb\\sCEK
+B@N>J:n>:>R:<>:B:=CjE::N^:f<wh<UwBIGy]RJK:;JM:JZ;BJy::N^:i::jK<jDffXNn
+ZqpY^\\;?;>:G;:;@Z:;:V^:i::JL<jD^tCOoRVf<p\\;;;JM:JZ;BJ::CCjE::f>ejsHT
+rEoBllF@N>J:n>:>R:<>:jL<v<j<:n>ejnIOJIn;PLH@N>J:n>y:JZ;BJ::GCjE::v^:f<
+sR<KYS[eWyRJKB:>:G;:;@Z:;:v^:i:jeO;ou<;JNnG?R:wc:_JU?Z:F=;L:<::ujAVZ>>
+Z`B:;R:LJ:LJ:TLMPhD>Z;B:;B:@ZK>ZiAZ@R;;rG<ZDB:<:::::::::::::::::::::::
+:::::::::::::::1:" }{MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 201 "" 0 "" 
+{TEXT -1 0 "" }}}{EXCHG {PARA 201 "" 0 "" {TEXT -1 0 "" }}}{EXCHG 
+{PARA 201 "" 0 "" {TEXT -1 0 "" }}}{EXCHG {PARA 201 "" 0 "" {TEXT -1 
+0 "" }}}{EXCHG {PARA 201 "" 0 "" {TEXT -1 0 "" }}}{EXCHG {PARA 201 "" 
+0 "" {TEXT -1 0 "" }}}{EXCHG {PARA 201 "" 0 "" {TEXT -1 0 "" }}}
+{EXCHG {PARA 201 "" 0 "" {TEXT -1 0 "" }}}{EXCHG {PARA 201 "" 0 "" 
+{TEXT -1 0 "" }}}{EXCHG {PARA 201 "" 0 "" {TEXT -1 0 "" }}}{EXCHG 
+{PARA 201 "" 0 "" {TEXT -1 0 "" }}}{EXCHG {PARA 201 "" 0 "" {TEXT -1 
+0 "" }}}{EXCHG {PARA 201 "" 0 "" {TEXT -1 0 "" }}}{EXCHG {PARA 201 "" 
+0 "" {TEXT -1 0 "" }}}{PARA 206 "" 0 "" {TEXT -1 0 "" }}{PARA 206 "" 
+0 "" {TEXT -1 0 "" }}{PARA 206 "" 0 "" {TEXT -1 0 "" }}{PARA 206 "" 0 
+"" {TEXT -1 0 "" }}{PARA 206 "" 0 "" {TEXT -1 0 "" }}}{MARK "21 1 0" 
+0 }{VIEWOPTS 1 1 0 1 1 1803 1 1 1 1 }{PAGENUMBERS 0 1 2 33 1 1 }

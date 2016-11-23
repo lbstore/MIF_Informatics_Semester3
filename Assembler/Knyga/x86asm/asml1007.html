@@ -1,0 +1,137 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=en-us">
+<meta http-equiv="Content-Language" content="en-us">
+<link href="../style.css" rel="stylesheet" type="text/css">
+<title>x86 Assembly Lesson 1 Chapter 7</title>
+</head>
+
+<body background="../tile01.jpg">
+<CENTER>
+<h1>Loop Instructions</h1>
+</CENTER><BR><BR><BR>
+<H3>Welcome</H3>
+<p>Hi! Welcome to the seventh chapter of this series. Wow! You're kinda patient guy!
+Usually assembly learners gave up at the first three chapters. They cannot see any
+results printed on screen. This involves a lot of instructions. The style I'm using
+so far is to cover a few instructions step by step, refering to the higher-level
+programming language styles. I admit that it is hard to imagine every execution
+just in mind. Those impatient ones may want to go for a debugger like Turbo Debugger
+and stuffs to directly review the effect of each instruction executed. But hey,
+you're here! Alright, enough rant. Straight to the stuff.
+
+<p>Now, I'm going to cover loop instructions in Intel x86 assembly. Actually,
+there is only one loop instruction: <tt>loop</tt>. The others are just variants.
+This loop instruction is quite eccentric: It only recognizes the register <tt>cx</tt> as
+counters. No, you can't use other registers. D'oh! If you'd like to use other register,
+you can always employ conditional branches I covered <a href="asml1006.html">last
+chapter</a>. Nested loop is possible, but that will involve swapping registers
+and so forth, which is quite tedious. So, today I will only explain about plain
+vanilla loop.
+<p>&nbsp;
+
+<h3>Loop Construct</h3>
+<p>Syntactically, <tt>loop</tt> instruction resembles jump instruction: <tt>loop
+somelabel</tt>. Typically, the label is somewhere up there. Look at the following
+example:
+<pre>
+      :
+   mov cx, 100  ; set the counter
+mylabel:
+      :
+      :  ; repeated instructions here
+      :
+   loop mylabel
+</pre>
+<p>As you observe, this structure is just like <tt>do..while</tt> construct in C/C++/Java,
+or like inverted <tt>repeat...until</tt> in Pascal. But here is the difference:
+when the processor takes <tt>loop</tt> instruction, it will first decrease the register
+CX by one. After that, CX is tested whether it is zero or not. If it is <b>not zero</b>, then
+jump to <tt>mylabel</tt>. So, it's kinda countdown counter. No, you can't modify
+this behavior. If you are dissatisfied with this, you can always use conditional branches
+instead. But trust me, this construct is a bit faster than the usual branches. Therefore,
+I encourage you to transform your loop to conform with this norm. (Pardon the pun) :-)
+<p>Well, there is no restrictions on where the label is located, actually. You can place
+the label way down if you'd like to. This may not make sense because in that way, nothing
+gets repeated. Unless, some assembly wizards get some tricks to perform their arcane "sorcery".
+<p>&nbsp;
+
+<h3>Example</h3>
+<p>Let's take 1+2+...+10 example from the <a href="asml1006.html">last chapter</a>. We'll
+transform it to using <tt>loop</tt> instruction. The next snippets will show you how.
+Woow.... that's pretty short, right?
+<hr><pre>ideal
+p286n
+model tiny
+
+codeseg
+   org 100h
+   jmp start
+
+start:
+   mov  cx, 10       ; The counter is in CX
+   mov  ax, 0        ; I use AX as a sum holder
+
+myloop:
+   add  ax, cx       ; ax = ax + cx
+   loop myloop
+
+quit:
+   ; here ax will hold the value of 1+2+...+10
+
+
+   mov  ax, 4c00h
+   int  21h
+end</pre><hr>
+<p>In MASM version:
+<hr><pre>.286
+.model tiny
+
+.code
+   org 100h
+entry:
+   jmp start
+
+   ; your data and subroutine here
+
+start:
+   mov  cx, 10       ; The counter is in CX
+   mov  ax, 0        ; I use AX as a sum holder
+
+myloop:
+   add  ax, cx       ; ax = ax + cx
+   loop myloop
+
+quit:
+   ; here ax will hold the value of 1+2+...+10
+
+
+   mov  ax, 4c00h
+   int  21h
+end entry
+</pre>
+<hr>
+<p>&nbsp;
+
+<h3>Other Variants</h3>
+<p>You have probably seen the instructions <tt>loopz</tt> or <tt>loopnz</tt> in a source code.
+What does it mean? It is just like <tt>loop</tt> except that before deciding whether to jump
+or not, the processor also look for the <u>zero flag</u>. In <tt>loopz</tt>, if CX is not 0
+<b>and</b> the zero flag is set (i.e. equals to 1), then it takes the jump. The <tt>loopnz</tt>
+is on the contrary: If CX is not 0 and zero flag is reset (i.e. equals to 0), then it takes the
+jump. FYI, <tt>loopz</tt> is an acronym for "loop while zero", whereas <tt>loopnz</tt> is
+"loop while not zero". I don't want to discuss them further here as it will involves more knowledge
+in assembly. So, you'd better practice on the basic loop instruction first.
+<p>&nbsp;
+
+<h3>Closing</h3>
+<p>OK, I think that's all for now. See you next time.
+<p>&nbsp;
+<HR><H3>Where to go</H3>
+<p><b><a href="asml1008.html">Chapter 8</a><br>
+<a href="../news.html">News Page</a><br>
+<a href="asmles01.html">x86 Assembly Lesson 1 index</a><br>
+<a href="../faq.html">Contacting Me</a></B></P>
+<hr><p class="cpy">Roby Joehanes &copy; 2001</p>
+</body></html>

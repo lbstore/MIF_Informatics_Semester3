@@ -1,0 +1,59 @@
+{VERSION 6 0 "IBM INTEL NT" "6.0" }
+{USTYLETAB {CSTYLE "Maple Input" -1 0 "Courier" 0 1 255 0 0 1 0 1 0 0 
+1 0 0 0 0 1 }{CSTYLE "2D Math" -1 2 "Times" 0 1 0 0 0 0 0 0 2 0 0 0 0 
+0 0 1 }{CSTYLE "2D Output" 2 20 "" 0 1 0 0 255 1 0 0 0 0 0 0 0 0 0 1 }
+{CSTYLE "" -1 256 "" 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 }{PSTYLE "Normal
+" -1 0 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }1 
+1 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Maple Output" -1 11 1 {CSTYLE "" 
+-1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }3 3 0 0 0 0 1 0 1 0 2 
+2 0 1 }}
+{SECT 0 {EXCHG {PARA 0 "" 0 "" {TEXT -1 316 "30.(Radioaktyviosios angl
+ies datavimas) Anglis paimta is Kristaus laiku liekanos sudare 4.6*10^
+10 atomu C14 viename grame.Anglis isskirta is siu dienu tos pacios med
+ziagos meginio sudare 5.0*10^10 atomu C14 viename grame .Apskaiciuokit
+e apytiksliai liekanos amziu.Kokia jusu nuomone apie sios medziagos au
+tentiskuma?" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 8 "restart;" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 26 "eg1:=diff(N(t),t)=-k*N(t);" 
+}}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%$eg1G/-%%diffG6$-%\"NG6#%\"tGF,,$*
+&%\"kG\"\"\"F)F0!\"\"" }}}{EXCHG {PARA 0 "" 0 "" {TEXT -1 124 "N1-atom
+u skaicius is  Kristaus amziaus paimtos liekanos,N2- atomu skaicius is
+ siu laiku paimto tos pacios medziagos meginio " }}}{EXCHG {PARA 0 "> \+
+" 0 "" {MPLTEXT 1 0 14 "N1:=4.6*10^10;" }}{PARA 11 "" 1 "" {XPPMATH 
+20 "6#>%#N1G$\"+++++Y\"\"\"" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+14 "N2:=5.0*10^10;" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%#N2G$\"+++++]
+\"\"\"" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 12 "dsolve(eg1);" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#/-%\"NG6#%\"tG*&%$_C1G\"\"\"-%$expG6#,
+$*&%\"kGF*F'F*!\"\"F*" }}}{EXCHG {PARA 0 "" 0 "" {TEXT -1 88 "Bedrasis
+ sprendinys (BS) atrodo taip (tariame,kad _C1 ir k konstantos,kurias i
+eskosime):" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 21 "BS:=N= _C1*ex
+p(-k*t);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%#BSG/%\"NG*&%$_C1G\"\"\"
+-%$expG6#,$*&%\"kGF)%\"tGF)!\"\"F)" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 12 "subs(t=0,%);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#/%\"N
+G*&%$_C1G\"\"\"-%$expG6#\"\"!F'" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 
+1 0 12 "simplify(%);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#/%\"NG%$_C1G" 
+}}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 29 "lygt:=N=evalf(N1*exp(k*t)
+,3);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%%lygtG/%\"NG,$*&$\"$g%\"\")
+\"\"\"-%$expG6#*&%\"kGF,%\"tGF,F,F," }}}{EXCHG {PARA 0 "" 0 "" {TEXT 
+-1 63 "Po 5730 metu anglies atomu skaiciu sioje medziagoje turetu buti
+" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 8 "T:=5730;" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#>%\"TG\"%Id" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+9 "Ni:=N1*2;" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%#NiG$\"+++++#*\"\"\"
+" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 22 "subs(\{t=T,N=Ni\},lygt)
+;" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#/$\"+++++#*\"\"\",$*&$\"$g%\"\")F
+&-%$expG6#,$*&\"%IdF&%\"kGF&F&F&F&" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 36 "koeficientas_k:=evalf(solve(%,k),5);" }}{PARA 11 "" 
+1 "" {XPPMATH 20 "6#>%/koeficientas_kG$\"&(47!\")" }}}{EXCHG {PARA 0 "
+" 0 "" {TEXT -1 30 "Tai musu modelis atrodys taip:" }}}{EXCHG {PARA 0 
+"> " 0 "" {MPLTEXT 1 0 28 "subs(k=koeficientas_k,lygt);" }}{PARA 11 "
+" 1 "" {XPPMATH 20 "6#/%\"NG,$*&$\"$g%\"\")\"\"\"-%$expG6#,$*&$\"&(47!
+\")F*%\"tGF*F*F*F*" }}}{EXCHG {PARA 0 "" 0 "" {TEXT -1 31 "Dabar iesko
+sime liekanos amziu:" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 33 "sub
+s(N=N2,k=koeficientas_k,lygt);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#/$\"
++++++]\"\"\",$*&$\"$g%\"\")F&-%$expG6#,$*&$\"&(47!\")F&%\"tGF&F&F&F&" 
+}}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 28 "liekanos_amzius:=solve(%,
+t);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%0liekanos_amziusG$\"+35v#*o!
+\"(" }}}{EXCHG {PARA 0 "" 0 "" {TEXT -1 97 "Is to isplaukia,kad  medzi
+aga paimta siu laiku meginio  nera autentiska paimtai is Kristaus laik
+u" }{TEXT 256 0 "" }{TEXT -1 1 "." }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 0 "" }}}}{MARK "22 0 0" 0 }{VIEWOPTS 1 1 0 1 1 1803 1 1 
+1 1 }{PAGENUMBERS 0 1 2 33 1 1 }

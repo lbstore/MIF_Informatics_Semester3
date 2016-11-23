@@ -1,0 +1,169 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=en-us">
+<meta http-equiv="Content-Language" content="en-us">
+<link href="../style.css" rel="stylesheet" type="text/css">
+<title>x86 Assembly Lesson 1 Chapter 4</title>
+</head>
+
+<body background="../tile01.jpg">
+<CENTER>
+<h1>Bitwise Operation</h1>
+<h2><b>Part 1: And, or, xor, not.</b></h2>
+</CENTER><BR><BR><BR>
+<H3>Welcome</H3>
+<p>Hi! Welcome to the fourth chapter of this series. Now, I'll try to cover some bitwise
+operation in assembly. We know that bitwise operations are essential to computer programs.
+Thus, we'd like to know how we can do these in assembly.
+<p>The available instructions are <tt>and</tt>, <tt>or</tt>, <tt>xor</tt>, and <tt>not</tt>.
+I assume that you understand how these logical operators behave. I will just explain how the
+assembly counterpart corresponds to them.
+<p>As the arithmetic instructions we discussed <a href="asml1003.html">earlier</a>, bitwise
+instructions also modifies the processor flags. What flags are affected? Many. I won't discuss
+all of them here. Just the necessary ones.
+<p>&nbsp;
+
+
+<h3>And, Or, Xor</h3>
+<p>We know that <tt>and</tt>, <tt>or</tt>, and <tt>xor</tt> take two operands. The usage is
+just like the <tt>add</tt> and <tt>sub</tt>, you can have both operands as registers, one of them
+as variables, etc. The syntax is as follows:
+<pre>
+   and   x, y   ; --> means: x = x and y;
+   or    x, y   ; --> means: x = x or y;
+   xor   x, y   ; --> means: x = x xor y;
+</pre>
+<p>Similar, right? These operators in Pascal correspond to the <tt>x := x op y;</tt>, not
+the ones used in the <tt>if</tt>s or <tt>while</tt>s. For C/C++ users, <tt>and</tt> corresponds
+to the single <tt>&amp;</tt> sign, <tt>or</tt> corresponds to the single <tt>|</tt> sign, and <tt>xor</tt>
+corresponds to the single <tt>^</tt> sign. If you have already know on how to use these
+operators in either Pascal or C, you can just skip to the next section. For not-illuminated-yet
+readers, the difference between this logical operators is that all the bits in the operands are
+taken into account. So, both x and y does not mean only either true or false.
+<p>Confused? See the following example. Suppose we have register AH = 76 and AL = 45. Before we
+can clearly examine the result of bitwise operations, we see the value of AH and AL in binary.
+AH = 01001100 and AL = 00101101. Note that you don't need to write instructions to do this
+conversion. This conversion is not needed, only to help you to understand bitwise operations.
+<p>To refresh our minds, "and" operator will return 1 if both operands are 1, otherwise it will
+return 0. The "or" operator will return 0 if both operands are 0, otherwise it will return 1.
+The "xor" operator will return 0 if both operands have the same value, otherwise it will return 1.
+Now, we'll see how the assembly counterpart behaves:
+<pre>
+   <span style="background-color: #C0FFC0"><b>Instruction: and  ah, al ; --> means: ah = ah and al</b></span>
+
+                                  AH = 01001100
+                                  AL = 00101101
+                                  -------------  and
+                              result = 00001100 (=  12) is stored in AH
+
+   <span style="background-color: #C0FFC0"><b>Instruction: or   ah, al ; --> means: ah = ah or  al</b></span>
+
+                                  AH = 01001100
+                                  AL = 00101101
+                                  -------------  or
+                              result = 01101101 (= 109) is stored in AH
+
+   <span style="background-color: #C0FFC0"><b>Instruction: xor  ah, al ; --> means: ah = ah xor al</b></span>
+
+                                  AH = 01001100
+                                  AL = 00101101
+                                  -------------  xor
+                              result = 01100001 (=  61) is stored in AH
+</pre>
+<p>See? Each individual bits are affected. Of course you can do these operations on 16-bit registers
+too.
+<p>&nbsp;
+
+<h3>Not</h3>
+<p>The <tt>not</tt> operation takes a single operand. The syntax is:
+<pre>
+   not   x   ;  --> means: x = not x
+</pre>
+<p>The all bits in <tt>x</tt> are flipped. In Pascal, it is similar to <tt>x := not x;</tt> while in
+C/C++, it is similar to <tt>x = ~x;<tt> (<b>NOT</b> <tt>x = !x;</tt>). Example:
+<pre>
+   <span style="background-color: #C0FFC0"><b>Instruction: not  ah ; --> means: ah = not ah</b></span>
+
+                                  AH = 01001100
+                                  -------------  not
+                              result = 10110011 (= 179) is stored in AH
+</pre>
+<p>Pretty straight forward...
+<p>&nbsp;
+
+<h3>Bit Masking and Flipping</h3>
+<p>These logical operations can be handy in bit masking or flipping. You will do this a lot in doing
+assembly program. It is mainly because the input and output from/to hardware devices are usually
+decoded in bits instead of normal integers. Sometimes, one byte can contain several information decoded
+in bits. When you'd like a particular information out from this packed byte, you'll need to extract the
+needed bits out using bit masking.
+<p>For example: You get a data from a device and you store it in AL. Suppose AL = 00101100. However
+you only need the lower four bits (i.e. 1100). How can we get rid of the unnecessary ones? Well, first
+of all, what operations can be used to do this? Hmm.... <tt>and</tt>! That's correct. Then, you would
+like to create a mask based on the <tt>and</tt> behavior. As we already know that if we <tt>and</tt>
+anything by 0, the result would be 0, right? So, we'll use this to filter out the unnecessary bits.
+Since we need only the lower four bits, the mask would be: 00001111. Let's say the mask is stored in
+AH. Look at the following snippet:
+<pre>
+  mov  al, 00101100b
+  mov  ah, 00001111b
+  and  al, ah        ; --> now al = 00001100b
+</pre>
+<p>Aha! So, doing this masking, you can extract bits out. How can we put the bits back, then?
+<p>Now, suppose you have AL = 00101100, the current hardware status. Now, you'd like to store the lower
+4 bits of your data in CL = 00000011 into the lower 4 bits of AL. In other words, we'd like to make
+AL = 00100011. How can we do this? We can do it in two steps: First of all, we mask out the lower 4
+bits of AL, then we do an <tt>or</tt>. Doing a mask-out involves using a negative mask. What does it
+mean? It means that all the mask of interesting bits should be set to 0 (instead of 1 as in the positive
+mask), and the other should be set to 1. Since we're interested in the lower four bits of AL,
+the negative mask would be 11110000b (as stored in AH in the snippet below). Masking out is a way
+to "reset" bits positions. This is how:
+<pre>
+  mov  al, 00101100b
+  mov  cl, 00000011b
+  mov  ah, 11110000b
+  and  al, ah        ; --> now al = 00100000b
+  or   al, cl        ; --> now al = 00100011b
+</pre>
+<p>That's the steps on setting the bits back. Additionally, you may want to filter out CL too, to
+make sure that only the lower 4 bits is stored into AL. This may be useful if CL contains non zero
+bits in the upper 4 bits, for example: CL = 10010011b. So, we'll modify the program above by masking
+CL too as the snipped below shows. If you're curious, modify the snippet above from
+<tt>mov cl, 00000011b</tt> to <tt>mov cl, 10010011b</tt> and run it. Then try to compare the result
+with the snippet below:
+<pre>
+  mov  al, 00101100b
+  mov  cl, 10010011b
+
+  mov  ah, 11110000b
+  and  al, ah        ; --> now al = 00100000b
+
+  mov  ah, 00001111b
+  and  cl, ah        ; --> now cl = 00000011b
+
+  or   al, cl        ; --> now al = 00100011b
+</pre>
+<p>Hmm.. this may be confusing at the beginning. But, you will get used to it.
+<p>There are times we only want to flip the bits around. We can use <tt>xor</tt> with it. You can
+observe that anything <tt>xor</tt>red with 1 will be flipped. (If you're curious, try doing 1010 xor 1111).
+Suppose, we'd like to flip the middle four bits of AL:
+<pre>
+  mov  al, 00101100b
+  mov  ah, 00111100b
+  xor  al, ah         ; --> now al = 00010000b
+</pre>
+<p>Then, you'll ask: How can we extract or set data -- say -- in the middle 4 bits? Good question. You'll
+need bit shifting, which will be discussed in <a href="asml1005.html">the next chapter</a>.
+<p>&nbsp;
+
+<h3>Closing</h3>
+<p>OK, I think that's all for now. See you next time.
+<p>&nbsp;
+<HR><H3>Where to go</H3>
+<p><b><a href="asml1005.html">Chapter 5</a><br>
+<a href="../news.html">News Page</a><br>
+<a href="asmles01.html">x86 Assembly Lesson 1 index</a><br>
+<a href="../faq.html">Contacting Me</a></B></P>
+<hr><p class="cpy">Roby Joehanes &copy; 2001</p>
+</body></html>

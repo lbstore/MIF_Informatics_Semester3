@@ -1,0 +1,36 @@
+IP =	2322h
+CS =	2524h
+(klaida buvo skaidrese)
+
+Apskaiciuoti pertraukimo INT Ph apdorojimo proceduros absoliutuji adresa:
+
+1. P = 0
+n*4 = 00000
+IP = 1110
+CS = 1312
+AA = 	13120
+	+1110
+	14230
+
+2. P = 1
+absoliutusAdresas 00004h
+IP = 1514
+CS = 1716
+AA = CS*10+IP = 18674
+
+3. p = 7
+SF = 05FF
+SP = FFE4
+
+SF = 0000 0101 1111 1111
+     xxxx odit szxa xpxc
+
+new SF = 04FF
+SP = FFE4 - 6 = FFDE
+FFDE + 04FF = 1 04DD (tai NERA rezultato laukas, o atsakymas, todel nera overflow)
+
+
+
+BONUS:
+
+Uzrasykite programos segmenta po kurio 3Fh pertraukimo pertraukimo apdorojimo procedura prasidetu fiziniu adresu 8EBFEh.

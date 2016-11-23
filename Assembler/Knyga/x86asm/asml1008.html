@@ -1,0 +1,412 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=en-us">
+<meta http-equiv="Content-Language" content="en-us">
+<link href="../style.css" rel="stylesheet" type="text/css">
+<title>x86 Assembly Lesson 1 Chapter 8</title>
+</head>
+
+<body background="../tile01.jpg">
+<CENTER>
+<h1>Interrupt Essentials</h1>
+<h2><b>What is it really?</b></h2>
+</CENTER><BR><BR><BR>
+<H3>Welcome</H3>
+<p>Hi! Welcome to the eighth chapter of this series. You're about ready to learn the heart beat
+of assembly language: Interrupts. Mastering it, you can do a lot of interesting stuff. This
+"interrupt" guy seems to be quite a headache for most people. Let's find out why.
+<p>&nbsp;
+
+<h3>Introduction to Interrupt</h3>
+<p>You have heard "interrupt" jargon from assembly gurus. What is it? In the <a href="asml1001.html">first
+chapter</a>, I hinted a clue: Interrupt is just like a procedure provided by the system (i.e.
+BIOS, Operating system, or drivers for the most part). You can invoke it -- they do useful stuff.
+Let's look at the snippet of our first program in the first chapter:
+<pre>
+     :
+   mov   ax, 4c00h
+   int   21h
+     :
+</pre>
+<p>Here you see how to invoke an interrupt. These two lines actually request the operating system
+to terminate the program.
+<p>Interrupt invocations does more interesting stuff. You see that the interrupt is called using
+<tt>int</tt> instruction with a number after it. In the example, it is 21h. Invoking different number
+will end up with different result. This number is refered as <b>interrupt number</b>.
+<p>Interrupt number alone is not enough. Interrupt behaves differently depending on which <b>service
+number</b> is called. In this example, the service number is placed in AH, which is equal to 4ch.
+(Remember that when AX=4c00h, it means AH=4ch and AL=00h). Service numbers are usually placed in AH.
+Sub-service number is usually placed in AL. So, in this case, we're calling interrupt 21h, service 4ch,
+subservice 00h.
+<p>This interrupt mechanism is pretty much like a phone number. Think of the interrupt number as an area
+code, the service number as the phone number, and the sub-service number as the extension. Calling
+different number will cause different response.
+<p>Now the problem here is: How can we know which number perform which service. That's a good question.
+If you forgot a phone number, what will you do? You'll open the phone book, right? It is likewise in
+this situation. However, now our "phone book" is called interrupt list -- a list of known service --
+which you can get <a href="http://www.cs.cmu.edu/afs/cs/user/ralf/pub/WWW/files.html" target="ralf">here.</a>
+<p>Unlike phone companies, virtually no one regulates the interrupt numbers for each program /
+driver / service. So, you'll find that those interrupt numbers sometimes conflict each other. This
+causes software incompatibility. However, there are some interrupt number that you can hold for sure,
+for example 10h for BIOS services and 21h for operating system services, and more others. As you try
+to discover your way to unleash interrupt powers, don't try conflicting or dubious interrupt numbers.
+But don't too discouraged either. Or maybe you can flow along with this course first before taking off.
+<p>&nbsp;
+
+<h3>Hardware and Software Interrupts</h3>
+<p>People often distinguishes between hardware and software interrupts. The difference between the two
+is just who triggers the interrupt. If it is triggered by hardware, then it is called hardware interrupt.
+Similarly, if it is triggered by software, it is called software interrupt. The one that we used just now
+is a software interrupt, because it's our program which invoked it. Hardware interrupts are rarely invoked.
+Instead of being invoked, we usually put a "listener" routine and intercept them so that the next time
+when the hardware invoke the interrupt, we can intercept it and do appropriate actions.
+There are two categories in hardware interrupts. One category belongs to the interrupts issued by
+the processor, and the other is issued by other hardwares like sound cards, network cards, and so on.
+The second category is then known as <b>interrupt requests (IRQ)</b>.
+<p>This lesson primarily focuses on software interrupts. Hardware interrupts will be discussed later.
+<p>As the interrupt numbers are limited, IBM first try to regulate this interrupt numbers. Interrupt
+number 00h to 0Fh are assigned for hardware interrupts. Computers newer than AT, have additional
+hardware interrupt numbers assigned from 0A0h to 0A7h. The rest, i.e. 10h to 0FFh are assigned for
+software interrupts. Yes, the maximum number of interrupts is only 0FFh or 255. It is IBM too who designated
+the interrupt numbers from 00h through 2Fh. These numbers become defacto standard for all PCs. Since
+the number 30h to 0FFh are marked as "free", many drivers, resident programs, and others race to
+reserve those numbers. Even worse, the original interrupt numbers from 28h to 2Fh, which are marked as
+"reserved", are also taken. So, the only reliable numbers are from 00h to 27h. Of course there are
+"survivors" who managed to emerge as a new standard, such as: Novell drivers who took over 2Ah and 7Ah,
+Microsoft mouse at 33h, EMS driver at 67h, Himem/XMS driver at 2Fh, and so on.
+<p>How about the service numbers. There is chaos too. Some drivers even "coveted" the "pristine" de-facto
+interrupt numbers like 10h and 21h. They try not to conflict with the original ones by assigning peculiar
+service numbers. However, as the computer system grows, the system may overtake these service numbers too.
+Thus, sometimes, upgrading to new computer system (either OS or new computer), may cause a clash.
+<p>How can we cope with this? Again, stay with the "common" numbers. How can we know that? Try to look
+<a href="http://www.cs.cmu.edu/afs/cs/user/ralf/pub/WWW/files.html" target="ralf">here</a>. Or just enjoy these series.
+Or maybe you can read more assembly programs to figure out which.
+<p>&nbsp;
+
+<h3>Input and Output to Screen</h3>
+<p>Taking input or printing output to the screen need interrupts to be invoked. This is why we haven't got
+screen outputs yet. I tried to cover this earlier, but I realized that this may take a lot of background
+to be more interesting. Alright. Let's try some "Hello world!" stuff. Please note that I'm not going to
+write MASM variants now. After these chapters, you should be able to do minor changes to this TASM variant
+to feed it into MASM. So, I'll write only TASM version.
+<hr><pre>ideal
+p286n
+model tiny
+
+codeseg
+   org 100h
+   jmp start
+
+   message db 'Hello World!$'
+start:
+   mov dx, offset message
+   mov ah, 09
+   int 21h
+
+   mov ax, 4c00h
+   int 21h
+end
+</pre><hr>
+<p>Focus on the first three lines after the <tt>start</tt> label.
+You'll recognize that we are invoking interrupt number 21h, service 09h. As I mentioned earlier,
+interrupt 21h is reserved for operating system calls, which is in this case DOS calls. And when
+you look up what service 09h does on interrupt 21h in interrupt list, it says print out a string.
+How the information on the interrupt list say?
+<pre>INT 21 - DOS - PRINT STRING
+        AH = 09h
+        DS:DX = address of string terminated by "$"
+Note:  Break checked, and INT 23h called if pressed
+</pre>
+<p>The interrupt list says something else too. It requires DS:DX register pair to point to the message.
+When a register pair is needed and the first one is segment register (CS, DS, or ES), it usually
+signifies a pointer address. For now you don't have to worry about setting DS since in our memory
+model it has been taken care of automatically (well, sort of). I'll explain this later after you
+have more backgrounds. The only thing we should worry about is just setting DX. So, prior to
+calling the interrupt service, we assign DX as the offset of the message.
+<p>About the message itself, don't worry about whether the break is checked or not. Just ignore it. It
+will only matter if you deal more in system programs.
+<p>Run it and compile it! Ahh.... finally a "Hello World!" appears on the screen. To insert a new line
+simply change the <tt>message</tt> declaration into:
+<pre>
+   message db 'Hello World!',10,13,'$'
+</pre>
+<p>Some assembly gurus will say, "Hey, int 21h service 09h is obsolete!". Yup, that's true. Don't
+worry about it. It's still there for backward compatibility. So, it shouldn't matter. We just want
+our hello world, don't we? :-)
+
+<p>Getting input is a little different. If we look into the interrupt list, interrupt 21h (again),
+service 0Ah offers a mean to input from keyboard. How the interrupt list say?
+<pre>INT 21 - DOS - BUFFERED KEYBOARD INPUT
+        AH = 0Ah
+        DS:DX = address of buffer
+Note: first byte of buffer must contain maximum length on entry,
+      second byte contains actual length of previous line which may
+        be recalled with the DOS line-editing commands
+      on return the second byte contains actual length, third and
+        subsequent bytes contain the input line
+</pre>
+<p>It also requires DX to be pointed to the buffer to hold the input. However, the buffer structure
+is a bit different. This time, DOS requires the first byte to denote the maximum possible length of
+the text, the second one is reserved to specify how many characters are actually inputted by the user,
+and the rest will hold the actual message. So, this is how I arrange this: In this example, the
+maximum characters possible is 80, denoted by <tt>maxlen</tt>. Right following it, I reserve a byte
+to hold the actual length. Then the message, which is reserved as 80 bytes (i.e. <tt>80 dup (?)</tt>).
+<hr><pre>ideal
+p286n
+model tiny
+
+codeseg
+   org 100h
+   jmp start
+
+   maxlen     db 80
+   actual_len db ?
+   message    db 80 dup (?)
+
+start:
+   mov dx, offset maxlen
+   mov ah, 0ah
+   int 21h
+
+   mov ax, 4c00h
+   int 21h
+end</pre><hr>
+<p>Since DOS requires the maximum length to be the first byte, we point DX to the offset of <tt>maxlen</tt>
+instead of to <tt>message</tt>.
+<p>&nbsp;
+
+<h3>Output: A Better Version</h3>
+<p>If you examine the output interrupt we discussed earlier, it seems to have a significant disadvantage:
+the requirement of '$' terminator at the end. There is one way to cope with that: output characters one
+by one using a loop. The loop terminates if the character being read is 0. Zero in ASCII number is
+defined as a blank and usually used to terminate stuffs. Thus, this is called zero terminated ASCII,
+or better known as ASCIIZ. This string format is used in C/C++. Pascal uses different string format:
+The first byte stores the string length and then followed by the string. However, this leads to a
+disadvantage: The maximum string length is limited to 255. So, for now, we use ASCIIZ.
+<p>Now, how can we print an ASCIIZ string? First of all, we need to know how to print one character
+on screen. We're not using int 21h/09h anymore. Aha, we found it! It is (again) interrupt 21h, service
+06h. Let's look what the interrupt list says:
+<pre>INT 21 - DOS - DIRECT CONSOLE I/O CHARACTER OUTPUT
+        AH = 06h
+        DL = character <> FFh
+</pre>
+<p>What else does it require? It require DL as the input character and DL must not be equal to 0ffh.
+No problem. So, our problem is solved. OK, before we write our assembly solution, it is always better
+to write a pseudocode first to sketch out the algorithm. Let's look into the pseudo-code. Let's say
+the message is stored in <tt>message</tt> variable:
+<pre>  BX = offset of message;
+  do
+     DL = character pointed by BX;
+     BX = BX + 1;
+     if DL is not 0 then
+         AH = 6;
+         int 21;
+     end
+  while DL is not 0
+</pre>
+<P>OK, the algorithm is set, let's transform this to assembly. Let's take the standard skeleton from
+the previous program:
+<hr><pre>ideal
+p286n
+model tiny
+
+codeseg
+   org 100h
+   jmp start
+
+   message db 'Hello World!',10,13,0
+start:
+   mov  bx, offset message
+
+myloop:
+   mov  dl, [bx]  ; --> means fetch a character pointed by BX to DL.
+   inc  bx        ; --> BX = BX + 1
+   cmp  dl, 0     ; --> Is DL zero?
+   je   quit      ; --> If yes, then quit
+
+   mov  ah, 06    ; --> Otherwise, do the print service and repeat
+   int  21h
+   jmp  myloop
+
+quit:
+
+   mov  ax, 4c00h
+   int  21h
+end</pre><hr>
+<p>Ah, so, it's pretty obvious. Note the <tt>mov dl, [bx]</tt>. If you surround a register with
+a square bracket like this: <tt>[bx]</tt>, it means BX is treated as a pointer instead of value,
+and the square bracket denotes dereferencing. OK, this involves a good understanding of pointer.
+I won't reexplain pointers here. When we say <tt>mov bx, offset message</tt>, assembler puts an
+integer for BX register as a representation of the pointer of <tt>message</tt> variable. If it
+is dereferenced (with a square bracket), we're no longer talking about the integer, but the value
+it's pointing to. So, in this case, for the first iteration, dl will contain the letter 'H'. The
+next line is <tt>inc bx</tt> which means the pointer is incremented so that the next time, when
+it gets dereferenced, it will point to the next character, 'e'. This process loops until it
+reaches 0, the end of the string. <p>How about the input? I leave it for your homework. As a big
+hint, here is the excerpt from the interrupt list:
+<pre>INT 21 - DOS - DIRECT CONSOLE I/O CHARACTER INPUT
+        AH = 06h
+        DL = 0FFh
+Return: ZF set   = no character
+        ZF clear = character recieved
+
+        AL = character
+Notes: Character is echoed to STDOUT if received. Break are NOT checked
+</pre>
+<p>Apparently, we still need to invoke int 21h/06h, but now with DL is equal to 0ffh. At the return,
+AL will contain the character. Ignore everything else for the moment. We're doing this in a loop too.
+But now, we'll terminate when we receive an 'Enter' button pressed, right? I give you a hint: The
+enter button code is 13. How can we put a character back to a dereferenced pointer like above?
+Here is how: <tt>mov  [bx], al</tt>. Aha! The reset should be pretty easy. Go get it! ;-)
+<p>&nbsp;
+
+<h3>Number To String</h3>
+<p>The output routines we discussed so far are intended only for outputting strings. How can we output
+numbers? Well, we have to convert the numbers to string first. For example: We'd like
+to output the contents of variable <tt>n</tt>. Let's say <tt>n</tt> is a unsigned 16-bit integer variable.
+Next, we'll need a temporary variable to hold the string value of <tt>n</tt>. Since we know unsigned
+16-bit integer ranges from 0 to 65535, we only need to reserve 6 bytes in the temporary variable:
+five for the digits, one for the zero terminator. Alright, so how's the pseudo code then?
+Let's look at the excerpt below:
+<pre>  BX = offset of message;
+  DX:AX = n
+  AX = DX:AX / 10000, remainder in DX
+
+  ; since we know AX is between 0 and 9 after division, so, it is safe to say
+  ; that the interested digit is in AL. Then we need to convert AL into ASCII
+  ; digit '0' through '9'. Fortunately, there is an easy conversion. ASCII digit
+  ; '0' is 30h, '1' is 31h, and so on. Thus, converting AL to its corresponding
+  ; ASCII character just take an addition by 30h.
+
+  AL = AL + 30
+  [BX] = AL      ; store the digit
+  BX = BX + 1    ; increment pointer
+
+  ; Repeat the division
+  AX = DX       ; because we deal only with the remainder now.
+  DX = 0
+
+  AX = DX:AX / 1000, remainder in DX
+
+  AL = AL + 30
+  [BX] = AL      ; store the digit
+  BX = BX + 1    ; increment pointer
+
+  ; Repeat the division
+  AX = DX       ; because we deal only with the remainder now.
+  DX = 0
+
+  AX = DX:AX / 100, remainder in DX
+
+  AL = AL + 30
+  [BX] = AL      ; store the digit
+  BX = BX + 1    ; increment pointer
+
+  ; Repeat the division
+  AX = DX       ; because we deal only with the remainder now.
+  DX = 0
+
+  AX = DX:AX / 10, remainder in DX
+
+  AL = AL + 30
+  [BX] = AL      ; store the digit
+  BX = BX + 1    ; increment pointer
+
+  ; At this point, we have DX is between 0 to 9 as the remainder. So, we can directly
+  ; convert DL to ASCII and store it in BX. (why? because when DX=0..9, DH always equals to 0,
+  ; DL will be 0..9.
+
+  DL = DL + 30
+  [BX] = DL
+</pre>
+<p>Whoa! That's pretty long! Well, there is a shorter way using a loop. This is just for you to learn.
+As you might have guessed, we just divide from the highest possible digit: the ten thousands, then
+the thousands, down to the hundreds, and the tens, and then the last digit. This is quite straight forward.
+Let's examine the assembly code below:
+<hr><pre>ideal
+p286n
+model tiny
+
+codeseg
+   org 100h
+   jmp start
+
+   n       dw 12345
+   message db 6 dup (0)
+start:
+   mov  bx, offset message
+
+   mov  ax, [n]
+   sub  dx, dx       ; DX:AX = n
+   mov  cx, 10000    ; Divide it by 10000
+   div  cx           ; result in AX,  remainder in DX
+
+   add  al, 30h
+   mov  [bx], al
+   inc  bx
+   mov  ax, dx
+   sub  dx, dx
+   mov  cx, 1000     ; Divide it by 1000
+   div  cx
+
+   add  al, 30h
+   mov  [bx], al
+   inc  bx
+   mov  ax, dx
+   sub  dx, dx
+   mov  cx, 100      ; Divide it by 100
+   div  cx
+
+   add  al, 30h
+   mov  [bx], al
+   inc  bx
+   mov  ax, dx
+   sub  dx, dx
+   mov  cx, 10       ; Divide it by 10
+   div  cx
+
+   add  dl, 30h
+   mov  [bx], dl
+
+
+   ; The rest are the same:
+
+   mov  bx, offset message
+
+myloop:
+   mov  dl, [bx]  ; --> means fetch a character pointed by BX to DL.
+   inc  bx        ; --> BX = BX + 1
+   cmp  dl, 0     ; --> Is DL zero?
+   je   quit      ; --> If yes, then quit
+
+   mov  ah, 06    ; --> Otherwise, do the print service and repeat
+   int  21h
+   jmp  myloop
+
+quit:
+
+   mov  ax, 4c00h
+   int  21h
+end</pre><hr>
+<p>Hmm, that's cubersome, isn't it? We don't need to put the zero terminator at the end. Why?
+Because we initialize the temporary buffer as all zeros. Now, there is one problem. When we
+replace the number 12345 with 123, it will display 00123. Why? :-) I'll leave this for you to
+answer. You should be able to fix this. It's simple. Hint: You need to compare AL before storing
+the digit.
+<p>&nbsp;
+
+<h3>Closing</h3>
+<p>OK, I think that's all for now. I'd like to thank you Victor Forsyuk who create a wonderful
+Norton Guides Database which excerpt is quoted for the interrupt list for this tutorial.
+<p>I hope that you are not discouraged. This chapter may be a little steep. But, what I can suggest
+you is just practice, practice, practice. I'm sure that you'll be able to grasp this concept.
+See you next time.
+<p>&nbsp;
+<HR><H3>Where to go</H3>
+<p><b><a href="asml1009.html">Chapter 9</a><br>
+<a href="../news.html">News Page</a><br>
+<a href="asmles01.html">x86 Assembly Lesson 1 index</a><br>
+<a href="../faq.html">Contacting Me</a></B></P>
+<hr><p class="cpy">Roby Joehanes &copy; 2001</p>
+</body></html>

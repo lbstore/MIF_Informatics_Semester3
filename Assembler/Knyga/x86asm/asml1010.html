@@ -1,0 +1,452 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=en-us">
+<meta http-equiv="Content-Language" content="en-us">
+<link href="../style.css" rel="stylesheet" type="text/css">
+<title>x86 Assembly Lesson 1 Chapter 10</title>
+</head>
+
+<body background="../tile01.jpg">
+<CENTER>
+<h1>Subroutines</h1>
+<h2><b>Modular Approach For Assembly Language</b></h2>
+</CENTER><BR><BR><BR>
+<H3>Welcome</H3>
+<p>Hi! Welcome to the tenth chapter of this series. I hope that you
+really grasped the stack concept discussed in <a href="asml1009.html">the last chapter</a>.
+Now, I'm going to explain important concept in assembly language: Subroutine.
+The processor itself does not directly support with special instruction.
+Rather the assembler provide a mean to group codes into subroutines.
+Thus, MASM and TASM subroutine has its own unique formats. Fortunately,
+the difference is very small. So, you can learn both relatively easily.
+<p>&nbsp;
+
+<h3>Subroutine Syntax</h3>
+<p>OK, so, how is the syntax? Let's suppose we'd like to declare a procedure
+called <tt>printout</tt> that take a word as a parameter. Let's think that it is
+the print out discussed in <a href=asml1008.html>chapter 8</a>. We'd like to make
+it into a procedure now. So, the only thing we'd pass here is the word pointer
+that will go to DX.
+<p>&nbsp;
+<table align=center width=100% border=1>
+<tr><th>TASM</th><th>MASM</th></tr>
+<tr><td><pre>proc printout  msgptr:word
+     mov    dx, [msgptr]
+     mov    ah, 9
+     int    21h
+     ret
+endp</pre>
+</td><td><pre>printout proc  msgptr: word
+     mov    dx, msgptr
+     mov    ah, 9
+     int    21h
+     ret
+printout endp
+</pre></td></tr>
+</table>
+<p>Hmm.. it's pretty similar, isn't it? Note that MASM doesn't need the square bracket in
+referencing the parameters whereas TASM does. Note also that <b>you have to mention</b>
+the <tt>ret</tt> instruction to make sure that your subroutine properly returns to its
+caller. If you omit it, the processor will continue executing whatever instructions beneath
+it. So be careful! Beginning assembly programmer tends to forget this because of the features
+in high level languages.
+<p>Then how can we invoke it?
+<p>&nbsp;
+<table align=center width=80% border=1>
+<tr><th>TASM</th><th>MASM</th></tr>
+<tr><td><pre>call printout, offset message</pre>
+</td><td><pre>invoke printout, offset message</pre></td></tr>
+</table>
+<p>No big deal. In TASM we use the instruction <tt>call</tt> directly whereas in MASM
+we ought to use their proprietary instruction <tt>invoke</tt>. The <tt>invoke</tt> will
+be translated down to <tt>call</tt> after it is boiled down to executable code, however.
+<p>Now for the truth: The Intel x86 processor does provide a <tt>call</tt> instruction. However,
+the original <tt>call</tt> does <b>NOT</b> take any parameter at all. So, how does the assembler
+able to accept parameters? Well, that parameterized <tt>call</tt> or <tt>invoke</tt> instruction
+will be translated down to the original <tt>call</tt>. Then, the parameters are passed down through
+stack using <tt>push</tt> and <tt>pop</tt>. The transformation is automatic (and also tends to be
+pretty boring too). So, you don't have to do the same thing over and over again.
+If you're curious, the actual code would be like this: (Warning: a bit tech notes below)
+<pre>    push offset message
+    call printout
+    add  sp, 2</pre>
+<p>Note the last instruction. The SP register is added by 2. Why? We must restore the stack register
+too. You can do a <tt>pop</tt> instead, but the <tt>pop</tt> needs a victim register, which may not be
+available. That's why the assembler choose the <tt>add sp, 2</tt> instead. If you're confused about this,
+just forget it. This has been taken care of by assembler for you. :-)
+<p>&nbsp;
+
+<h3>More on Parameters and Local Variables</h3>
+<p>How can we add more parameters? It's easy. Look at the example declaration below:
+<table align=center width=80% border=1>
+<tr><th>TASM</th><th>MASM</th></tr>
+<tr><td><pre>proc myproc param1: word, param2: dword, param3: byte
+    local  mylocal1: word
+    local  mylocal2: byte
+
+    mov    [mylocal1], ax
+       :
+    ret
+endp</pre>
+</td><td><pre>myproc proc param1: word, param2: dword, param3: byte
+    local  mylocal1: word
+    local  mylocal2: byte
+
+    mov    mylocal1, ax
+       :
+       :
+    ret
+myproc endp</pre></td></tr>
+</table>
+<p>The example above delcare the procedure <tt>myproc</tt> that takes 3 parameters. It has
+two local variables. Note how the local variables are declared and used. Note also that we
+<b>can not</b> initialize local variables like in "global" variable because we don't have
+syntax like <tt>local blah:db  5</tt>. This would be illegal. Of course you can do a <tt>mov</tt>
+to assign it with a value later on.
+<p>Again, the local variables are actually "simulated" using stacks. The assembler are pretty
+smart to ease programmers with this. So, you don't have to deal with stacks and so on just to
+access local variables. Neat huh?
+<p>&nbsp;
+
+<h3>A Word of Caution</h3>
+<p>Since procedures are built with the help of stacks, you have to remember <b>not to modify SP
+and BP anytime in the subroutines</b>. It's because SP is used to store stack position and BP
+is used to store the stack position before entering the subroutine. If you mess around with
+these registers, you're toasted. Remember this!
+
+<p>Moreover, when you modify certain registers in a subroutine, it is likely you interfering
+the main program. Why? Suppose that the main program relies on AX register a lot. Then it
+calls the subroutine. The subroutine modifies AX, do something and returns. The AX register
+has changed. This may be not expected by the caller. What would happen? Chaos.
+
+<p>So how to cope this situation then? It's better for us to preserve the registers we're
+changing. Let's look at our first example <tt>printout</tt>. We're changing AH and DX right?
+Not only that, we have to look into the interrupt list definition of <tt>int 21h</tt> too:
+<pre>INT 21 - DOS - PRINT STRING
+        AH = 09h
+        DS:DX = address of string terminated by "$"
+Note:  Break checked, and INT 23h called if pressed
+</pre>
+<p>Ah we can see that after calling int 21h/09h, no output is changed. So, we're only obliged
+to save AX and DX. So, the code get revised like this:
+<table align=center width=100% border=1>
+<tr><th>TASM</th><th>MASM</th></tr>
+<tr><td><pre>proc printout  msgptr:word
+     push   dx
+     push   ax
+
+     mov    dx, [msgptr]
+     mov    ah, 9
+     int    21h
+
+     pop    ax
+     pop    dx
+     ret
+endp</pre>
+</td><td><pre>printout proc  msgptr: word
+     push   dx
+     push   ax
+
+     mov    dx, msgptr
+     mov    ah, 9
+     int    21h
+
+     pop    ax
+     pop    dx
+     ret
+printout endp</pre></td></tr>
+</table>
+<p>Ah... at the beginning we preserve DX and AX, then before returning, we restore them.
+Recall the LIFO nature of stack, that's why the <tt>pop</tt>ping order is in reverse from the
+<tt>push</tt>.
+<p>If we modify a lot of registers in our subroutine, we have to do a lot of <tt>push</tt>es and
+before returning, we're restoring them using lots of <tt>pop</tt>s. This can be very tedious. In
+80286 or better, we have <tt>pusha</tt> instruction, an abbreviation of "push all", which
+basically stores (almost) all registers. Also, we have the corresponding <tt>popa</tt> ("pop all")
+to pop into the appropriate registers.
+<p>&nbsp;
+
+<h3>How About Functions?</h3>
+<p>How about functions? We certainly want subroutines that can return some values too. How can we
+accomplish this? Usually, we designate registers to hold the output or result for our subroutine.
+As a convension, many programmers tend to choose AX for this purpose. If you have more than one
+output from the subroutine, you can select multiple registers to hold the results.
+<p>Due to this nature, the output registers need not to be saved nor restored because the caller
+itself expect those designated registers to change, right? Whereas, you still have to preserve
+others. For example: Let's make a subroutine to calculate 1+2+...+n.
+<p>&nbsp;
+<table align=center width=100% border=1>
+<tr><th>TASM</th><th>MASM</th></tr>
+<tr><td><pre>proc addup  n:word
+     push   cx
+
+     sub    ax, ax
+     mov    cx, [n]
+@@myloop:
+     add    ax, cx
+     loop   cx
+
+     pop    cx
+     ret
+endp</pre>
+</td><td><pre>addup proc  n: word
+     push   cx
+
+     sub    ax, ax
+     mov    cx, n
+@@myloop:
+     add    ax, cx
+     loop   cx
+
+     pop    cx
+     ret
+addup endp
+</pre></td></tr>
+</table>
+<a name="locallbl"></a>
+<p>Notice that in this subroutine, we modify CX and AX, but only CX is saved here. Why? It's because
+AX will hold the result. It wouldn't make any point if we restore AX too, would it?
+<p>Notice that here I introduce the label <tt>@@myloop</tt>. It's important to precede the label name
+with <tt>@@</tt> prefix. Why? It's to declare that this label only applies within this subroutine. This
+is to avoid labelling confusion in assembly. Thanks to the local labelling, you can have other
+<tt>@@myloop</tt> labels in different subroutines!
+<p>I think it is a good habit to <b>document</b> a subroutine. At least give a comment above it. One
+example of this comment for the subroutine above is like this:
+<pre>; -----------------------------------
+; |  addup
+; |     -- Adding 1 through n
+; |
+; |  input:
+; |     parameter n: word
+; |  returns:
+; |     result in AX
+; |  modifies:
+; |     AX
+; -----------------------------------</pre>
+<p>We have to clearly mention what register is modified in the subroutine so that we are not confused
+and know what to expect when calling this routine. Believe me, it will save a lot of sleepless nights
+to hunt bugs. :-)
+<p>&nbsp;
+
+<h3>Routine Placement</h3>
+<p>OK, you now understand how subroutine works. Now, where we should place this? Recall our very
+first program:
+<pre>ideal
+p286n
+model tiny
+
+codeseg
+   org 100h
+   jmp start
+
+   ; your data here
+
+   ; Area 1
+
+start:
+   mov ax, 4c00h
+   int 21h
+
+   ; Area 2
+end</pre>
+<P>You can place your subroutines either in area 1 or area 2. Pascal programmers will probably love
+area 1 better where as C/C++ programmers will prefer area 2. Example: Let's put our <tt>addup</tt>
+and <tt>printout</tt> example to the main program. Putting it into area 1 will look like this:
+<p>&nbsp;
+<table align=center width=100% border=1>
+<tr><th>TASM</th><th>MASM</th></tr>
+<tr><td><pre>ideal
+p286n
+model tiny
+
+codeseg
+   org 100h
+   jmp start
+
+   message db 'Hello World!$'
+
+   proc addup  n:word
+        push   cx
+
+        sub    ax, ax
+        mov    cx, [n]
+   @@myloop:
+        add    ax, cx
+        loop   cx
+
+        pop    cx
+        ret
+   endp
+
+   proc printout  msgptr:word
+        push   dx
+        push   ax
+
+        mov    dx, [msgptr]
+        mov    ah, 9
+        int    21h
+
+        pop    ax
+        pop    dx
+        ret
+   endp
+
+start:
+   call printout, offset message
+
+   mov  ax, 4c00h
+   int  21h
+end</pre>
+</td><td><pre>.286
+.model tiny
+
+.code
+   org 100h
+entry:
+   jmp start
+
+   message db 'Hello World!$'
+
+   addup proc  n: word
+        push   cx
+
+        sub    ax, ax
+        mov    cx, n
+   @@myloop:
+        add    ax, cx
+        loop   cx
+
+        pop    cx
+        ret
+   addup endp
+
+   printout proc msgptr:word
+        push   dx
+        push   ax
+
+        mov    dx, [msgptr]
+        mov    ah, 9
+        int    21h
+
+        pop    ax
+        pop    dx
+        ret
+   printout endp
+
+start:
+   call printout, offset message
+
+   mov ax, 4c00h
+   int 21h
+end entry</pre></td></tr>
+</table>
+<p>Or alternatively in the second area like this:
+<table align=center width=100% border=1>
+<tr><th>TASM</th><th>MASM</th></tr>
+<tr><td><pre>ideal
+p286n
+model tiny
+
+codeseg
+   org 100h
+   jmp start
+
+   message db 'Hello World!$'
+
+start:
+   call printout, offset message
+
+   mov  ax, 4c00h
+   int  21h
+
+   proc addup  n:word
+        push   cx
+
+        sub    ax, ax
+        mov    cx, [n]
+   @@myloop:
+        add    ax, cx
+        loop   cx
+
+        pop    cx
+        ret
+   endp
+
+   proc printout  msgptr:word
+        push   dx
+        push   ax
+
+        mov    dx, [msgptr]
+        mov    ah, 9
+        int    21h
+
+        pop    ax
+        pop    dx
+        ret
+   endp
+
+end</pre>
+</td><td><pre>.286
+.model tiny
+
+.code
+   org 100h
+entry:
+   jmp start
+
+   message db 'Hello World!$'
+
+start:
+   call printout, offset message
+
+   mov ax, 4c00h
+   int 21h
+
+   addup proc  n: word
+        push   cx
+
+        sub    ax, ax
+        mov    cx, n
+   @@myloop:
+        add    ax, cx
+        loop   cx
+
+        pop    cx
+        ret
+   addup endp
+
+   printout proc msgptr:word
+        push   dx
+        push   ax
+
+        mov    dx, [msgptr]
+        mov    ah, 9
+        int    21h
+
+        pop    ax
+        pop    dx
+        ret
+   printout endp
+
+end entry</pre></td></tr>
+</table>
+<p>Or you can put the subroutine in both areas. Whichever you prefer. Don't forget to
+give comments too!
+<p>&nbsp;
+
+<h3>Closing</h3>
+<p>OK, I think that's all for now. By this time, you should be able to program a lot
+of assembly with ease. Why don't you try to code your favourite subroutines just for
+exercise?
+<p>I'd like to thank you Victor Forsyuk who create a wonderful
+Norton Guides Database which excerpt is quoted for the interrupt list for this tutorial.
+See you next time.
+<p>&nbsp;
+<HR><H3>Where to go</H3>
+<p><b><a href="asml1011.html">Chapter 11</a><br>
+<a href="../news.html">News Page</a><br>
+<a href="asmles01.html">x86 Assembly Lesson 1 index</a><br>
+<a href="../faq.html">Contacting Me</a></B></P>
+<hr><p class="cpy">Roby Joehanes &copy; 2001</p>
+</body></html>

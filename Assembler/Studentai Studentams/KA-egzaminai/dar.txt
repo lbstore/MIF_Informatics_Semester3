@@ -1,0 +1,35 @@
+1. Duotos registru reiksmes ah=09, al=89, cx=0002(visos reiksmes 
+sesioliktainiai skaiciai). Klausimas: Kokia bus registro AX reiksme 
+ivykdzius komanda AAM.
+
+2. Duota registro AX reiksme ax=000B ir AF = 1.Klausimas: Kokia bus 
+registro AX reiksme ivykdzius komanda AAS.
+
+3. Uzrasyti desimataini skaiciu -37.37 koprocesoriaus vidiniu 
+formatu.
+
+4. Duotos registru reiksmes ax=0002, bx=0001, cx=0000, dx=0003 ir 
+tokia komanda FFFD E2 FD loop cikl1(pastaba:FFFD yra ip dabartine 
+reiksme).Klausimas: rasti registru ax, bx, cx, dx, ip suma ivykdzius 
+nurodyta komanda.
+
+5. Duotos registru cs,ds,ss,es,si,di,bp,bx reiksmes.Klausimas: pagal 
+adresavimo baita 7B(tiksliai neprisimenu koks buvo) ir prefiksini 
+baita 3E apskaiciuoti operando efektyvuji adresa atmintyje.
+
+6. Duotos registru cs,ds,ss,es,si,di,bp,bx reiksmes.Klausimas: pagal 
+adresavimo baita 7B(tiksliai neprisimenu koks buvo) ir prefiksini 
+baita 3E apskaiciuoti operando absoliutu adresa atmintyje.
+
+7. Parasyti mikrokomanda, kuri i registrus A ir D nusiuncia 
+sesioliktaine reiksme 8001.
+
+8. Duota registro SF reiksme SF = FFFF. Baitines sudeties operacija 
+sudeti du -138 ir -145 ir suformuoti pozymiu registra.
+
+9. Duotos registru SS ir SP reiksmes. Klausimas: kokia bus registro 
+SP reiksme ivykdzius komanda int 3
+
+10. I atminties baitus nuo 0 iki 255 yra surasytos desimtaines 
+reiksmes nuo 255 iki 0. Klausimas: kokiu absoliuciu adresu bus 
+perduotas valdymas ivykdzius komanda int 1B.

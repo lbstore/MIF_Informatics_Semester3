@@ -1,0 +1,252 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=en-us">
+<meta http-equiv="Content-Language" content="en-us">
+<link href="../style.css" rel="stylesheet" type="text/css">
+<title>x86 Assembly Lesson 1 Chapter 13</title>
+</head>
+
+<body background="../tile01.jpg">
+<CENTER>
+<h1>String Instructions</h1>
+<h2><b>MOVS, CMPS, LODS, SCAS, and STOS</b></h2>
+</CENTER><BR><BR><BR>
+<H3>Welcome</H3>
+<p>Hi! Welcome to the thirteenth chapter of this series. I hope that you really
+understand the array concepts we discussed in <a href=asml1012.html>the last chapter</a>.
+Now, I'm going to explain the basic string instruction. As you have noticed that
+in assembly, a string is basically an array. So, the instructions to do strings
+are also applicable into arrays. This turns out to be an invaluable concept.
+<p>There are five basic string instructions, which are also known as the "five brothers".
+Of course these instruction can be "emulated" with <tt>mov</tt>, <tt>cmp</tt>, <tt>loop</tt>
+and <tt>jmp</tt>. However, these five brothers are a lot faster since they are the "built-in"
+instructions. OK, straight to the stuff.
+<p>&nbsp;
+
+<h3>LES DI and LDS SI</h3>
+<p>String instructions typically uses DS:SI pair to denote the source string and ES:DI
+pair to denote the destination string. In "tiny" memory mode, we don't really care about
+setting DS and ES, right? So, the only thing we care is to set the register SI and DI
+to point to the source and destination offset respectively. However, you may find the
+instructions <tt>les di, [somestringvar]</tt> and <tt>lds si, [otherstringvar]</tt> in
+some programs. These instructions are used to set both ES and DI or both DS and SI
+respectively. So, you may think of it as a "combo" instruction.
+<p>&nbsp;
+
+<h3>Direction Flag</h3>
+<p>After setting source and/or destination register pairs, you may want to specify on
+how the string instruction is performed: Should it be performed backwards or forwards?
+Well, this may be a bit strange for you, but assembly can do these instructions in both
+directions.
+<p>Determining which way to go involves setting the <b>direction flag</b>. Intel x86
+assembly has two instructins for this: <tt>cld</tt> ("clear direction flag") and
+<tt>std</tt> ("set direction flag"). Clearing direction flag will cause the string
+instructions done <b>forward</b>. Setting it will make a reverse direction.
+Since we typically want to do the string instructions forward, we almost always
+put <tt>cld</tt> instruction after setting the register pairs.
+<p>&nbsp;
+
+<h3>MOVS</h3>
+<p>The instruction <tt>movs</tt> is used to copy source string into the destination
+(yes, copy, not move). This instruction has two variants: <tt>movsb</tt> and <tt>movsw</tt>.
+The <tt>movsb</tt> ("move string byte") moves one byte at a time, whereas <tt>movsw</tt>
+moves two bytes at a time.
+<p>Since we'd like to move several bytes at a time, these <tt>movs</tt> instructions are
+done in batches using <tt>rep</tt> prefix. The number of movements is specified by CX
+register. See the example below:
+<pre>    :
+   lds   si, [src]
+   les   di, [dest]
+   cld
+   mov   cx, 100
+   rep   movsb
+    :</pre>
+<p>This example will copy 100 bytes from <tt>src</tt> to <tt>dest</tt>. If you replace
+<tt>movsb</tt> with <tt>movsw</tt>, you copy 200 bytes instead.
+If you remove the <tt>rep</tt> prefix, the CX register will have no effect. You will
+move one byte (if it is <tt>movsb</tt>, or 2 bytes if it is <tt>movsw</tt>).
+<p>Assembly gurus use this instruction a lot, because arrays can be copied in the
+very same way. You can use this to emulate C/C++'s <tt>strcpy</tt>.
+<p>&nbsp;
+
+<h3>CMPS</h3>
+<p>The instruction <tt>cmps</tt> is used to compare two strings. It also has two variants:
+<tt>cmpsb</tt> and <tt>cmpsw</tt>. The <tt>cmpsb</tt> is to compare one byte at a time
+and <tt>cmpsw</tt> will compare two bytes at a time. Usually, we tend to use more of
+<tt>cmpsb</tt>. Let's look at the example below:
+<pre>    :
+   lds   si, [src]
+   les   di, [dest]
+   cld
+   mov   cx, 100
+   rep   cmpsb
+   jne   @@mismatch
+@@match:
+     :
+     :
+
+@@mismatch:
+   dec   si
+   dec   di
+     :</pre>
+<p>After the <tt>rep cmpsb</tt>, the zero flag is set if the result is equal. If the strings
+are not equal, then the zero flag is cleared. Thus, typically, after a <tt>rep cmpsb</tt> you
+do a <tt>jne @@somelabel</tt> to detect mismatches.
+<p>If there is a mismatch, then SI and DI point one byte further from the mismatch point. So,
+you need to decrement them by one like the example above.
+<p>If you replace the prefix <tt>rep</tt> with <tt>repne</tt>, it means that you want to make
+sure that all elements in the strings are completely not the same. The <tt>repne</tt> is
+seldom used in conjunction of <tt>cmpsb</tt> though.
+<p>C/C++ users: Why don't you use this for doing <tt>strcmp</tt>?
+<p>&nbsp;
+
+<h3>SCAS</h3>
+<p>The instruction <tt>scas</tt> is used to scan a string pointed by ES:DI. So, this time
+DS:SI is not used. This instruction is typically used for searching a particular character
+in a string. As with other string instructions, <tt>scas</tt> also has two variants:
+<tt>scasb</tt> and <tt>scasw</tt>. In <tt>scasb</tt>, the string ES:DI is searched for
+the occurence of the element specified by the register AL, whereas in <tt>scasw</tt>,
+the element to be searched is in AX. Look at the following example:
+<pre>   :
+   les   di, [msg]
+   mov   al, 65      ; --> 65 is the ASCII code for capital A.
+   cld
+   mov   cx, 1000    ; --> search within 1000 bytes
+   rep   scasb
+   je    @@found
+
+@@notfound:
+   :
+   :
+@@found:
+   dec   di          ; --> If we found it, DI always point 1 byte further, just like in cmps
+   :</pre>
+<p>As it is in <tt>cmps</tt> instruction, we must check with either <tt>jne</tt> or <tt>je</tt>
+to assert whether it really finds it or not.
+<p>Let's look at the following procedure. This procedure is used to calculate the string
+length (C/C++: <tt>strlen</tt>, Pascal: <tt>length</tt>).
+<pre>; -- String length, result in AX
+proc strlen strpointer: dword
+   push  es
+   push  di
+   push  si
+   push  cx
+
+   les   di, [strpointer]
+   mov   si, di
+   sub   al, al
+
+   cld
+   mov   cx, 10000    ; --> Scanning within the first 10000 bytes
+   rep   scasb
+   je    @@found
+
+   mov   ax, -1       ; --> When we can't find it, return -1
+   jmp   @@quit
+
+@@found:
+   sub   si, di
+   mov   ax, si
+   inc   ax
+
+@@quit:
+   pop   cx
+   pop   si
+   pop   di
+   pop   es
+   ret
+endp</pre>
+<p>Well, in building <tt>strcpy</tt>, you'll need this function. To invoke this
+function, do <tt>call strlen, @data, offset mystr</tt> (TASM) or <tt>invoke strlen,
+seg data, offset mystr</tt> (MASM).
+<p>&nbsp;
+
+<h3>STOS</h3>
+<p>The <tt>stos</tt> instruction bombard the string pointed by ES:DI pair with the
+value in the accumulator. So, it is great when you'd like to initialize arrays (usually
+with zeroes). As with the other brothers, it has two variants: <tt>stosb</tt>
+and <tt>stosw</tt>. In <tt>stosb</tt>, all bytes in the string ES:DI is replaced with
+whatever AL contains. In <tt>stosw</tt>, the initializator is AX instead of AL.
+<p>Look at the following example:
+<pre>   :
+   les   di, [myarray]
+   sub   ax, ax        ; --> AX = 0
+   cld
+   mov   cx, 100
+   rep   stosw
+   :</pre>
+<p>This excerpt will initialize 200 bytes of <tt>myarray</tt> by 0.
+<p>&nbsp;
+
+<h3>LODS</h3>
+<p>The <tt>lods</tt> instruction will load a chunk (either a byte or a word) from
+the string pointed by DS:SI into accumulator. As always, it has two variants: <tt>lodsb</tt>
+and <tt>lodsw</tt>. Unlike the other brothers, this <tt>lods</tt> instruction usually
+never comboed with <tt>rep</tt> prefix. Why? Because we usually interested in fetching
+a byte (or a word) at a time and then examine it. If we use <tt>rep stosb</tt> or <tt>rep
+stosw</tt>, the value in accumulator gets overwritten. Thus, the <tt>rep</tt> prefix makes
+no sense here.
+<p>The <tt>lods</tt> instruction actually replaceable by the normal <tt>mov</tt>. But, I think
+the <tt>lods</tt> is faster. Look at the following example:
+<pre>   :
+   lds   si, [mystr]
+   cld
+   lodsb
+   ;  now AL contains the first byte pointed by DS:SI
+   :</pre>
+<p>The excerpt above is actually equivalent to:
+<pre>   :
+   lds   si, [mystr]
+   mov   al, [si]
+   inc   si
+   ;  now AL contains the first byte pointed by DS:SI
+   :</pre>
+<p>The other advantage in <tt>lods</tt> is that this instruction can go backward or forward
+depending the direction flag. The processor will take care of this automatically (which
+may be handy when you'd like to reverse a string, for example). In the manual way, you
+have to keep track this yourself.
+<p>&nbsp;
+
+<h3>Quick Facts</h3>
+<p>After a blitz introduction with the five brothers, you'd probably feel a little overwhelmed.
+Let me summarize it for you:
+<ul>
+<li>String instructions usually use DS:SI pair or ES:DI pair or both. Setting this
+register pair can be achieved using <tt>lds si</tt> and <tt>les di</tt> instructions.</li>
+<li><tt>movs</tt> and <tt>cmps</tt> instructions will need both. <tt>scas</tt> and <tt>stos</tt>
+will need only ES:DI pair. <tt>lods</tt> will need only DS:SI pair.</li>
+<li>String instructions use the direction flag to determine the direction of the operation.
+Clearing the flag using <tt>cld</tt> will cause the operations done forward, setting the flags
+using <tt>std</tt> will make them run backward.</li>
+<li>The string instructions always have two variants. One is by adding the letter 'b', the other
+is to mount the letter 'w' which signify byte order or word order respectively.</li>
+<li>The byte order instructions are done byte per byte, whereas the word order ones are done per
+two bytes.</li>
+<li>Among the string instructions that need accumulator (either AX or AL) are <tt>scas</tt>, <tt>stos</tt>,
+and <tt>lods</tt>.</li>
+<li>In byte order instruction, the accumulator means AL, whereas in the word order one, it means AX.</li>
+<li>All instructions are usually prefixed by <tt>rep</tt> or its variants (e.g. <tt>repne</tt>), except
+<tt>lods</tt>.</li>
+<li>All instructions which need <tt>rep</tt> prefix or its variants, needs to set CX as the counter.</li>
+<li>After doing <tt>rep</tt>, the instructions <tt>cmps</tt> and <tt>scas</tt> will set the zero
+flag, which must be checked to detect whether a match or mismatch was found. The detection can be done
+using <tt>je</tt> or <tt>jne</tt> instructions.</li>
+</ul>
+<p>&nbsp;
+
+<h3>Closing</h3>
+<p>Whew! A pretty long chapter. OK, I think that's all for now. By the way, 80386 processors or better
+include one more variant by augmenting the letter 'd'. So, we'll have <tt>movsd</tt>, and so on. The
+operation is done per 4-bytes at a time. Therefore, it's twice speedier than the w-variant and four times
+faster than the b-variant. Wonderful, isn't it? If the d-variant instructions ever need the
+accumulator, it means EAX, the extended version of AX. I'll explain more of this in the second lesson.
+<p>See you next time.
+<p>&nbsp;
+<HR><H3>Where to go</H3>
+<p><b><a href="asml1014.html">Chapter 14</a><br>
+<a href="../news.html">News Page</a><br>
+<a href="asmles01.html">x86 Assembly Lesson 1 index</a><br>
+<a href="../faq.html">Contacting Me</a></B></P>
+<hr><p class="cpy">Roby Joehanes &copy; 2001</p>
+</body></html>

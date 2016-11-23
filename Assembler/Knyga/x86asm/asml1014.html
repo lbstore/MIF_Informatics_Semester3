@@ -1,0 +1,110 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=en-us">
+<meta http-equiv="Content-Language" content="en-us">
+<link href="../style.css" rel="stylesheet" type="text/css">
+<title>x86 Assembly Lesson 1 Chapter 14</title>
+</head>
+
+<body background="../tile01.jpg">
+<CENTER>
+<h1>Structure in Assembly</h1>
+</CENTER><BR><BR><BR><BR>
+<H3>Welcome</H3>
+<p>Hi! Welcome to the fourteenth chapter of this series. Now, we're going to
+discover how we can group several datatypes just like those in high level
+languages. This grouping is actually done by the assembler, not by the Intel
+x86 instructions. Assembler will later expand the structure into the variables
+we know so far. Of course, we don't have to care about the expansion like the one
+in macros.
+<p>Note that the structure in assembly is equivalent to <tt>struct</tt> in C/C++ or
+<tt>record</tt> in Pascal. So, you won't be surprised here. This chapter is going to
+be a short one.
+<p>&nbsp;
+
+<h3>Defining Structure</h3>
+<p>Defining structure is just similar to defining subroutines and macros, except now
+we won't have parameters, of course. Examine the excerpt below:
+<p>&nbsp;
+<table width=70% border=1 align=center>
+<tr><th>TASM</th><th>MASM</th></tr>
+<tr><td><pre>
+struct circle
+   x       dw ?
+   y       dw ?
+   radius  dw ?
+ends</pre></td><td><pre>
+circle struct
+   x       dw ?
+   y       dw ?
+   radius  dw ?
+circle ends</pre></td></tr></table>
+<p>That's the structure type definition. To declare the variable is like this:
+<pre>a  circle  <0>
+b  circle  <0></pre>
+<p>This define <tt>a</tt> and <tt>b</tt> as a variable of type <tt>circle</tt>.
+Then, we can use the variable as usual. For example:
+<pre>   :
+   mov   [a.x], ax
+   mov   [a.y], bx
+   mov   [word ptr a.radius], 50
+   :
+   :</pre>
+<p>Simple right? Most of the instructions can be applied in structures. The rule
+of thumb is that if we can apply an instruction into a variable, then we can
+also apply it into structures. Simple, no?
+<p>&nbsp;
+
+<h3>Memory Map</h3>
+<p>If we declare these variables:
+<pre>a  circle  <0>
+b  circle  <0></pre>
+<p>The memory map (see <a href="asml1002.html">here</a> to refresh) is like this (Suppose
+the variable <tt>a</tt> starts at address 100h):
+<p>&nbsp;
+<div align="center">
+  <table border="1" width="25%" height="20">
+    <tr>
+      <td width="50%" height="20" align=center><b>Address</b></td>
+      <td width="50%" height="20" align=center><b>Variable</b></td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>100h</td>
+      <td width="50%" height="20" align=center>a.x</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>101h</td>
+      <td width="50%" height="20" align=center>a.y</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>102h</td>
+      <td width="50%" height="20" align=center>a.radius</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>103h</td>
+      <td width="50%" height="20" align=center>b.x</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>104h</td>
+      <td width="50%" height="20" align=center>b.y</td>
+    </tr>
+    <tr>
+      <td width="50%" height="20" align=center>105h</td>
+      <td width="50%" height="20" align=center>b.radius</td>
+    </tr>
+  </table>
+</div>
+<p>So, it's similar with having two stacks of <tt>x</tt>, <tt>y</tt> and <tt>radius</tt>, right?
+<p>&nbsp;
+
+<h3>Closing</h3>
+<p>OK, I think that's all for now. See you next time.
+<p>&nbsp;
+<HR><H3>Where to go</H3>
+<p><b><a href="asml1015.html">Chapter 15</a><br>
+<a href="../news.html">News Page</a><br>
+<a href="asmles01.html">x86 Assembly Lesson 1 index</a><br>
+<a href="../faq.html">Contacting Me</a></B></P>
+<hr><p class="cpy">Roby Joehanes &copy; 2001</p>
+</body></html>

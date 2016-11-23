@@ -1,0 +1,90 @@
+h1 { font-family: Arial, helvetica, sans-serif; color: darkblue; bottom-padding: 0em }
+h2 { font-family: Arial, helvetica, sans-serif; color: darkblue; bottom-padding: 0em }
+h3 { font-family: Arial, helvetica, sans-serif; color: darkblue; bottom-padding: 0em }
+h4 { font-family: Arial, helvetica, sans-serif; color: darkblue; top-padding: .2em }
+h5 { font-family: Arial, helvetica, sans-serif; color: darkblue; top-padding: .2em }
+
+body { background: white }
+title { font-family: Ariel, helvetica, sans-serif; color: black }
+A:link { color: black; text-decoration: none }
+A:visited { color: black }
+A:active { color: black }
+h4 { margin-left: 0%; margin-right: 0% }
+h3 { margin-left: 0%; margin-right: 0% }
+h2 { margin-left: 0%; margin-right: 0% }
+h1 { text-align: center; margin-left: 0%; margin-right: 0% }
+
+body { font-family: Times-Roman, times; font-size: 11pt; }
+body { margin-left: .5in; margin-right: .5in; margin-top: 0.0in; margin-bottom: 0.0in }
+
+p.page { page-break-after: always }
+
+span.key-term {font-weight:bold}
+span.SchemeCharacter {font-family:"Courier New";font-size:10pt;}
+p.SchemeInteractions {
+	font-family:"Courier New";
+	font-size:10pt;
+	margin-top:0pt;
+	margin-bottom:0pt; }
+p.SchemeOutput {
+	font-family:"Courier New";
+	font-size:10pt;
+	margin-top:0pt;
+	margin-bottom:0pt; 
+	padding: 3pt;
+	border: solid 1pt black;
+	color: purple;}
+p.Explain {
+	margin-top:0pt;
+	font-face:"Italics";
+	margin-left: 60pt;
+	margin-bottom:0pt; 
+	padding: 3pt;
+	color: grey;}
+pre.SchemeOutput {
+	font-family:"Courier New";
+	font-size:10pt;
+	font-face:bold;
+	margin-top:0pt;
+	margin-bottom:0pt; 
+	padding: 3pt;
+	border: solid 1pt black;
+	color: purple;}
+p.SchemeResults {
+	font-family:"Courier New";
+	font-size:10pt;
+	margin-top:0pt;
+	margin-bottom:.2em; 
+	color: #333399;}		
+p.SchemeError {
+	font-family:"Courier New";
+	font-size:10pt;
+	margin-top:0pt;
+	margin-bottom:.2em; 
+	color: #FF0000;}		
+
+p.SchemeInteractionsSmall {
+	font-family:"Courier New";
+	font-size:8pt;
+	margin-top:0pt;
+	margin-bottom:0pt; }
+p.SchemeOutputSmall {
+	font-family:"Courier New";
+	font-size:8pt;
+	margin-top:0pt;
+	margin-bottom:0pt; 
+	padding: 3pt;
+	border: solid 1pt black;
+	color: purple;}
+p.SchemeResultsSmall {
+	font-family:"Courier New";
+	font-size:8pt;
+	margin-top:0pt;
+	margin-bottom:.2em; 
+	color: #333399;}		
+p.SchemeError {
+	font-family:"Courier New";
+	font-size:10pt;
+	margin-top:0pt;
+	margin-bottom:.2em; 
+	color: #FF0000;}		

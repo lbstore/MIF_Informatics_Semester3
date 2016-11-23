@@ -1,0 +1,89 @@
+{VERSION 5 0 "IBM INTEL NT" "5.0" }
+{USTYLETAB {CSTYLE "Maple Input" -1 0 "Courier" 0 1 255 0 0 1 0 1 0 0 
+1 0 0 0 0 1 }{CSTYLE "2D Math" -1 2 "Times" 0 1 0 0 0 0 0 0 2 0 0 0 0 
+0 0 1 }{CSTYLE "2D Output" 2 20 "" 0 1 0 0 255 1 0 0 0 0 0 0 0 0 0 1 }
+{PSTYLE "Normal" -1 0 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 
+2 2 1 1 1 1 }1 1 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Maple Output" -1 
+11 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }3 3 0 
+0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Maple Plot" -1 13 1 {CSTYLE "" -1 -1 "
+Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }3 1 0 0 0 0 1 0 1 0 2 2 0 1 }
+}
+{SECT 0 {EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 57 "#                   \+
+           Specialioji uzduotis Nr 32" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 24 "DL:=diff(P(t),t)=k*P(t);" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#>%#DLG/-%%diffG6$-%\"PG6#%\"tGF,*&%\"k
+G\"\"\"F)F/" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 38 "#                            Simbol
+iai" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 23 "# P(t) - suma (centa
+is)" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 0 "
+> " 0 "" {MPLTEXT 1 0 24 "Pradine_salyga_P(0):=30;" }}{PARA 11 "" 1 "
+" {XPPMATH 20 "6#>-%1Pradine_salyga_PG6#\"\"!\"#I" }}}{EXCHG {PARA 0 "
+> " 0 "" {MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+39 "Bendrasis_sprendinis1:=dsolve(DL,P(t));" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#>%6Bendrasis_sprendinis1G/-%\"PG6#%\"tG*&%$_C1G\"\"\"-%
+$expG6#*&%\"kGF,F)F,F," }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" 
+}}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 0 "> " 
+0 "" {MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 47 "# \+
+                        Konstantos _C radimas" }}}{EXCHG {PARA 0 "> " 
+0 "" {MPLTEXT 1 0 1 " " }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 79 "_
+C:=evalf(solve(subs(P(t)=Pradine_salyga_P(0),t=0,Bendrasis_sprendinis1
+),_C1));" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%#_CG$\"#I\"\"!" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 0 "> " 0 "
+" {MPLTEXT 1 0 59 "Atskirasis_sprendinis1:=subs(_C1=_C,Bendrasis_spren
+dinis1);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%7Atskirasis_sprendinis1G
+/-%\"PG6#%\"tG,$-%$expG6#*&%\"kG\"\"\"F)F0$\"#I\"\"!" }}}{EXCHG {PARA 
+0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 
+0 0 "" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 50 "#                 \+
+            konstantos k radimas" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 63 "_k:=eva
+lf(solve(subs(P(t)=31.5,t=1,Atskirasis_sprendinis1),k));" }}{PARA 11 "
+" 1 "" {XPPMATH 20 "6#>%#_kG$\"+<k,z[!#6" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 65 "Atskirasis_sprendinis1:=eval
+f(subs(k=_k,Atskirasis_sprendinis1));" }}{PARA 11 "" 1 "" {XPPMATH 20 
+"6#>%7Atskirasis_sprendinis1G/-%\"PG6#%\"tG,$-%$expG6#,$F)$\"+<k,z[!#6
+$\"#I\"\"!" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 77 "plot(rhs(Atskirasis_sprendinis1),t=0..120,P=0..5000,t
+hickness=1,color=green);" }}{PARA 13 "" 1 "" {GLPLOT2D 400 300 300 
+{PLOTDATA 2 "6'-%'CURVESG6#7V7$$\"\"!F)$\"#IF)7$$\"3*)*******\\ech#!#<
+$\"3=>ZVc\"e$3M!#;7$$\"3%******\\(*G:*[F/$\"3->eZXZj3QF27$$\"3c******
+\\L)4X(F/$\"3#)yw#)4V@:VF27$$\"38+++X.u-5F2$\"3E)=4%Q=A$*[F27$$\"3)***
+**\\Fy:f7F2$\"3E;N'GOP`a&F27$$\"3))****\\d'*)o\\\"F2$\"3&*[>`QrKFiF27$
+$\"3(*****\\(>ZIu\"F2$\"3F-Ag'f)*>-(F27$$\"3-++]xOi(*>F2$\"3=5!R1np1&z
+F27$$\"3-++]FPQ^AF2$\"3YdjolQd)**)F27$$\"32+++IrS7DF2$\"3))R2'=)[2A5!#
+:7$$\"37+++&o;Bu#F2$\"3I:wOw>SV6Fjn7$$\"37+++!RS6+$F2$\"3Yj&G&HVI(H\"F
+jn7$$\"3m******\\o-hKF2$\"3Qz)y$=aos9Fjn7$$\"35+++5cZ6NF2$\"3#y\"[@'z&
+4k;Fjn7$$\"30++]xq!*QPF2$\"3iLUmubQf=Fjn7$$\"31+++!4X$4SF2$\"3\\<4\\;#
+[;7#Fjn7$$\"3q******f:WQUF2$\"3_fdM$fgDP#Fjn7$$\"3d****\\<_$\\]%F2$\"3
+a<llg1+-FFjn7$$\"3m******fs#3u%F2$\"3Xp2?5?eJIFjn7$$\"33++]<#Q'**\\F2$
+\"33MW[TFhRMFjn7$$\"39++]_u3Y_F2$\"3kG6J*)\\4zQFjn7$$\"3,+++v8B.bF2$\"
+3c\"Gza1<wR%Fjn7$$\"3d++]n(p$RdF2$\"3Js&f'GthM\\Fjn7$$\"3C+++Dp2%*fF2$
+\"3Qqx)[(\\e(e&Fjn7$$\"3#*****\\xgkeiF2$\"3%ffXO\\suN'Fjn7$$\"3[****\\
+-V&*)['F2$\"3>Ia\"RMIN6(Fjn7$$\"3h+++&\\$pPnF2$\"3\"QRQ_V+9.)Fjn7$$\"3
+w******>am%*pF2$\"3<)R#4N3?/\"*Fjn7$$\"3O+++:B1YsF2$\"3X\"3p,wE#H5!#97
+$$\"3'*****\\P<I*[(F2$\"3mHqNrb\"*e6Fjt7$$\"3I*****\\kx$fxF2$\"3.o@a/Z
+9A8Fjt7$$\"3;******fG0-!)F2$\"3uHY-\">L$)[\"Fjt7$$\"3')******\\/;h#)F2
+$\"3#eJ)3It*))o\"Fjt7$$\"3Y****\\P/&f\\)F2$\"3)Q2y())\\)Q*=Fjt7$$\"3S,
+++5zj_()F2$\"3eu%>-=kl9#Fjt7$$\"3!*****\\<3;%**)F2$\"3w\\lqv3-:CFjt7$$
+\"3_++]Z=iY#*F2$\"3lbqk91fJFFjt7$$\"39******\\'[M\\*F2$\"3ey.l@e<\"3$F
+jt7$$\"3;++]PM&=v*F2$\"3+\"QYc$))=&\\$Fjt7$$\"3/+++'zs++\"Fjn$\"3O\">#
+)[:Rk%RFjt7$$\"33++]5Q_D5Fjn$\"3Y)R]hs<#oWFjt7$$\"33++vxSw]5Fjn$\"3u\"
+y_\\4%y`]Fjt7$$\"37+++is&R2\"Fjn$\"3w]X8`IGfcFjt7$$\"36++]o#R05\"Fjn$
+\"3UL.h81)HW'Fjt7$$\"3$******>`9V7\"Fjn$\"3C)4Sl\"*RaB(Fjt7$$\"3,+](oA
+*)p8\"Fjn$\"3Q%3L6M/qp(Fjt7$$\"35++v@Rm\\6Fjn$\"3AtOpiH,)=)Fjt7$$\"33+
+++A_zh6Fjn$\"3S[/AR:G(o)Fjt7$$\"31++DAl#R<\"Fjn$\"3\"H(\\u!H$*p@*Fjt7$
+$\"3-+]7hK'p=\"Fjn$\"3@lzO(G+B#)*Fjt7$$\"$?\"F)$\"3a\\H2dftY5!#8-%+AXE
+SLABELSG6$Q\"t6\"Q\"PF^\\l-%*THICKNESSG6#\"\"\"-%'COLOURG6&%$RGBGF($\"
+*++++\"!\")F(-%%VIEWG6$;F(Fe[l;F($\"%+]F)" 1 2 0 1 10 1 2 6 1 4 2 
+1.000000 45.000000 45.000000 0 0 "Curve 1" }}}}{EXCHG {PARA 0 "> " 0 "
+" {MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 61 "Suma_centais:=evalf(subs(t=2
+00,rhs(Atskirasis_sprendinis1)));" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>
+%-Suma_centaisG$\"+YUx(=&!\"%" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 
+0 30 "Suma_litais:=Suma_centais*.01;" }}{PARA 11 "" 1 "" {XPPMATH 20 "
+6#>%,Suma_litaisG$\"+YUx(=&!\"'" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 
+1 0 0 "" }}}}{MARK "30 0 0" 0 }{VIEWOPTS 1 1 0 1 1 1803 1 1 1 1 }
+{PAGENUMBERS 0 1 2 33 1 1 }
+

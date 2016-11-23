@@ -1,0 +1,135 @@
+Turbo Assembler	 Version 3.1	    09/08/09 17:00:21	    Page 1
+pvz2.asm
+
+
+
+      1				     ;***************************************************************
+      2				     ; Programa	pakeièianti didþiàsias raides maþosiomis
+      3				     ;***************************************************************
+      4
+      5	0000			     .model small
+      6
+      7	      =0079		     buferioDydis    EQU     121
+      8
+      9	0000			     .stack 100h
+     10
+     11	0000			     .data
+     12					     ;eilutës nuskaitymo buferis
+     13	0000  79			     bufDydis DB  buferioDydis		     ;kiek maksimaliai simboliø	galima nuskaityti
+     14	0001  ??			     nuskaite DB  ?			     ;èia bus patalpinta, kiek simboliø	nuskaityta
+     15	0002  79*(??)			     buferis  DB  buferioDydis dup (?)	     ;èia bus talpinami	nuskaityti simboliai
+     16
+     17					     ;kiti duomenys
+     18	007B  ??				      DB  ?
+     19	007C  52 65 7A 75 6C 74	61+	     rezult   DB  'Rezultatas yra : $'
+     20	      74 61 73 20 79 72	61+
+     21	      20 3A 20 24
+     22	008E  49 76 65 73 6B 69	74+	     ivesk    DB  'Iveskite eilute: $'
+     23	      65 20 65 69 6C 75	74+
+     24	      65 3A 20 24
+     25	00A0  0D 0A 24			     enteris  DB  13, 10, '$'
+     26
+     27	00A3			     .code
+     28
+     29	0000			     Pradzia:
+     30	0000  B8 0000s			     MOV     ax, @data		     ;reikalinga kiekvienos programos pradþioj
+     31	0003  8E D8			     MOV     ds, ax		     ;reikalinga kiekvienos programos pradþioj
+     32
+     33				     ;****nuskaito eilute****
+     34	0005  B4 09			     MOV     ah, 9
+     35	0007  BA 008Er			     MOV     dx, offset	ivesk
+     36	000A  CD 21			     INT     21h		     ;spausdinamas praðymas ávesti eilutæ
+     37
+     38	000C  B4 0A			     MOV     ah, 0Ah
+     39	000E  BA 0000r			     MOV     dx, offset	bufDydis
+     40	0011  CD 21			     INT     21h		     ;nuskaitoma ávesta	eilutë
+     41
+     42	0013  B4 09			     MOV     ah, 9
+     43	0015  BA 00A0r			     MOV     dx, offset	enteris
+     44	0018  CD 21			     INT     21h		     ;kursorius	nukeliamas á naujà eilutæ
+     45
+     46				     ;****algoritmas****
+     47	001A  33 C0			     XOR     ax, ax		     ;nunulinamas ax
+     48	001C  8A 0E 0001r		     MOV     cl, nuskaite	     ;á	cl ádedama kiek	simboliø buvo nuskaityta
+     49									     ;cl - kiek	simboliø liko perþiûrëti
+     50	0020  BB 0002r			     MOV     bx, offset	buferis	     ;á	bx ádedamas pirmojo nuskaityto simbolio	adresas
+     51									     ;bx - einamojo simbolio adresas
+     52	0023  B2 41			     MOV     dl, 'A'
+     53	0025  B6 5A			     MOV     dh, 'Z'
+     54
+     55	0027			     ciklas:
+     56	0027  38 17			     CMP     [ds:bx], dl	     ;jei einamasis simbolis maþesnis uþ 'A'
+     57	0029  72 07			     JB	     nekeisti		     ;tokiu atveju tai ne didþioji raidë
+Turbo Assembler	 Version 3.1	    09/08/09 17:00:21	    Page 2
+pvz2.asm
+
+
+
+     58	002B  38 37			     CMP     [ds:bx], dh	     ;jei einamasis simbolis didesnis uþ 'Z'
+     59	002D  77 03			     JA	     nekeisti		     ;tokiu atveju tai ne didþioji raidë
+     60	002F  80 07 20			     ADD     byte ptr [ds:bx], 20h   ;prieðingu	atveju keièiame	didþiàjà raidæ á maþàjà
+     61
+     62	0032			     nekeisti:
+     63	0032  43			     INC     bx			     ;perstumiame adresà vienu baitu á prieká -
+     64									     ;á	kità nuskaitytà	simbolá
+     65	0033  FE C9			     DEC     cl			     ;sumaþiname simboliø, kuriuos reikia perþiûrëti, skaièiø
+     66	0035  80 F9 00			     CMP     cl, 0		     ;jei dar yra simboliø, kuriuos reikia perþiûrëti
+     67	0038  75 ED			     JNE     ciklas		     ;einam á ciklas
+     68
+     69	003A  C6 07 24			     MOV byte ptr [ds:bx], '$'	     ;buferio gale áraðome '$'
+     70
+     71	003D  B4 09			     MOV     ah, 9
+     72	003F  BA 007Cr			     MOV     dx, offset	rezult
+     73	0042  CD 21			     INT     21h		     ;spausdiname rezultato þinutæ
+     74
+     75	0044  B4 09			     MOV     ah, 9
+     76	0046  BA 0002r			     MOV     dx, offset	buferis
+     77	0049  CD 21			     INT     21h		     ;spausdiname pakeistà ávestàjà eilutæ
+     78
+     79	004B  B4 4C			     MOV     ah, 4Ch		     ;reikalinga kiekvienos programos pabaigoj
+     80	004D  B0 00			     MOV     al, 0		     ;reikalinga kiekvienos programos pabaigoj
+     81	004F  CD 21			     INT     21h		     ;reikalinga kiekvienos programos pabaigoj
+     82
+     83				     END     Pradzia
+Turbo Assembler	 Version 3.1	    09/08/09 17:00:21	    Page 3
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "09/08/09"
+??FILENAME			  Text	 "pvz2	  "
+??TIME				  Text	 "17:00:21"
+??VERSION			  Number 030A
+@32BIT				  Text	 0
+@CODE				  Text	 _TEXT
+@CODESIZE			  Text	 0
+@CPU				  Text	 0101H
+@CURSEG				  Text	 _TEXT
+@DATA				  Text	 DGROUP
+@DATASIZE			  Text	 0
+@FILENAME			  Text	 PVZ2
+@INTERFACE			  Text	 00H
+@MODEL				  Text	 2
+@STACK				  Text	 DGROUP
+@WORDSIZE			  Text	 2
+BUFDYDIS			  Byte	 DGROUP:0000
+BUFERIODYDIS			  Number 0079
+BUFERIS				  Byte	 DGROUP:0002
+CIKLAS				  Near	 _TEXT:0027
+ENTERIS				  Byte	 DGROUP:00A0
+IVESK				  Byte	 DGROUP:008E
+NEKEISTI			  Near	 _TEXT:0032
+NUSKAITE			  Byte	 DGROUP:0001
+PRADZIA				  Near	 _TEXT:0000
+REZULT				  Byte	 DGROUP:007C
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+DGROUP				  Group
+  STACK				  16  0100 Para	  Stack	  STACK
+  _DATA				  16  00A3 Word	  Public  DATA
+_TEXT				  16  0051 Word	  Public  CODE
+

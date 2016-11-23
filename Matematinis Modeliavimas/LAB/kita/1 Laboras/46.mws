@@ -1,0 +1,303 @@
+{VERSION 5 0 "IBM INTEL NT" "5.0" }
+{USTYLETAB {CSTYLE "Maple Input" -1 0 "Courier" 0 1 255 0 0 1 0 1 0 0 
+1 0 0 0 0 1 }{CSTYLE "2D Math" -1 2 "Times" 0 1 0 0 0 0 0 0 2 0 0 0 0 
+0 0 1 }{CSTYLE "2D Output" 2 20 "" 0 1 0 0 255 1 0 0 0 0 0 0 0 0 0 1 }
+{CSTYLE "" 0 21 "" 0 1 0 0 0 1 0 0 0 0 2 0 0 0 0 1 }{CSTYLE "" -1 260 
+"" 0 14 0 0 0 0 0 2 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 261 "" 1 14 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 262 "" 1 14 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 }{PSTYLE "Normal" -1 0 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 
+1 2 2 2 2 2 2 1 1 1 1 }1 1 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Maple Out
+put" -1 11 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 
+1 }3 3 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Maple Plot" -1 13 1 {CSTYLE "
+" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }3 1 0 0 0 0 1 0 1 0 
+2 2 0 1 }{PSTYLE "Normal" -1 256 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 
+0 1 2 2 2 2 2 2 1 1 1 1 }3 1 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Normal
+" -1 257 1 {CSTYLE "" -1 -1 "Times" 1 18 0 0 0 1 2 1 2 2 2 2 1 1 1 1 }
+3 1 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Normal" -1 258 1 {CSTYLE "" -1 
+-1 "Times" 1 18 0 0 0 1 2 1 2 2 2 2 1 1 1 1 }3 1 0 0 0 0 1 0 1 0 2 2 
+0 1 }{PSTYLE "Normal" -1 259 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 
+2 2 2 2 2 2 1 1 1 1 }1 1 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Normal" -1 
+260 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }1 1 
+0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Normal" -1 261 1 {CSTYLE "" -1 -1 "T
+imes" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }1 1 0 0 0 0 1 0 1 0 2 2 0 1 }
+{PSTYLE "Normal" -1 262 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 
+2 2 2 1 1 1 1 }1 1 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Normal" -1 263 1 
+{CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }1 1 0 0 0 
+0 1 0 1 0 2 2 0 1 }{PSTYLE "Normal" -1 264 1 {CSTYLE "" -1 -1 "Times" 
+1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }1 1 0 0 0 0 1 0 1 0 2 2 0 1 }}
+{SECT 0 {EXCHG {PARA 258 "" 0 "" {MPLTEXT 0 21 2 "46" }{TEXT 260 1 "
+\000" }{TEXT -1 34 ". Vandens istekejimas is cisternos" }}{PARA 0 "" 
+0 "" {TEXT -1 0 "" }}{PARA 256 "" 0 "" {TEXT 261 20 "1.1 Uzdavinio s
+\340lyga" }}{PARA 0 "" 0 "" {TEXT -1 0 "" }}{PARA 0 "" 0 "" {TEXT -1 
+295 "   Cilindrine cisterna yra vertikalaus cilindro formos. Is pradzi
+u vandens gylis joje yra 9    pedos(182,88 cm).\n   Vandens isleidimo \+
+kaistis(esantis dugne) atkemsamas laiku t = 0(valandomis).\n   Po 1 va
+landos vandens lygisnukrito iki 4 pedu(121,92 cm).Kiek laiko uzims vis
+o vandens isliejimas.\n" }}{PARA 0 "" 0 "" {TEXT -1 0 "" }}{PARA 256 "
+" 0 "" {TEXT 262 34 "1.2 Uzdavinio sprendimo algoritmas" }}{PARA 0 "" 
+0 "" {TEXT -1 0 "" }}{PARA 0 "" 0 "" {TEXT -1 276 "   a) Uzdavinio mod
+eliavimas,randame diferencialine lygti;\n   b) Surandame bendraji spre
+ndini;\n   c) Randame atskiraji sprendini;\n   d) Randame konstanta K;
+\n   e) Lygtis t(h) radimas\n   f) Atsakome i uzdavinyje keltus klausi
+mus;\n   g) Papildom savo pasirinktais sprendiniais;\n" }}{PARA 0 "" 
+0 "" {TEXT -1 599 "  Naudojamu simboliu reiksmes\n      h  - Sisternos
+ aukstis (centimetrais)\n      h0 - Pradinis aukstis (centimetrais)\n \+
+     g  - laisvojo kritimo pagreitis (centimetrais per sekunde kvadrat
+)\n      t  - laikas per kuri isbega vanduo (sekundemis)\n      B  - s
+isternos skerspjuvio plotas (kvadriniais centimetrais)\n      A  - sky
+les skerspjuvio plotas (kvadriniais centimetrais)\n      deltaT - laik
+o pokytis (sekundemis)\n      deltaH - vandens lygio kritimas per per \+
+laika deltaT\n      K - santykis tarp skyles skerspjuvio ploto su Cili
+ndro skerspjuvio ploto\n      V - turis (kvadratiniais centimetrais)" 
+}}{PARA 0 "" 0 "" {TEXT -1 0 "" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 
+1 0 8 "restart;" }}}{EXCHG {PARA 259 "> " 0 "" {MPLTEXT 1 0 24 "# Uzda
+vinio modeliavimas" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 44 "Toric
+elio_desnis:=v(t)=0.600*sqrt(2*g*h(t));" }}{PARA 11 "" 1 "" {XPPMATH 
+20 "6#>%1Toricelio_desnisG/-%\"vG6#%\"tG,$*&\"\"##\"\"\"F,*&%\"gGF.-%
+\"hGF(F.F-$\"$+'!\"$" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 64 "#is
+tekejusio vandens priklausomybe, nuo deltaT\nV(t)=A*deltaT*v;\n" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#/-%\"VG6#%\"tG*(%\"AG\"\"\"%'deltaTGF*
+%\"vGF*" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 61 "#Cisternos vande
+ms turio kitimas, nuo deltaH\n-V(t)=B*deltaH;\n" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#/,$-%\"VG6#%\"tG!\"\"*&%\"BG\"\"\"%'deltaHGF," }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 96 "#r sulyginam V(t) ir -V(t) p
+oto isistatom toricelio desni;\nB*deltaH=-A*deltaT*Toricelio_desnis;\n
+" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#/*&%\"BG\"\"\"%'deltaHGF&/,$*(%\"A
+GF&%'deltaTGF&-%\"vG6#%\"tGF&!\"\",$**F+F&F,F&\"\"##F&F4*&%\"gGF&-%\"h
+GF/F&F5$!$+'!\"$" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 63 "#daugin
+am is deltaT\nb*(deltaH/deltaT)=-A*0.600*sqrt(2*g*h(t));\n" }}{PARA 
+11 "" 1 "" {XPPMATH 20 "6#/*(%\"bG\"\"\"%'deltaHGF&%'deltaTG!\"\",$*(%
+\"AGF&\"\"##F&F-*&%\"gGF&-%\"hG6#%\"tGF&F.$!$+'!\"$" }}}{EXCHG {PARA 
+0 "> " 0 "" {MPLTEXT 1 0 53 "#kai deltaT -> 0;\nB*(dh/dt)=-A*0.600*sqr
+t(2*g*h(t));\n" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#/*(%\"BG\"\"\"%#dhGF
+&%#dtG!\"\",$*(%\"AGF&\"\"##F&F-*&%\"gGF&-%\"hG6#%\"tGF&F.$!$+'!\"$" }
+}}{EXCHG {PARA 260 "> " 0 "" {MPLTEXT 1 0 30 "# Surandame bendraji spr
+endini" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 37 "#A ir B santyki p
+asizymime K;\nK=A/B;\n" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#/%\"KG*&%\"A
+G\"\"\"%\"BG!\"\"" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 24 "Beta=0
+.600*sqrt(2*g)*K;\n" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#/%%BetaG,$*(\"
+\"##\"\"\"F'%\"gGF(%\"KGF)$\"$+'!\"$" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 46 "diff_lygtis := diff(h(t),t)=-Beta*sqrt(h(t));\n" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#>%,diff_lygtisG/-%%diffG6$-%\"hG6#%\"t
+GF,,$*&%%BetaG\"\"\"F)#F0\"\"#!\"\"" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 26 "dsolve(diff_lygtis,h(t));\n" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#/,&*&-%\"hG6#%\"tG#\"\"\"\"\"#%%BetaG!\"\"F,F)F+%$_C1G
+" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 7 "C=_C1;\n" }}{PARA 11 "" 
+1 "" {XPPMATH 20 "6#/%\"CG%$_C1G" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 28 "h(t)^(1/2) = -1/2*Beta*t+C;\n" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#/*$-%\"hG6#%\"tG#\"\"\"\"\"#,&*&%%BetaGF*F(F*#!\"\"F+%
+\"CGF*" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 90 "#pakeliam abi lyg
+ties puses kvadeatu\nBendrasSprendinys := sqrt(h(t))^2=(-1/2*Beta*t+C)
+^2;\n" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%2BendrasSprendinysG/-%\"hG6
+#%\"tG*$,&*&%%BetaG\"\"\"F)F.#!\"\"\"\"#%\"CGF.F1" }}}{EXCHG {PARA 0 "
+> " 0 "" {MPLTEXT 1 0 54 "BendrasSprendinys := h(t) = (-1/2*Beta*t+h0^
+(1/2))^2;\n" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%2BendrasSprendinysG/-
+%\"hG6#%\"tG*$),&*&%%BetaG\"\"\"F)F/#!\"\"\"\"#*$-%%sqrtG6#%#h0GF/F/F2
+F/" }}}{EXCHG {PARA 261 "> " 0 "" {MPLTEXT 1 0 30 "# Surandam atskiraj
+i sprendini" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 97 "#is uzdavini
+o salygos\n\nh0=100*(6*.3048); #kai t=0 ho=182cm;\nh1=100*(4*.3048); #
+kai t=1 h1=121cm;\n" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#/%#h0G$\"(+)G=!
+\"%" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#/%#h1G$\"(+#>7!\"%" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 29 "subs(t=0,BendrasSprendinys);\n" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#/-%\"hG6#\"\"!%#h0G" }}}{EXCHG {PARA 
+0 "> " 0 "" {MPLTEXT 1 0 13 "C:=sqrt(h0);\n" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#>%\"CG*$%#h0G#\"\"\"\"\"#" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 58 "AtskirasSprendinys:=subs(_C1=sqrt(h0),BendrasSprendin
+ys);\n" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%3AtskirasSprendinysG/-%\"h
+G6#%\"tG*$,&*&%%BetaG\"\"\"F)F.#!\"\"\"\"#*$%#h0G#F.F1F.F1" }}}{EXCHG 
+{PARA 262 "> " 0 "" {MPLTEXT 1 0 23 "# Surandame konstanta k" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 150 "#nagrinejam atveji, kai t=1
+. h(1)=h1;\n#isistatom visas mums zinomas reiksmes;\nsubs(Beta=0.600*s
+qrt(2*g)*K,g=980, h0=182.88,t=3600,BendrasSprendinys);\n" }}{PARA 11 "
+" 1 "" {XPPMATH 20 "6#/-%\"hG6#\"%+O*$,&*(\"\"##\"\"\"F+\"$!)*F,%\"KGF
+-$!++++!3\"!\"'$\"+?8L_8!\")F-F+" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 70 "lygtis:= (-.3000000000*2^(1/2)*980^(1/2)*K*1+13.52331
+320)^2=121.9200;\n" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%'lygtisG/*$,&*
+(\"\"##\"\"\"F)\"$!)*F*%\"KGF+$!+++++I!#5$\"+?8L_8!\")F+F)$\"(+#>7!\"%
+" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 19 "solve (lygtis, K);\n" }
+}{PARA 11 "" 1 "" {XPPMATH 20 "6$$\"+B\\Vo=!#5$\"+**)f&\\=!\"*" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 76 "#gavome dvi reiksmes, viena \+
+mums netinka\nK1:=1.849559899;\nK2:=0.1868434923;\n" }}{PARA 11 "" 1 "
+" {XPPMATH 20 "6#>%#K1G$\"+**)f&\\=!\"*" }}{PARA 11 "" 1 "" {XPPMATH 
+20 "6#>%#K2G$\"+B\\Vo=!#5" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+82 "aukstisNuoLaiko:=subs(Beta=0.600*sqrt(2*g)*K,g=980, h0=182.88,Bend
+rasSprendinys);\n" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%0aukstisNuoLaik
+oG/-%\"hG6#%\"tG*$,&**\"\"##\"\"\"F-\"$!)*F.%\"KGF/F)F/$!+++++I!#5$\"+
+?8L_8!\")F/F-" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 53 "K:=K1;\npl
+ot(\{rhs(aukstisNuoLaiko)\},t=0..6,h=0..183);\n" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#>%\"KG$\"+**)f&\\=!\"*" }}{PARA 13 "" 1 "" {GLPLOT2D 
+496 496 496 {PLOTDATA 2 "6%-%'CURVESG6$7S7$\"\"!$\"1VH0****zG=!#87$$\"
+1+++]#HyI\"!#;$\"1>y(fj*3j5F+7$$\"1++]([kdW#F/$\"1Cg:1L%zk&!#97$$\"1++
++v;\\DPF/$\"1%oQ`;46\">F77$$\"1+++D<q8]F/$\"1hNv5)frX\"!#:7$$\"1++]P\"
+*y&H'F/$\"17;H@!HEx$FB7$$\"1++](G[W[(F/$\"1/!z#\\*pTO#F77$$\"1++]()fB:
+()F/$\"1F)\\;TT%=iF77$$\"1++](Q=\"))**F/$\"19yafHw77F+7$$\"1++vj=pD6FB
+$\"1=c'p))*Q'*>F+7$$\"1+++lN?c7FB$\"1GD#=[e^+$F+7$$\"1++]U$e6P\"FB$\"1
+h5Ik)eR1%F+7$$\"1+++&>q0]\"FB$\"10=px$\\nW&F+7$$\"1+++DM^I;FB$\"1[)zpJ
+'eQqF+7$$\"1+++0ytb<FB$\"1;;ok^Vl()F+7$$\"1++vQNXp=FB$\"1xLF.Uv\\5!#77
+$$\"1+++XDn/?FB$\"1rg8T2.w7Fdp7$$\"1+++!y?#>@FB$\"1!\\&Qe8)\\[\"Fdp7$$
+\"1++v3wY_AFB$\"1/_S%)\\'zu\"Fdp7$$\"1+++IOTqBFB$\"1W/>V$G')*>Fdp7$$\"
+1++v3\">)*\\#FB$\"1.LLE6'HH#Fdp7$$\"1++DEP/BEFB$\"1<gXJ3-#f#Fdp7$$\"1+
++](o:;v#FB$\"13vrsSfBHFdp7$$\"1++v$)[opGFB$\"1=C[vWlXKFdp7$$\"1++]i%Qq
+*HFB$\"1O^m%)4!>h$Fdp7$$\"1++vQIKHJFB$\"1r#)4iS08SFdp7$$\"1++D^rZWKFB$
+\"1Mos8KXzVFdp7$$\"1++]Zn%)oLFB$\"13#\\Xa]Jz%Fdp7$$\"1+++5FL(\\$FB$\"1
+@'*o>_9S_Fdp7$$\"1++]d6.BOFB$\"15%f?iAnp&Fdp7$$\"1++vo3lWPFB$\"1RW@=bj
+chFdp7$$\"1++]A))ozQFB$\"1vYEzZ?)o'Fdp7$$\"1+++Ik-,SFB$\"1=XJo_h%=(Fdp
+7$$\"1+++D-eITFB$\"1#H]Pl`Ut(Fdp7$$\"1++v=_(zC%FB$\"1$\\^N$=!)\\#)Fdp7
+$$\"1+++b*=jP%FB$\"10(>\\8kC$))Fdp7$$\"1++v3/3(\\%FB$\"1,$[C(o&))R*Fdp
+7$$\"1++vB4JBYFB$\"1!)*pVXr4+\"!#67$$\"1+++DVsYZFB$\"1S?VDJbi5Fcw7$$\"
+1++v=n#f([FB$\"1bAPvH**G6Fcw7$$\"1+++!)RO+]FB$\"1,1#R/()[>\"Fcw7$$\"1+
++]_!>w7&FB$\"1!zAw,1UE\"Fcw7$$\"1++v)Q?QD&FB$\"1!ojl>\")[L\"Fcw7$$\"1+
+++5jyp`FB$\"1uWa+!>:S\"Fcw7$$\"1++]Ujp-bFB$\"1:HV:&*))z9Fcw7$$\"1+++gE
+d@cFB$\"15T-E7z^:Fcw7$$\"1++v3'>$[dFB$\"1%4i63K.j\"Fcw7$$\"1++D6EjpeFB
+$\"14hIK;K2<Fcw7$$\"\"'F($\"1)eDrOP?z\"Fcw-%'COLOURG6&%$RGBG$\"#5!\"\"
+F(F(-%+AXESLABELSG6$%\"tG%\"hG-%%VIEWG6$;F(Fgz;F($\"$$=F(" 1 2 0 1 0 
+2 9 0 4 2 1 0.000000 45.000000 45.000000 0 0 "Curve 1" }}}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 53 "K:=K2;\nplot(\{rhs(aukstisNuoLaiko)
+\},t=0..6,h=0..183);\n" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%\"KG$\"+B
+\\Vo=!#5" }}{PARA 13 "" 1 "" {GLPLOT2D 496 496 496 {PLOTDATA 2 "6%-%'C
+URVESG6$7S7$\"\"!$\"1VH0****zG=!#87$$\"1+++]#HyI\"!#;$\"1H>A^T2U<F+7$$
+\"1++]([kdW#F/$\"1w(='f$G$o;F+7$$\"1+++v;\\DPF/$\"15elA))H(e\"F+7$$\"1
++++D<q8]F/$\"1P$z:Lpx]\"F+7$$\"1++]P\"*y&H'F/$\"1/TvtrkI9F+7$$\"1++](G
+[W[(F/$\"1r$**3l`4O\"F+7$$\"1++]()fB:()F/$\"1:@Q_Qi!H\"F+7$$\"1++](Q=
+\"))**F/$\"1$Gv/A^)>7F+7$$\"1++vj=pD6!#:$\"1,w'4^\"H^6F+7$$\"1+++lN?c7
+FX$\"1$R!pF\"QG3\"F+7$$\"1++]U$e6P\"FX$\"1&[Pi/#GC5F+7$$\"1+++&>q0]\"F
+X$\"10E$>O#4.'*!#97$$\"1+++DM^I;FX$\"1p,+J:\\\")*)Fdo7$$\"1+++0ytb<FX$
+\"1GnU299-%)Fdo7$$\"1++vQNXp=FX$\"19S`?'oF*yFdo7$$\"1+++XDn/?FX$\"1BF7
+#3/yI(Fdo7$$\"1+++!y?#>@FX$\"1'>%zs7))HoFdo7$$\"1++v3wY_AFX$\"1+<N^lF%
+H'Fdo7$$\"1+++IOTqBFX$\"1pB)*p1UQeFdo7$$\"1++v3\">)*\\#FX$\"1\\1%G6')z
+N&Fdo7$$\"1++DEP/BEFX$\"1Me3j%p'>\\Fdo7$$\"1++](o:;v#FX$\"1t>)**foA[%F
+do7$$\"1++v$)[opGFX$\"1p`O?7`)4%Fdo7$$\"1++]i%Qq*HFX$\"1`M-\"RmQq$Fdo7
+$$\"1++vQIKHJFX$\"1G7u<;2:LFdo7$$\"1++D^rZWKFX$\"1z!\\FdrT*HFdo7$$\"1+
++]Zn%)oLFX$\"1.=w8d$fm#Fdo7$$\"1+++5FL(\\$FX$\"1MU,))H%oM#Fdo7$$\"1++]
+d6.BOFX$\"1gtC_)[V0#Fdo7$$\"1++vo3lWPFX$\"1W]qr)o)*y\"Fdo7$$\"1++]A))o
+zQFX$\"1&zxeR_v^\"Fdo7$$\"1+++Ik-,SFX$\"1qVB!*3-#H\"Fdo7$$\"1+++D-eITF
+X$\"1J*=dZM72\"Fdo7$$\"1++v=_(zC%FX$\"1<`b3;A!*))FX7$$\"1+++b*=jP%FX$
+\"1XlR)o$Q#4(FX7$$\"1++v3/3(\\%FX$\"1JGV\"[6ge&FX7$$\"1++vB4JBYFX$\"1#
+fp/q=M?%FX7$$\"1+++DVsYZFX$\"1*QpOM79/$FX7$$\"1++v=n#f([FX$\"1Wm#\\`%*
+e-#FX7$$\"1+++!)RO+]FX$\"1CQn3q>U7FX7$$\"1++]_!>w7&FX$\"1XF/()>&*zjF/7
+$$\"1++v)Q?QD&FX$\"1=FwqJwdBF/7$$\"1+++5jyp`FX$\"1BRRo#)37R!#<7$$\"1++
+]Ujp-bFX$\"1\"fK\"*[`Lu\"F`y7$$\"1+++gEd@cFX$\"1!=0[&=gB=F/7$$\"1++v3'
+>$[dFX$\"1pHb>!Q#*\\&F/7$$\"1++D6EjpeFX$\"1')[f\"[Zq3\"FX7$$\"\"'F($\"
+1rH!\\v;j'=FX-%'COLOURG6&%$RGBG$\"#5!\"\"F(F(-%+AXESLABELSG6$%\"tG%\"h
+G-%%VIEWG6$;F(Ffz;F($\"$$=F(" 1 2 0 1 0 2 9 0 4 2 1 0.000000 
+45.000000 45.000000 0 0 "Curve 1" }}}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 191 "#Salygoje pasakyta kad per 1 valanda vandens lygis s
+umazejo 5 pedomis. taigi mums netinka konstanta K1, nes is grafiko mat
+yti, kad vanduo isgego is cisternos greiciau nei per valanda.\nK:=K2;
+\n" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%\"KG$\"+B\\Vo=!#5" }}}{EXCHG 
+{PARA 0 "" 0 "" {TEXT -1 0 "" }{MPLTEXT 1 0 21 "# Lygtis t(h) radimas
+" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 81 "LaikasNuoAukscio := sol
+ve (h = (-.3000000000*2^(1/2)*g^(1/2)*K*t+h0^(1/2))^2,t);\n" }}{PARA 
+11 "" 1 "" {XPPMATH 20 "6#>%1LaikasNuoAukscioG6$,$*&%\"gG!\"\",&*(\"\"
+##\"\"\"F,F(F-%#h0GF-F,*&F,F-*&F(F.%\"hGF.F-F,F.$\"+(yg+Y%!\"*,$*&F(F)
+,&F+F,F0!\"#F.F3" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 95 "LaikasN
+uoAukscio1 := .8333333334*(2.828427125*h0^(1/2)*g^(1/2)+2.828427125*(g
+*h)^(1/2))/(g*K);\n" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%2LaikasNuoAuk
+scio1G,$*&,&*&%#h0G#\"\"\"\"\"#%\"gGF*$\"+DrUGG!\"**$*&F-F+%\"hGF+F*F.
+F+F-!\"\"$\"+)yg+Y%F0" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 95 "La
+ikasNuoAukscio2 := .8333333334*(2.828427125*h0^(1/2)*g^(1/2)-2.8284271
+25*(g*h)^(1/2))/(g*K);\n" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%2LaikasN
+uoAukscio2G,$*&,&*&%#h0G#\"\"\"\"\"#%\"gGF*$\"+DrUGG!\"**$*&F-F+%\"hGF
++F*$!+DrUGGF0F+F-!\"\"$\"+)yg+Y%F0" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 66 "LaikasNuoAukscio1:=subs(g=980, h0=182.88,K=K2,LaikasN
+uoAukscio1);\n" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%2LaikasNuoAukscio1
+G,&*$\"$!)*#\"\"\"\"\"#$\"+YcxS<!#5*&F'F(%\"hGF($\"+,0C(G\"!#6" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 43 "LaikasNuoAukscio1:=t(h)=Laik
+asNuoAukscio1;\n" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%2LaikasNuoAuksci
+o1G/-%\"tG6#%\"hG,&*$\"$!)*#\"\"\"\"\"#$\"+YcxS<!#5*&F,F-F)F-$\"+,0C(G
+\"!#6" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 66 "LaikasNuoAukscio2:
+=subs(g=980, h0=182.88,K=K2,LaikasNuoAukscio2);\n" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#>%2LaikasNuoAukscio2G,&*$\"$!)*#\"\"\"\"\"#$\"+YcxS<!#5
+*&F'F(%\"hGF($!+,0C(G\"!#6" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+43 "LaikasNuoAukscio2:=t(h)=LaikasNuoAukscio2;\n" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#>%2LaikasNuoAukscio2G/-%\"tG6#%\"hG,&*$\"$!)*#\"\"\"\"
+\"#$\"+YcxS<!#5*&F,F-F)F-$!+,0C(G\"!#6" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 49 "plot(\{rhs(LaikasNuoAukscio1)\},h=0..200,t=0..10);\n
+" }}{PARA 13 "" 1 "" {GLPLOT2D 496 496 496 {PLOTDATA 2 "6%-%'CURVESG6$
+7W7$\"\"!$\"1b\\C\\(*[\\a!#:7$$\"1LLL3x&)*3\"F+$\"1bz&oLv,(eF+7$$\"1nm
+m;arz@F+$\"1b@u7!HW/'F+7$$\"1+++DJdpKF+$\"1SE+h&Q\"yhF+7$$\"1MLLL3VfVF
++$\"1b4ZC4'3H'F+7$$\"1++]i&*)fD'F+$\"1(=Q()R(RdkF+7$$\"1nmm\"H[D:)F+$
+\"1qNFXm2+mF+7$$\"1LLLe0$=C\"!#9$\"1irkF1apoF+7$$\"1MLL3RBr;FM$\"1:!Rz
+]go4(F+7$$\"1nm;zjf)4#FM$\"1#H-D68bH(F+7$$\"1LL$e4;[\\#FM$\"1?T\"=z\\A
+Y(F+7$$\"1++]i'y]!HFM$\"14k?W!\\9i(F+7$$\"1LL$ezs$HLFM$\"1S8WecluxF+7$
+$\"1++]7iI_PFM$\"1-IrQd#z\"zF+7$$\"1nmm;_M(=%FM$\"1F[n@m4d!)F+7$$\"1ML
+L3y_qXFM$\"1Ju%G!fzt\")F+7$$\"1,++]1!>+&FM$\"1eN3!ff%*H)F+7$$\"1+++]Z/
+NaFM$\"1xY\"=x&H?%)F+7$$\"1,++]$fC&eFM$\"1++^;bEK&)F+7$$\"1ML$ez6:B'FM
+$\"1k&R)\\?`I')F+7$$\"1omm;=C#o'FM$\"1UwmhtcV()F+7$$\"1nmmm#pS1(FM$\"1
+P)zv&GPO))F+7$$\"1,+]i`A3vFM$\"1./O6cAT*)F+7$$\"1nmmm(y8!zFM$\"1v#o09y
+9.*F+7$$\"1,+]i.tK$)FM$\"1L/J*z_z7*F+7$$\"1++](3zMu)FM$\"1]B`cU_<#*F+7
+$$\"1omm\"H_?<*FM$\"13K_Mrw3$*F+7$$\"1nm;zihl&*FM$\"1jnOQkp!R*F+7$$\"1
+MLL3#G,***FM$\"1^M<4/?x%*F+7$$\"1LLezw5V5!#8$\"1LAvU!H^c*F+7$$\"1++v$Q
+#\\\"3\"Fft$\"1By#*G%p,k*F+7$$\"1LL$e\"*[H7\"Fft$\"1xx1nTt>(*F+7$$\"1+
+++qvxl6Fft$\"1JMGqXS+)*F+7$$\"1++]_qn27Fft$\"1f%e-*H!z()*F+7$$\"1++Dcp
+@[7Fft$\"1f!eu1<;&**F+7$$\"1++]2'HKH\"Fft$\"1&y:+]2K+\"FM7$$\"1nmmwanL
+8Fft$\"1*)zan$=.,\"FM7$$\"1+++v+'oP\"Fft$\"1:)4vq#z<5FM7$$\"1LLeR<*fT
+\"Fft$\"1Dvck\\YC5FM7$$\"1+++&)Hxe9Fft$\"1\\S(4&[lJ5FM7$$\"1nm\"H!o-*
+\\\"Fft$\"1/g03VKQ5FM7$$\"1++DTO5T:Fft$\"1seHr2?X5FM7$$\"1nmmT9C#e\"Ff
+t$\"1)4j;fL=0\"FM7$$\"1++D1*3`i\"Fft$\"1#yhDz&oe5FM7$$\"1MLL$*zym;Fft$
+\"1K6#['**>l5FM7$$\"1LL$3N1#4<Fft$\"1G!4+Ny<2\"FM7$$\"1nm\"HYt7v\"Fft$
+\"14T'R7A#y5FM7$$\"1+++q(G**y\"Fft$\"1?4,'QvS3\"FM7$$\"1nm;9@BM=Fft$\"
+1-e@&o124\"FM7$$\"1LLL`v&Q(=Fft$\"1y2'fEql4\"FM7$$\"1++DOl5;>Fft$\"15!
+Gk<aF5\"FM7$$\"1++v.Uac>Fft$\"1jDOG%4'36FM7$$\"$+#F($\"1r^1QY$[6\"FM-%
+'COLOURG6&%$RGBG$\"#5!\"\"F(F(-%+AXESLABELSG6$%\"hG%\"tG-%%VIEWG6$;F(F
+h[l;F($Fa\\lF(" 1 2 0 1 0 2 9 0 4 2 1 0.000000 45.000000 45.000000 0 
+0 "Curve 1" }}}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 48 "plot(\{rhs(L
+aikasNuoAukscio2)\},h=0..200,t=0..6);\n" }}{PARA 13 "" 1 "" {GLPLOT2D 
+496 496 496 {PLOTDATA 2 "6%-%'CURVESG6$7W7$\"\"!$\"1b\\C\\(*[\\a!#:7$$
+\"1LLL3x&)*3\"F+$\"1a>jhT!)G]F+7$$\"1nmm;arz@F+$\"1bxu&[]X&[F+7$$\"1++
++DJdpKF+$\"1qs[P4%3s%F+7$$\"1MLLL3VfVF+$\"1a*=Sd=\"3YF+7$$\"1++]i&*)fD
+'F+$\"1B<v*4#eTWF+7$$\"1nmm\"H[D:)F+$\"1Rj@`G!*)H%F+7$$\"1LLLe0$=C\"!#
+9$\"1[F%3()Q%HSF+7$$\"1MLL3RBr;FM$\"1&*3b!**=@!QF+7$$\"1nm;zjf)4#FM$\"
+1=w)fQmMg$F+7$$\"1LL$e4;[\\#FM$\"1*yvmqHnV$F+7$$\"1++]i'y]!HFM$\"1+NGa
+/`xKF+7$$\"1LL$ezs$HLFM$\"1q&[+%QKCJF+7$$\"1++]7iI_PFM$\"13pxfP0\")HF+
+7$$\"1nmm;_M(=%FM$\"1$3:o(G)=%GF+7$$\"1MLL3y_qXFM$\"1zCk&f$=DFF+7$$\"1
+,++]1!>+&FM$\"1^jS3*>&*f#F+7$$\"1+++]Z/NaFM$\"1K_nEPoyCF+7$$\"1,++]$fC
+&eFM$\"15*z>)RrmBF+7$$\"1ML$ez6:B'FM$\"1Y.l[uWoAF+7$$\"1omm;=C#o'FM$\"
+1nA#o87a:#F+7$$\"1nmmm#pS1(FM$\"1s+\"4k1E1#F+7$$\"1,+]i`A3vFM$\"11&Hr)
+Qvd>F+7$$\"1nmmm(y8!zFM$\"1N;#zN,v'=F+7$$\"1,+]i.tK$)FM$\"1x%z\"*pE5x
+\"F+7$$\"1++](3zMu)FM$\"1fv&>Cb9o\"F+7$$\"1omm\"H_?<*FM$\"1-n'RO7-f\"F
++7$$\"1nm;zihl&*FM$\"1ZJ7gIG3:F+7$$\"1MLL3#G,***FM$\"1fkJ*3z<U\"F+7$$
+\"1LLezw5V5!#8$\"1xwtb/&QL\"F+7$$\"1++v$Q#\\\"3\"Fft$\"1&3i&p+\")e7F+7
+$$\"1LL$e\"*[H7\"Fft$\"1L@UJ`Cz6F+7$$\"1+++qvxl6Fft$\"1yk?G\\d)4\"F+7$
+$\"1++]_qn27Fft$\"1^9B3l2@5F+7$$\"1++Dcp@[7Fft$\"16&=.JCOZ*!#;7$$\"1++
+]2'HKH\"Fft$\"1E1K$)\\/p')Fbv7$$\"1nmmwanL8Fft$\"1$>+,Bez&zFbv7$$\"1++
++v+'oP\"Fft$\"1#f<RBC0@(Fbv7$$\"1LLeR<*fT\"Fft$\"1/m9G&)HVlFbv7$$\"1++
++&)Hxe9Fft$\"1BU\\())4V#eFbv7$$\"1nm\"H!o-*\\\"Fft$\"1L()HzTOd^Fbv7$$
+\"1++DTO5T:Fft$\"1\")=JbyrpWFbv7$$\"1nmmT9C#e\"Fft$\"14$*e=eV1QFbv7$$
+\"1++D1*3`i\"Fft$\"194sGd@@JFbv7$$\"1MLL$*zym;Fft$\"1Hfy-&)zpCFbv7$$\"
+1LL$3N1#4<Fft$\"1ni*R)*f>\"=Fbv7$$\"1nm\"HYt7v\"Fft$\"1]#)[)e#en6Fbv7$
+$\"1+++q(G**y\"Fft$\"1#eq!QQcAe!#<7$$\"1nm;9@BM=Fft$!12B6oON(3)!#=7$$
+\"1LLL`v&Q(=Fft$!19ny6hJsmFdz7$$\"1++DOl5;>Fft$!1@>!zlAcG\"Fbv7$$\"1++
+v.Uac>Fft$!1wrN^y9r=Fbv7$$\"$+#F($!1)*zh@)oO\\#Fbv-%'COLOURG6&%$RGBG$
+\"#5!\"\"F(F(-%+AXESLABELSG6$%\"hG%\"tG-%%VIEWG6$;F(F[\\l;F($\"\"'F(" 
+1 2 0 1 0 2 9 0 4 2 1 0.000000 45.000000 45.000000 0 0 "Curve 1" }}}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 93 "#is grafiku matyti, kad musu
+ ieskoma lygtis yra LaikasNuoAukscio2;\nevalf(LaikasNuoAukscio2);\n" }
+}{PARA 11 "" 1 "" {XPPMATH 20 "6#/-%\"tG6#%\"hG,&$\"+](*[\\a!\"*\"\"\"
+*$F'#F,\"\"#$!+q,qHS!#5" }}}{EXCHG {PARA 263 "> " 0 "" {MPLTEXT 1 0 
+39 "#Atsakome i uzdavinyje keltus klausimus" }}}{EXCHG {PARA 0 "> " 0 
+"" {MPLTEXT 1 0 103 "#Kada isbegs is cisternos visas vanduo(t.y h=0);
+\naukstis:=0;\nevalf(subs(h=aukstis,LaikasNuoAukscio2));\n" }}{PARA 
+11 "" 1 "" {XPPMATH 20 "6#>%(aukstisG\"\"!" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#/-%\"tG6#\"\"!$\"+](*[\\a!\"*" }}}{EXCHG {PARA 0 "> " 
+0 "" {MPLTEXT 1 0 27 "#5.449489748h=5h 26 min 58s" }}}{EXCHG {PARA 
+264 "> " 0 "" {MPLTEXT 1 0 8 "#Isvados" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 405 "#Noredami suzinoti kiek laiko vanduo teka is cilindr
+o iki tam tikro aukscio, mes galim remtis galutine formule:\nt(h) = 19
+618.16309 - 1450.692061 * sqrt(h);\n#. Cia t - laikas (sekundemis) per
+ kuri vanduo istekes iki aukscio h (centimertais);\n\n# Noredami suzin
+oti cisternos vandens auksti kuriuo nors laiko momentu galime naudotis
+ sia formule:\nh(t) = (-0.00001557029102 * sqrt(2*980) * t + 13.523313
+20 )^2;\n" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#/-%\"tG6#%\"hG,&$\"+4j\"=
+'>!\"&\"\"\"*$F'#F,\"\"#$!+h?p]9!\"'" }}{PARA 11 "" 1 "" {XPPMATH 20 "
+6#/-%\"hG6#%\"tG*$,&*&\"#5#\"\"\"\"\"#F'F-$!+V2%)z@!#8$\"+?8L_8!\")F-F
+." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 183 "#Bendra lygtis skaici
+uoti cisternos vandens auksti; \nh(t) = (-.3*2^(1/2)*g^(1/2)*A*t/B+h0^
+(1/2))^2;\nt(h) = .8333333334*(2.828427125*g^(1/2)*h0^(1/2)-2.82842712
+5*(g*h)^(1/2))*B/(g*A);\n" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#/-%\"hG6#
+%\"tG*$,&*,\"\"##\"\"\"F+%\"gGF,%\"AGF-F'F-%\"BG!\"\"$!\"$F1*$%#h0GF,F
+-F+" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#/-%\"tG6#%\"hG,$**,&*&%\"gG#\"
+\"\"\"\"#%#h0GF-$\"+DrUGG!\"**$*&F,F.F'F.F-$!+DrUGGF3F.%\"BGF.F,!\"\"%
+\"AGF9$\"+MLLL$)!#5" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}
+}{MARK "39 0 0" 11 }{VIEWOPTS 1 1 0 1 1 1803 1 1 1 1 }{PAGENUMBERS 0 
+1 2 33 1 1 }
